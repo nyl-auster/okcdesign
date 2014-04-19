@@ -1,6 +1,30 @@
 <?php
 
 /**
+ * Implements hook_css_alter()
+ */
+function okcfoundation_theme_css_alter(&$css) {
+
+  // keep those css, so that overlay, shortcut, toolbar and contextual links
+  // still works as expected.
+  $css_to_keep = array(
+    'modules/toolbar/toolbar.css',
+    'modules/shortcut/shortcut.css',
+    'modules/overlay/overlay-parent.css',
+    'modules/system/system.base.css',
+    'modules/system/system.theme.css',
+    'modules/contextual/contextual.css',
+  );
+
+  // remove all others
+  foreach($css as $path => $values) {
+    if(strpos($path, 'modules/') === 0 && !in_array($path, $css_to_keep)) {
+      unset($css[$path]);
+    }
+  }
+}
+
+/**
  * Implements template_preprocess_html().
  *
  */

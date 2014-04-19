@@ -23,9 +23,3 @@ engine = phptemplate
 ; scripts[] = js/okcfoundation_theme.js
 
 ; Drupal regions
-regions[header]              = Header
-regions[help]                = Help
-regions[highlighted]         = Highlighted
-regions[featured]            = Featured
-regions[content]             = Content
-regions[footer]              = Footer
