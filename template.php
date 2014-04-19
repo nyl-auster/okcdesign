@@ -19,7 +19,7 @@ function okcfoundation_theme_css_alter(&$css) {
  * Implements hook_html_head_alter().
  */
 function okcfoundation_theme_html_head_alter(&$head_elements) {
-  _invoke_theme_plugins('html_head_alter', $args = array('head_elements' => &$head_elements));
+  _invoke_theme_plugins('hook_html_head_alter', $args = array('head_elements' => &$head_elements));
 }
 
 /**
