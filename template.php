@@ -1,27 +1,24 @@
 <?php
+/**
+ * @file
+ *
+ * Template.php
+ */
+
+include('plugins/okcfoundation.base.php');
 
 /**
  * Implements hook_css_alter()
  */
 function okcfoundation_theme_css_alter(&$css) {
+  _foundation_remove_drupal_css($css);
+}
 
-  // keep those css, so that overlay, shortcut, toolbar and contextual links
-  // still works as expected.
-  $css_to_keep = array(
-    'modules/system/system.base.css',
-    //'modules/system/system.theme.css',
-    'modules/contextual/contextual.css',
-    'modules/toolbar/toolbar.css',
-    'modules/shortcut/shortcut.css',
-    'modules/overlay/overlay-parent.css',
-  );
-
-  // remove all others
-  foreach($css as $path => $values) {
-    if(strpos($path, 'modules/') === 0 && !in_array($path, $css_to_keep)) {
-      unset($css[$path]);
-    }
-  }
+/**
+ * Implements hook_html_head_alter().
+ */
+function okcfoundation_theme_html_head_alter(&$head_elements) {
+  _foundation_html_head_alter($head_elements);
 }
 
 /**

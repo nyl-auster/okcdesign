@@ -5,14 +5,16 @@ description = Resposive theme based on foundation
 core = 7.x
 engine = phptemplate
 
-; zurb foundation compiled css
+; zurb foundation compiled css. Leave this in info file so that
+; a sub theme may esaily override this to use its own app.css
 stylesheets[all][] = css/app.css
 
 ; Modernizr acts as a shim for HTML5 elements for older browsers
 ; as well as detection for mobile devices.
-scripts[] = js/vendor/custom.modernizr.js
+scripts[] = foundation/bower_components/modernizr/modernizr.js
 ; Foundation framework scripts (minified)..
-scripts[] = js/foundation.min.js
+scripts[] = foundation/bower_components/foundation/js/foundation.min.js
+scripts[] = js/app.js
 
 ; Theme scripts.
 ; This file is empty, just uncomment this line and start editing!
