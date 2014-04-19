@@ -5,20 +5,21 @@
  * Template.php
  */
 
-include('plugins/foundation.base.php');
+// load plugins system
+include 'theme_plugins.php';
 
 /**
  * Implements hook_css_alter()
  */
 function okcfoundation_theme_css_alter(&$css) {
-  _foundation_remove_drupal_css($css);
+  _invoke_theme_plugins('hook_css_alter', $args = array('css' => &$css));
 }
 
 /**
  * Implements hook_html_head_alter().
  */
 function okcfoundation_theme_html_head_alter(&$head_elements) {
-  _foundation_html_head_alter($head_elements);
+  _invoke_theme_plugins('html_head_alter', $args = array('head_elements' => &$head_elements));
 }
 
 /**

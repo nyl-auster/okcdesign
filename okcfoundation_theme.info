@@ -16,6 +16,8 @@ scripts[] = foundation/bower_components/modernizr/modernizr.js
 scripts[] = foundation/bower_components/foundation/js/foundation.min.js
 scripts[] = js/app.js
 
+theme_plugins[foundation_base] = plugins/foundation_base.php
+
 ; Theme scripts.
 ; This file is empty, just uncomment this line and start editing!
 ; scripts[] = js/okcfoundation_theme.js
