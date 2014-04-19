@@ -8,12 +8,12 @@ function okcfoundation_theme_css_alter(&$css) {
   // keep those css, so that overlay, shortcut, toolbar and contextual links
   // still works as expected.
   $css_to_keep = array(
+    'modules/system/system.base.css',
+    //'modules/system/system.theme.css',
+    'modules/contextual/contextual.css',
     'modules/toolbar/toolbar.css',
     'modules/shortcut/shortcut.css',
     'modules/overlay/overlay-parent.css',
-    'modules/system/system.base.css',
-    'modules/system/system.theme.css',
-    'modules/contextual/contextual.css',
   );
 
   // remove all others

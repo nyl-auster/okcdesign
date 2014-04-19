@@ -5,18 +5,14 @@ description = Resposive theme based on foundation
 core = 7.x
 engine = phptemplate
 
-; our compilation of foundation css.
-; stylesheets[all][] = css/okcfoundation_theme.css
-
-; Block loading of foundation.min.css from zurb-foundation, as we use okcfoudation_theme.css instead
-; stylesheets[all][] = css/foundation.min.css
+; zurb foundation compiled css
+stylesheets[all][] = css/app.css
 
 ; Modernizr acts as a shim for HTML5 elements for older browsers
 ; as well as detection for mobile devices.
-; scripts[] = js/vendor/custom.modernizr.js
-
+scripts[] = js/vendor/custom.modernizr.js
 ; Foundation framework scripts (minified)..
-; scripts[] = js/foundation.min.js
+scripts[] = js/foundation.min.js
 
 ; Theme scripts.
 ; This file is empty, just uncomment this line and start editing!
