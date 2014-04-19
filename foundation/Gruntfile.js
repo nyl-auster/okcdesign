@@ -1,22 +1,14 @@
-/**
- * @file
- *
- * configuration for grunt, we are using grunt to precompile our css and this file
- * is mandatory.
- * Gruntfile.js and package.json are copy pasted from foundation folders.
- */
-
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     sass: {
       options: {
-        includePaths: ['foundation/bower_components/foundation/scss']
+        includePaths: ['bower_components/foundation/scss']
       },
       dist: {
         options: {
-          outputStyle: 'uncompressed'
+          outputStyle: 'compressed'
         },
         files: {
           'css/app.css': 'scss/app.scss'
