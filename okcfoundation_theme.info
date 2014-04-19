@@ -16,10 +16,5 @@ scripts[] = foundation/bower_components/modernizr/modernizr.js
 scripts[] = foundation/bower_components/foundation/js/foundation.min.js
 scripts[] = js/app.js
 
+; declare theme plugins. key is the class name, value is path to class.
 theme_plugins[foundation_base] = plugins/foundation_base.php
-
-; Theme scripts.
-; This file is empty, just uncomment this line and start editing!
-; scripts[] = js/okcfoundation_theme.js
-
-; Drupal regions

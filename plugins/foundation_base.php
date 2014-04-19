@@ -2,8 +2,8 @@
 /**
  * @file
  *
- * All required things to make foundation work with drupal
- * @param $head_elements
+ * This plugin does only things required to make foundation works with Drupal.
+ * Js & css file are still added info file for now, though.
  */
 
 class foundation_base {
