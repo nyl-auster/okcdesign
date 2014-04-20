@@ -5,6 +5,7 @@
  * Set a Drupal menu to a foundation top bar
  * http://foundation.zurb.com/docs/components/topbar.html
  */
+
 class primary_tabs_as_sub_nav {
 
   static function okcfoundation_theme_menu_local_task($variables) {
@@ -26,6 +27,7 @@ class primary_tabs_as_sub_nav {
   }
 
   static function okcfoundation_theme_menu_local_tasks($variables) {
+
     $output = '';
     if (!empty($variables['primary'])) {
       $variables['primary']['#prefix'] = '<h2 class="element-invisible">' . t('Primary tabs') . '</h2>';

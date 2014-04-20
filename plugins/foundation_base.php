@@ -8,11 +8,12 @@
 
 class foundation_base {
 
-
   /**
    * Adjust drupal html headers and add css & js required by foundation
    */
-  static function okcfoundation_theme_html_head_alter(&$head_elements) {
+  static function okcfoundation_theme_html_head_alter(&$args) {
+
+    $head_elements = &$args['head_elements'];
 
     drupal_add_js(drupal_get_path('theme', 'okcfoundation_theme') . '/foundation/bower_components/modernizr/modernizr.js');
     drupal_add_js(drupal_get_path('theme', 'okcfoundation_theme') . '/foundation/bower_components/foundation/js/foundation.min.js');
@@ -47,14 +48,15 @@ class foundation_base {
 
   /**
    * Remove drupal core files, except the one we actually need to work
-   * @param $css
    */
-  static function okcfoundation_theme_css_alter(&$css) {
+  static function okcfoundation_theme_css_alter(&$args) {
+
+    $css = &$args['css'];
+
     // keep those css, so that overlay, shortcut, toolbar and contextual links
     // still works as expected.
     $css_to_keep = array(
       'modules/system/system.base.css',
-      //'modules/system/system.theme.css',
       'modules/contextual/contextual.css',
       'modules/toolbar/toolbar.css',
       'modules/shortcut/shortcut.css',
@@ -67,6 +69,7 @@ class foundation_base {
         unset($css[$path]);
       }
     }
+
   }
 
 

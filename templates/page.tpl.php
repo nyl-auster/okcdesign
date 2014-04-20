@@ -1,14 +1,14 @@
 <div class="row">
 
+  <?php if ($logo): ?>
   <div class="small-12 large-1 columns">
-    <?php if ($logo): ?>
       <a href="<?php print $front_page ?>" title="<?php print t('Home') ?>" rel="home" id="logo">
         <img src="<?php print $logo; ?>" alt="<?php print t('Home') ?>" />
       </a>
-    <?php endif ?>
   </div>
+  <?php endif ?>
 
-  <div class="small-12 large-11 columns">
+  <div class="small-12 <?php print $logo ? "large-11" : "large-12"?> columns">
     <?php if ($site_name): ?>
       <div id="site-name">
         <h1>
@@ -18,8 +18,6 @@
       </div>
     <?php endif ?>
   </div>
-
-
 
 </div>
 
@@ -31,9 +29,11 @@
 
 <div class="row">
   <?php if ($main_menu || $secondary_menu): ?>
-    <navigation>
-      <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Main menu'))) ?>
-      <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu', 'class' => array('links', 'inline', 'clearfix')), 'heading' => t('Secondary menu'))) ?>
+    <navigation class="small-12 columns">
+      <div class="">
+      <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu'))) ?>
+      </div>
+      <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu'))) ?>
     </navigation>
   <?php endif; ?>
 

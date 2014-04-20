@@ -1,5 +1,15 @@
 <?php
 
+spl_autoload_register('autoload_theme_plugins');
+
+// autoload classes from plugins folder
+function autoload_theme_plugins($class_name) {
+  $file = drupal_get_path('theme', 'okcfoundation_theme') . "/plugins/$class_name.php";
+  if (is_readable($file)) {
+    include_once $file;
+  }
+}
+
 /**
  * Return plugins defined in info file.
  * @return mixed
@@ -15,17 +25,16 @@ function _theme_get_plugins() {
   return $plugins;
 }
 
-function _invoke_theme_plugins($hook, &$args = array()) {
-  foreach (_theme_get_plugins()  as $plugin => $path) {
-    $file = drupal_get_path('theme', 'okcfoundation_theme') . "/$path";
-    require_once $file;
-    $result = _invoke_theme_plugin_hook($plugin, $hook, $args);
+function _invoke_theme_plugins($hook, &$variables = array()) {
+  foreach (_theme_get_plugins()  as $plugin) {
+    $result = _invoke_theme_plugin_hook($plugin, $hook, $variables);
+    if ($result) return $result;
   }
-  return $result;
 }
 
-function _invoke_theme_plugin_hook($plugin, $hook, &$args) {
+function _invoke_theme_plugin_hook($plugin, $hook, &$variables) {
   if (method_exists($plugin, $hook)) {
-    return call_user_func_array("$plugin::$hook", $args);
+    $result = $plugin::$hook($variables);
+    return $result;
   }
 }

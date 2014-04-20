@@ -5,8 +5,11 @@ description = Resposive theme based on foundation
 core = 7.x
 engine = phptemplate
 
-; declare theme plugins. key is the class name, value is path to class.
-theme_plugins[foundation_base] = plugins/foundation_base.php
-theme_plugins[foundation_breadcrumb] = plugins/foundation_breadcrumb.php
-theme_plugins[foundation_menu_topbar] = plugins/foundation_menu_top_bar.php
-theme_plugins[primary_tabs_as_sub_nav] = plugins/primary_tabs_as_sub_nav.php
+stylesheets[all][] = system.css
+
+; declare active theme plugins. key is the class name, value is path to class.
+theme_plugins[] = foundation_base
+theme_plugins[] = foundation_breadcrumb
+theme_plugins[] = foundation_menu_top_bar
+theme_plugins[] = primary_tabs_as_sub_nav
+theme_plugins[] = system_main_menu_as_nav_bar

@@ -1,5 +1,12 @@
 @import "settings";
+@import "mixins";
+
+li a.active{
+  color : none;
+}
+
 @import "foundation";
+
 
 // Or selectively include components
 // @import
@@ -39,4 +46,3 @@
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
 
-@import "mixins";

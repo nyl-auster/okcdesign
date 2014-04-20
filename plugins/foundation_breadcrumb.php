@@ -7,8 +7,7 @@
 
 class foundation_breadcrumb {
 
-   static function okcfoundation_theme_theme_breadcrumb($variables) {
-     $breadcrumb = $variables['breadcrumb'];
+   static function okcfoundation_theme_theme_breadcrumb($breadcrumb) {
 
      if (!empty($breadcrumb)) {
        // Provide a navigational heading to give context for breadcrumb links to
