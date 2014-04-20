@@ -117,3 +117,16 @@ function okcfoundation_theme_breadcrumb($breadcrumb) {
   return theme_breadcrumb($breadcrumb);
 }
 
+/**
+ * Implements hook_form_alter()
+ */
+function okcfoundation_theme_form_alter(&$form, &$form_state, $form_id) {
+  _invoke_theme_plugins(__FUNCTION__, $form, $form_state, $form_id);
+}
+
+function okcfoundation_theme_status_messages($variables) {
+  $html = _invoke_theme_plugins(__FUNCTION__, $variables);
+  if ($html) return $html;
+  return theme_status_messages($variables);
+}
+

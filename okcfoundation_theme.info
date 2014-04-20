@@ -8,8 +8,9 @@ engine = phptemplate
 stylesheets[all][] = system.css
 
 ; declare active theme plugins. key is the class name, value is path to class.
-theme_plugins[] = foundation_base
-theme_plugins[] = foundation_breadcrumb
+theme_plugins[] = core
+theme_plugins[] = breadcrumb
 theme_plugins[] = foundation_menu_top_bar
-theme_plugins[] = primary_tabs_as_sub_nav
+theme_plugins[] = local_tasks_as_sub_nav
 theme_plugins[] = system_main_menu_as_nav_bar
+theme_plugins[] = status_messages

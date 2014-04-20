@@ -25,16 +25,16 @@ function _theme_get_plugins() {
   return $plugins;
 }
 
-function _invoke_theme_plugins($hook, &$variables = array()) {
+function _invoke_theme_plugins($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 = array(), &$arg4 = array()) {
   foreach (_theme_get_plugins()  as $plugin) {
-    $result = _invoke_theme_plugin_hook($plugin, $hook, $variables);
+    $result = _invoke_theme_plugin_hook($plugin, $hook, $arg1, $arg2, $arg3, $arg4);
     if ($result) return $result;
   }
 }
 
-function _invoke_theme_plugin_hook($plugin, $hook, &$variables) {
+function _invoke_theme_plugin_hook($plugin, $hook, &$arg1, &$arg2 = array(), &$arg3 = array(), &$arg4 = array()) {
   if (method_exists($plugin, $hook)) {
-    $result = $plugin::$hook($variables);
+    $result = $plugin::$hook($arg1, $arg2, $arg3, $arg4);
     return $result;
   }
 }

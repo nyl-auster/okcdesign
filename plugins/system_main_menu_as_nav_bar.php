@@ -9,7 +9,7 @@
 class system_main_menu_as_nav_bar {
 
   static function okcfoundation_theme_links__system_main_menu($variables) {
-     $theme = new theme_links_api();
+     $theme = new theme_links_base();
      $theme->global_wrapper_markup = 'div';
      $theme->global_wrapper_attributes = array('class' => array('nav-bar'));
      $theme->list_wrapper_markup = 'ul';

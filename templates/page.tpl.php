@@ -1,11 +1,11 @@
 <div class="row">
 
   <?php if ($logo): ?>
-  <div class="small-12 large-1 columns">
+    <div class="small-12 large-1 columns">
       <a href="<?php print $front_page ?>" title="<?php print t('Home') ?>" rel="home" id="logo">
         <img src="<?php print $logo; ?>" alt="<?php print t('Home') ?>" />
       </a>
-  </div>
+    </div>
   <?php endif ?>
 
   <div class="small-12 <?php print $logo ? "large-11" : "large-12"?> columns">
@@ -31,18 +31,23 @@
   <?php if ($main_menu || $secondary_menu): ?>
     <navigation class="small-12 columns">
       <div class="">
-      <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu'))) ?>
+        <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu'))) ?>
       </div>
       <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu'))) ?>
     </navigation>
   <?php endif; ?>
 
-  <?php if ($breadcrumb): ?>
-    <div id="breadcrumb"><?php print $breadcrumb ?></div>
-  <?php endif ?>
-
   <?php print $messages ?>
 </div>
+
+<?php if ($breadcrumb): ?>
+  <div class="row">
+    <div class="small-12 columns">
+      <?php print $breadcrumb ?>
+    </div>
+  </div>
+<?php endif ?>
+
 
 <div class="row">
 
