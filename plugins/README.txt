@@ -2,7 +2,7 @@ This directory contains code to make drupal a good friend of foundation framewor
 
 To make theme work together, we have two possibilities :
 - Change drupal html markup to feet foundation css and js : this what "html" directory is for.
-- Adapt foundation css and mixins to drupal markup : see scss folder.
+- Adapt foundation css and mixins to drupal markup : see scss folder in scss directory
 
 To use html plugins, you have to enabled theme in theme info file.
 To use scss plugins, you have to import theme in app.scss file as scss partials.

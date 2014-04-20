@@ -15,7 +15,7 @@ spl_autoload_register('autoload_theme_plugins');
 
 // autoload classes from plugins folder
 function autoload_theme_plugins($class_name) {
-  $file = drupal_get_path('theme', 'okcfoundation_theme') . "/plugins/html/$class_name.php";
+  $file = drupal_get_path('theme', 'okcfoundation_theme') . "/plugins/$class_name.php";
   if (is_readable($file)) {
     include_once $file;
   }

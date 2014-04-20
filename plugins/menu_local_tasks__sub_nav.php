@@ -7,7 +7,7 @@
 
 class menu_local_tasks__sub_nav {
 
-  static function okcfoundation_theme_menu_local_task($variables) {
+  static function hook_menu_local_task($variables) {
     $link = $variables['element']['#link'];
     $link_text = $link['title'];
     if (!empty($variables['element']['#active'])) {
@@ -25,7 +25,7 @@ class menu_local_tasks__sub_nav {
     return '<dt' . (!empty($variables['element']['#active']) ? ' class="active"' : '') . '>' . l($link_text, $link['href'], $link['localized_options']) . "</dt>\n";
   }
 
-  static function okcfoundation_theme_menu_local_tasks($variables) {
+  static function hook_menu_local_tasks($variables) {
 
     $output = '';
     if (!empty($variables['primary'])) {

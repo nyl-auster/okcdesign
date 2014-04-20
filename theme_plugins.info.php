@@ -16,7 +16,7 @@ $plugins['menu_local_tasks__sub_nav'] = array(
 );
 
 $plugins['status_messages__alert_box'] = array(
-  'hooks' => array('hook_status_message'),
+  'hooks' => array('hook_status_messages'),
 );
 
 $plugins['system_main_menu__buttons_group'] = array(

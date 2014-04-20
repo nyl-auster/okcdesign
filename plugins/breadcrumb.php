@@ -7,7 +7,7 @@
 
 class breadcrumb {
 
-  static function okcfoundation_theme_breadcrumb($variables) {
+  static function hook_breadcrumb($variables) {
 
     if (empty($variables['breadcrumb'])) return;
 

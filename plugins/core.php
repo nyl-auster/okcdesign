@@ -11,7 +11,7 @@ class core {
   /**
    * Adjust drupal html headers and add css & js required by foundation
    */
-  static function okcfoundation_theme_html_head_alter(&$args) {
+  static function hook_html_head_alter(&$css) {
 
     $head_elements = &$args['head_elements'];
 
@@ -49,9 +49,7 @@ class core {
   /**
    * Remove drupal core files, except the one we actually need to work
    */
-  static function okcfoundation_theme_css_alter(&$args) {
-
-    $css = &$args['css'];
+  static function hook_css_alter(&$css) {
 
     // keep those css, so that overlay, shortcut, toolbar and contextual links
     // still works as expected.
