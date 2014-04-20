@@ -37,7 +37,9 @@
     </navigation>
   <?php endif; ?>
 
-  <?php print $messages ?>
+  <div class="small-12 columns">
+    <?php print $messages ?>
+  </div>
 </div>
 
 <?php if ($breadcrumb): ?>
