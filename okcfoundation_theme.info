@@ -5,12 +5,4 @@ description = Resposive theme based on foundation
 core = 7.x
 engine = phptemplate
 
-stylesheets[all][] = system.css
 
-; enabled theme plugins for this theme.
-theme_plugins[] = core
-theme_plugins[] = breadcrumb
-theme_plugins[] = foundation_menu_top_bar
-theme_plugins[] = menu_local_tasks__sub_nav
-theme_plugins[] = system_main_menu__nav_bar
-theme_plugins[] = status_messages__alert_box

@@ -4737,9 +4737,6 @@ th.hide-for-touch {
 .touch th.show-for-touch {
   display: table-cell !important; }
 
-/*===================
-  FORM BUTTONS
-  ==================*/
 .drupal-button, #edit-submit, #edit-preview {
   border-style: solid;
   border-width: 0px;
