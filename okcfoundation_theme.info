@@ -7,10 +7,10 @@ engine = phptemplate
 
 stylesheets[all][] = system.css
 
-; declare active theme plugins. key is the class name, value is path to class.
+; enabled theme plugins for this theme.
 theme_plugins[] = core
 theme_plugins[] = breadcrumb
 theme_plugins[] = foundation_menu_top_bar
-theme_plugins[] = local_tasks_as_sub_nav
-theme_plugins[] = system_main_menu_as_nav_bar
-theme_plugins[] = status_messages
+theme_plugins[] = menu_local_tasks__sub_nav
+theme_plugins[] = system_main_menu__nav_bar
+theme_plugins[] = status_messages__alert_box
