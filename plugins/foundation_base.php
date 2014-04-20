@@ -3,12 +3,21 @@
  * @file
  *
  * This plugin does only things required to make foundation works with Drupal.
- * Js & css file are still added info file for now, though.
+ * http://foundation.zurb.com/docs/css.html
  */
 
 class foundation_base {
 
-  static function hook_html_head_alter(&$head_elements) {
+
+  /**
+   * Adjust drupal html headers and add css & js required by foundation
+   */
+  static function okcfoundation_theme_html_head_alter(&$head_elements) {
+
+    drupal_add_js(drupal_get_path('theme', 'okcfoundation_theme') . '/foundation/bower_components/modernizr/modernizr.js');
+    drupal_add_js(drupal_get_path('theme', 'okcfoundation_theme') . '/foundation/bower_components/foundation/js/foundation.min.js');
+    drupal_add_js(drupal_get_path('theme', 'okcfoundation_theme') . '/js/app.js');
+    drupal_add_css(drupal_get_path('theme', 'okcfoundation_theme') . '/css/app.css');
 
     // HTML5 charset declaration.
     $head_elements['system_meta_content_type']['#attributes'] = array(
@@ -36,7 +45,11 @@ class foundation_base {
     );
   }
 
-  static function hook_css_alter(&$css) {
+  /**
+   * Remove drupal core files, except the one we actually need to work
+   * @param $css
+   */
+  static function okcfoundation_theme_css_alter(&$css) {
     // keep those css, so that overlay, shortcut, toolbar and contextual links
     // still works as expected.
     $css_to_keep = array(
@@ -55,5 +68,6 @@ class foundation_base {
       }
     }
   }
+
 
 }

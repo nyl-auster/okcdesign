@@ -19,8 +19,9 @@ function _invoke_theme_plugins($hook, &$args = array()) {
   foreach (_theme_get_plugins()  as $plugin => $path) {
     $file = drupal_get_path('theme', 'okcfoundation_theme') . "/$path";
     require_once $file;
-    _invoke_theme_plugin_hook($plugin, $hook, $args);
+    $result = _invoke_theme_plugin_hook($plugin, $hook, $args);
   }
+  return $result;
 }
 
 function _invoke_theme_plugin_hook($plugin, $hook, &$args) {

@@ -4736,3 +4736,38 @@ th.hide-for-touch {
 
 .touch th.show-for-touch {
   display: table-cell !important; }
+
+.tabs primary {
+  display: block;
+  width: auto;
+  overflow: hidden;
+  margin: -0.25rem 0 1.125rem;
+  padding-top: 0.25rem;
+  margin-right: 0;
+  margin-left: -0.75rem; }
+  .tabs primary dt {
+    text-transform: uppercase; }
+  .tabs primary dt, .tabs primary dd, .tabs primary li {
+    float: left;
+    display: inline;
+    margin-left: 1rem;
+    margin-bottom: 0.625rem;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-size: 0.875rem;
+    color: #999999; }
+    .tabs primary dt a, .tabs primary dd a, .tabs primary li a {
+      text-decoration: none;
+      color: #999999;
+      padding: 0.1875rem 1rem; }
+      .tabs primary dt a:hover, .tabs primary dd a:hover, .tabs primary li a:hover {
+        color: #737373; }
+    .tabs primary dt.active a, .tabs primary dd.active a, .tabs primary li.active a {
+      border-radius: 3px;
+      font-weight: normal;
+      background: #008cba;
+      padding: 0.1875rem 1rem;
+      cursor: default;
+      color: white; }
+      .tabs primary dt.active a:hover, .tabs primary dd.active a:hover, .tabs primary li.active a:hover {
+        background: #007ba0; }
