@@ -9,11 +9,24 @@
   =======================*/
 
 #edit-submit {
-  @include okcdesign-form-button($success-color);
+  @include okcdesign-form-button($secondary-color);
 }
 
 #edit-preview{
-  @include okcdesign-form-button($primary-color);
+  @include okcdesign-form-button($secondary-color);
+}
+
+.form-item input{
+
+}
+
+form .description {
+  @include form-label();
+  font-style : italic;
+  margin-bottom: rem-calc(10px);
+  position: relative;
+  top : rem-calc(-10px);
+  color: gray;
 }
 
 /*========================
@@ -33,12 +46,16 @@ form .error {
 }
 
 /*=============================
-  menu menu as buttons groups
+  mamin menu as buttons groups
   =============================*/
 #main-menu {
-  @include okcdesign-menu-top-bar();
+  //@include okcdesign-menu-top-bar($even:4);
+  @include inline-list;
 }
 
+/**
+ * Node links as rounded labels
+ */
 .links {
   @include inline-list;
 
@@ -55,20 +72,50 @@ form .error {
   Global layouts
   =======================*/
 
-@media #{$small-only} {
+a.active {
+  text-decoration: none;
+}
+
+#sub-header{
+
+  background-color: $primary-color;
 
   #site-informations {
 
-    h1 {
+    float: left;
+    color:white;
+
+    h1 a{
       text-align: center;
+      font-size: rem-calc(30px);
+      font-weight: bold;
+      color:white;
+
     }
 
     h1 small {
-    display: block;
+    color: $secondary-color;
+    //display: block;
     padding-top: rem-calc(10px);
     padding-bottom: rem-calc(10px);
     text-align: center;
+      font-weight: normal;
+    }
+  }
+
+  navigation {
+
+    a{
+      color:$secondary-color;
+      font-weight: bold;
+      padding-top: rem-calc(15px);
     }
   }
 
 }
+
+#header{
+  background-color: $secondary-color;
+  padding: rem-calc(40px);
+}
+

@@ -54,9 +54,10 @@ $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $default-float: left;
 
 // We use these as default colors throughout
-// $primary-color: #008CBA;
-$primary-color: #008CBA;
+//$primary-color: #008CBA;
+$primary-color: #393939;
 $secondary-color: #e7e7e7;
+$third-color : #f04124;
 $alert-color: #f04124;
 $success-color: #43AC6A;
 $warning-color: #f08a24;
@@ -293,7 +294,7 @@ $anchor-font-color-hover: scale-color($primary-color, $lightness: -14%);
 // $include-html-nav-classes: $include-html-classes;
 
 // We use this to set the background color for the breadcrumb container.
-// $crumb-bg: scale-color($secondary-color, $lightness: 55%);
+$crumb-bg: white;
 
 // We use these to set the padding around the breadcrumbs.
 // $crumb-padding: rem-calc(9 14 9);
@@ -301,7 +302,7 @@ $anchor-font-color-hover: scale-color($primary-color, $lightness: -14%);
 
 // We use these to control border styles.
 // $crumb-function-factor: -10%;
-// $crumb-border-size: 1px;
+ $crumb-border-size: 0px;
 // $crumb-border-style: solid;
 // $crumb-border-color: scale-color($crumb-bg, $lightness: $crumb-function-factor);
 // $crumb-radius: $global-radius;

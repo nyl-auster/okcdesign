@@ -24,7 +24,7 @@ class status_messages__alert_box {
     );
 
     foreach (drupal_get_messages($display) as $type => $messages) {
-      $output .= "<div data-alert class=\"alert-box round {$foundation_css[$type]}\">\n";
+      $output .= "<div data-alert class=\"alert-box {$foundation_css[$type]}\">\n";
       if (!empty($status_heading[$type])) {
         $output .= '<h2 class="element-invisible">' . $status_heading[$type] . "</h2>\n";
       }
