@@ -17,7 +17,7 @@ class core {
     drupal_add_js(drupal_get_path('theme', 'okcdesign') . '/foundation/bower_components/foundation/js/foundation.min.js');
     drupal_add_js(drupal_get_path('theme', 'okcdesign') . '/js/app.js');
     drupal_add_css(drupal_get_path('theme', 'okcdesign') . '/css/app.css');
-    drupal_add_css(drupal_get_path('theme', 'okcdesign') . '/foundation-icons/foundation-icons.css');
+    drupal_add_css(drupal_get_path('theme', 'okcdesign') . '/foundation/icons/foundation-icons.css');
 
     // HTML5 charset declaration.
     $head_elements['system_meta_content_type']['#attributes'] = array(

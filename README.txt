@@ -1,12 +1,4 @@
-Use scss files :
+Compile scss files with sass commands. Note that we are adding
+path to foundation vendor directory.
 
-Install grunt locally at the root of your theme path :
-npm install -g grunt
-npm install grunt-cli
-nmp install
-
-then run :
-
-grunt
-
-that should be ok.
+sass --watch scss:css --load-path foundation/bower_components/foundation/scss
