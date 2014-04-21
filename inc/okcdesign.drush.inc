@@ -5,9 +5,12 @@
  *
  * Coming from zurb-foundation drupal theme
  *
- * 1 - copy all STARTER folder in okcdesign theme and rename it to user defined theme name
- * 2 - rename STARTER.info.txt to {subtheme}.info
- * 3 - in info file, replace STARTER by {subtheme}
+ * - Create a new directory for the subtheme with
+ *   - new info file
+ *   - new template.php file
+ *   - a copy of okcdesign/foundation folder
+ *   - a copy of scss folder
+ *   - a copy of css folder
  */
 
 /**

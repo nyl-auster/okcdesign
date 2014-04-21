@@ -13,11 +13,13 @@ class core {
    */
   static function hook_html_head_alter(&$head_elements) {
 
-    drupal_add_js(drupal_get_path('theme', 'okcdesign') . '/foundation/bower_components/modernizr/modernizr.js');
-    drupal_add_js(drupal_get_path('theme', 'okcdesign') . '/foundation/bower_components/foundation/js/foundation.min.js');
     drupal_add_js(drupal_get_path('theme', 'okcdesign') . '/js/app.js');
-    drupal_add_css(drupal_get_path('theme', 'okcdesign') . '/css/app.css');
-    drupal_add_css(drupal_get_path('theme', 'okcdesign') . '/foundation/icons/foundation-icons.css');
+    // following files will be included by the subtheme and not okcdesign
+    // if a subtheme is created from drush ost command.
+    drupal_add_js(drupal_get_path('theme', $GLOBALS['theme']) . '/foundation/bower_components/modernizr/modernizr.js');
+    drupal_add_js(drupal_get_path('theme', $GLOBALS['theme']) . '/foundation/bower_components/foundation/js/foundation.min.js');
+    drupal_add_css(drupal_get_path('theme', $GLOBALS['theme']) . '/css/app.css');
+    drupal_add_css(drupal_get_path('theme', $GLOBALS['theme']) . '/foundation/icons/foundation-icons.css');
 
     // HTML5 charset declaration.
     $head_elements['system_meta_content_type']['#attributes'] = array(
