@@ -1,6 +1,10 @@
 <div id="sub-header">
   <div class="row">
-    <div class="small-12 columns">
+
+
+
+    <div id="site-informations" class="small-12 medium-4 columns">
+
       <?php if ($logo): ?>
         <div id="logo">
           <a href="<?php print $front_page ?>" title="<?php print t('Home') ?>" rel="home" id="logo">
@@ -9,21 +13,22 @@
         </div>
       <?php endif ?>
 
-      <div id="site-informations">
-        <?php if ($site_name): ?>
-          <h1>
-            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-              <?php print $site_name ?>
-            </a>
-            <?php if ($site_slogan): ?> <small><?php print $site_slogan ?></small> <?php endif ?>
-          </h1>
-        <?php endif ?>
-      </div>
+      <?php if ($site_name): ?>
+        <h1>
+          <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
+            <?php print $site_name ?>
+          </a>
+          <?php if ($site_slogan): ?> <small><?php print $site_slogan ?></small> <?php endif ?>
+        </h1>
+      <?php endif ?>
+    </div>
 
+    <div class="small-12 medium-8 columns ">
       <navigation class="right">
         <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu'))) ?>
       </navigation>
     </div>
+
   </div>
 </div>
 
@@ -31,17 +36,43 @@
 
 </div>
 
-<?php if($page['header']) : ?>
-<div id="header">
+
+
+
 <div class="row">
-  <div class="small-12 large-12 columns">
-    <?php print render($page['header']) ?>
+
+  <?php if($page['header__grid_1']) : ?>
+    <div class="small-12 large-3 columns">
+      <?php print render($page['header__grid_1']) ?>
+    </div>
+  <?php endif ?>
+
+  <div class="small-12 large-6 columns">
+    <?php if($page['header__grid_2']) : ?>
+      <div class="small-12 large-12 columns">
+        <?php print render($page['header__grid_2']) ?>
+      </div>
+    <?php endif ?>
+
+    <?php if($page['header__grid_3']) : ?>
+      <div class="small-12 large-12 columns">
+        <?php print render($page['header__grid_3']) ?>
+      </div>
+    <?php endif ?>
   </div>
-</div>
- </div>
-<?php endif ?>
+
+  <?php if($page['header__grid_4']) : ?>
+    <div class="small-12 large-3 columns">
+      <?php print render($page['header__grid_4']) ?>
+    </div>
+  <?php endif ?>
+
 
 </div>
+
+
+
+
 
 <div class="row">
   <?php if ($main_menu || $secondary_menu): ?>
@@ -70,38 +101,41 @@
 </div>
 
 
+<section id="section-content">
+  <div class="row">
 
-<div class="row">
+    <?php if ($page['sidebar_first']): ?>
+      <aside id="sidebar-first" class="small-12 <?php print $sidebar_first_grid_classes ?>">
+        <?php print render($page['sidebar_first']) ?>
+      </aside>
+    <?php endif ?>
 
-  <?php if ($page['sidebar_first']): ?>
-    <aside id="sidebar-first" class="<?php print $sidebar_first_grid_classes ?>">
-      <?php print render($page['sidebar_first']) ?>
-    </aside>
-  <?php endif ?>
-
-  <div id="content" class="<?php print $content_grid_classes ?>">
+    <div id="content" class="small-12 <?php print $content_grid_classes ?>">
 
 
-    <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']) ?></div><?php endif ?>
-    <a id="main-content"></a>
-    <?php print render($title_prefix) ?>
-    <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif ?>
-    <?php print render($title_suffix) ?>
-    <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif ?>
-    <?php print render($page['help']) ?>
-    <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links) ?></ul><?php endif ?>
-    <?php print render($page['content']) ?>
-    <?php print $feed_icons ?>
+      <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']) ?></div><?php endif ?>
+      <a id="main-content"></a>
+      <?php print render($title_prefix) ?>
+      <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif ?>
+      <?php print render($title_suffix) ?>
+      <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif ?>
+      <?php print render($page['help']) ?>
+      <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links) ?></ul><?php endif ?>
+      <?php print render($page['content']) ?>
+      <?php print $feed_icons ?>
+    </div>
+
+    <?php if ($page['sidebar_second']): ?>
+      <aside id="sidebar-second" class="small-12 <?php print $sidebar_second_grid_classes ?>">
+        <?php print render($page['sidebar_second']) ?>
+      </aside>
+    <?php endif; ?>
+
   </div>
+</section>
 
-  <?php if ($page['sidebar_second']): ?>
-    <aside id="sidebar-second" class="<?php print $sidebar_second_grid_classes ?>">
-      <?php print render($page['sidebar_second']) ?>
-    </aside>
-  <?php endif; ?>
-
-</div>
-
-<footer class="row">
-  <?php print render($page['footer']); ?>
+<footer>
+  <div class="row">
+    <?php print render($page['footer']); ?>
+    <div>
 </footer>

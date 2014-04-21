@@ -54,14 +54,19 @@ $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $default-float: left;
 
 // We use these as default colors throughout
-//$primary-color: #008CBA;
-$primary-color: #393939;
+$primary-color: #008CBA;
+//$primary-color: #B6B6B6;
+//$primary-color: #A0D3E8;
 $secondary-color: #e7e7e7;
 $third-color : #f04124;
 $alert-color: #f04124;
 $success-color: #43AC6A;
 $warning-color: #f08a24;
 $info-color: #a0d3e8;
+
+$primary-color: #393939;
+
+$secondary-color: #e7e7e7;
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;

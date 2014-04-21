@@ -4924,18 +4924,19 @@ form .error {
 a.active {
   text-decoration: none; }
 
+#header {
+  background-color: #e7e7e7; }
+
 #sub-header {
   background-color: #393939; }
   #sub-header #site-informations {
     float: left;
-    color: white; }
+    color: blakc; }
     #sub-header #site-informations h1 a {
       text-align: center;
       font-size: 1.875rem;
-      font-weight: bold;
-      color: white; }
+      color: #e7e7e7; }
     #sub-header #site-informations h1 small {
-      color: #e7e7e7;
       padding-top: 0.625rem;
       padding-bottom: 0.625rem;
       text-align: center;
@@ -4945,6 +4946,31 @@ a.active {
     font-weight: bold;
     padding-top: 0.9375rem; }
 
-#header {
-  background-color: #e7e7e7;
-  padding: 2.5rem; }
+#presentation {
+  position: absolute;
+  top: 0;
+  left: 0; }
+  #presentation h1 {
+    opacity: 1; }
+
+#image-header {
+  top: 0;
+  height: 300px;
+  overflow: hidden; }
+  #image-header img {
+    position: relative;
+    left: 180px;
+    top: -70px;
+    width: 800px; }
+
+
+footer {
+  padding: 1.875rem;
+  background-color: #393939;
+  color: #e7e7e7; }
+  footer p {
+    text-align: center;
+    font-size: 0.75rem; }
+
+.breadcrumbs {
+  display: none; }

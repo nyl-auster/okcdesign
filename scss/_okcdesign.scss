@@ -76,6 +76,10 @@ a.active {
   text-decoration: none;
 }
 
+#header{
+  background-color: $secondary-color;
+}
+
 #sub-header{
 
   background-color: $primary-color;
@@ -83,19 +87,18 @@ a.active {
   #site-informations {
 
     float: left;
-    color:white;
+    color:blakc;
 
     h1 a{
       text-align: center;
       font-size: rem-calc(30px);
-      font-weight: bold;
-      color:white;
+      color :$secondary-color;
 
     }
 
     h1 small {
-    color: $secondary-color;
     //display: block;
+
     padding-top: rem-calc(10px);
     padding-bottom: rem-calc(10px);
     text-align: center;
@@ -114,8 +117,46 @@ a.active {
 
 }
 
-#header{
-  background-color: $secondary-color;
-  padding: rem-calc(40px);
+#presentation{
+ // background-color: black;
+  position: absolute;
+  top : 0;
+  left:0;
+ // opacity: 0.2;
+
+  h1 {
+    opacity: 1;
+  }
 }
 
+#image-header{
+  top : rem-calc(0px);
+  height:300px;
+  overflow: hidden;
+
+
+  img {
+    position:relative;
+    left : 180px;
+    top: -70px;
+    width: 800px;
+  }
+}
+
+#section-content {
+  //background-color : $secondary-color;
+}
+
+footer {
+  padding: rem-calc(30px);
+  background-color: $primary-color;
+  color: $secondary-color;
+  p {
+    text-align: center;
+    font-size: rem-calc(12px);
+  }
+}
+
+.breadcrumbs {
+  display: none;
+}

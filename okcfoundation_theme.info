@@ -1,8 +1,0 @@
-name = okcfoundation_theme
-description = Resposive theme based on foundation
-;screenshot = images/screenshot.png
-
-core = 7.x
-engine = phptemplate
-
-

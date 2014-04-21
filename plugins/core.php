@@ -17,6 +17,7 @@ class core {
     drupal_add_js(drupal_get_path('theme', 'okcfoundation_theme') . '/foundation/bower_components/foundation/js/foundation.min.js');
     drupal_add_js(drupal_get_path('theme', 'okcfoundation_theme') . '/js/app.js');
     drupal_add_css(drupal_get_path('theme', 'okcfoundation_theme') . '/css/app.css');
+    drupal_add_css(drupal_get_path('theme', 'okcfoundation_theme') . '/foundation-icons/foundation-icons.css');
 
     // HTML5 charset declaration.
     $head_elements['system_meta_content_type']['#attributes'] = array(
@@ -48,6 +49,9 @@ class core {
    * Remove drupal core files, except the one we actually need to work
    */
   static function hook_css_alter(&$css) {
+
+    // do not break demdo block page
+    if(strpos($_GET['q'], 'admin/structure/block/demo') === 0) return;
 
     // keep those css, so that overlay, shortcut, toolbar and contextual links
     // still works as expected.
