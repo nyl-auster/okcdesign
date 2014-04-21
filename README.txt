@@ -1,3 +1,7 @@
+Never edit OKC Design theme, you MUST create a subtheme running a drush command :
+
+  drush ost {yourthemename}
+
 Compile scss files with sass commands. Note that we are adding
 path to foundation vendor directory.
 Run this command from your theme root directory :
