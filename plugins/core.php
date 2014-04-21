@@ -13,6 +13,8 @@ class core {
    */
   static function hook_html_head_alter(&$head_elements) {
 
+
+
     drupal_add_js(drupal_get_path('theme', 'okcdesign') . '/js/app.js');
     // following files will be included by the subtheme and not okcdesign
     // if a subtheme is created from drush ost command.

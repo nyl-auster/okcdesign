@@ -42,7 +42,7 @@ function _theme_get_plugins() {
  */
 function _invoke_theme_plugins($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 = array(), &$arg4 = array()) {
   foreach (_theme_get_plugins()  as $class => $plugin_infos) {
-    $plugin_hook = str_replace($GLOBALS['theme'] . '', 'hook', $hook);
+    $plugin_hook = str_replace('okcdesign' . '', 'hook', $hook);
     if (in_array($plugin_hook, $plugin_infos['hooks'])) {
       $result = $class::$plugin_hook($arg1, $arg2, $arg3, $arg4);
       // if we have a return, this is a theme function returning html,

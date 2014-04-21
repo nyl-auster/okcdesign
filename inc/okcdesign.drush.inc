@@ -75,40 +75,20 @@ function drush_okcdesign_okc_sub_theme($name = NULL, $machine_name = NULL, $desc
   drush_op('copy', "$okcdesign_path/scss/app.scss", "$subtheme_path/scss/app.scss");
   drush_op('copy', "$okcdesign_path/scss/_settings.scss", "$subtheme_path/scss/_settings.scss");
   drush_op('copy', "$okcdesign_path/scss/_mixins.scss", "$subtheme_path/scss/_mixins.scss");
+  drush_op('copy', "$okcdesign_path/README.txt", "$subtheme_path/README.txt");
 
   drush_op('mkdir', "$subtheme_path/js");
 
-  // Rename files and fill in the theme machine name
-  // uncomment base theme directive
-
-
-  /*
-
-
-  // Rename files and fill in the theme machine name
-  drush_op('rename', "$subtheme_path/STARTER.info.txt", "$subtheme_path/$machine_name.info");
-
-  // Update the .info file
-  drush_op('okcdesign_file_str_replace', "$subtheme_path/$machine_name.info", 'OKC Design sub-theme Starter', "$name");
-  // Change the name of the theme
-  if (!empty($description))
-    drush_op('okcdesign_file_str_replace', "$subtheme_path/$machine_name.info", 'Custom sub-theme, inherits from the OKC Design base theme, base on foundation framework read <a href="http://foundation.zurb.com/docs/index.php">framework documentation</a>', "$description");
-  // Replace STARTER in package.json
-  drush_op('okcdesign_file_str_replace', "$subtheme_path/package.json", 'STARTER', "$machine_name");
-  // Replace STARTER in Gruntfile.js
-  drush_op('okcdesign_file_str_replace', "$subtheme_path/Gruntfile.js", 'STARTER', "$machine_name");
 
   // Notify user of the newly created theme.
-  drush_print(dt("\n!name sub-theme was created in !path. \n",
+  drush_print(dt("\n!name sub-theme was created in !path. Enabled it and set it as default theme in drupal adminstration. \n",
     array(
-      '!name' => $name,
+      '!name' => $machine_name,
       '!path' => $subtheme_path,
     )
   ));
 
-  //drush_pm_enable_validate($machine_name);
-  //drush_pm_enable($machine_name);
-  */
+
 }
 
 /**
