@@ -4737,7 +4737,44 @@ th.hide-for-touch {
 .touch th.show-for-touch {
   display: table-cell !important; }
 
-.drupal-button, #edit-submit, #edit-preview {
+/**
+ * Apply only on ul > li > a structure
+ */
+/*========================
+  Sexy form submit buttons
+  =======================*/
+#edit-submit {
+  border-style: solid;
+  border-width: 0px;
+  cursor: pointer;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  line-height: normal;
+  margin: 0 0 1.25rem;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  display: inline-block;
+  padding-top: 1rem;
+  padding-right: 2rem;
+  padding-bottom: 1.0625rem;
+  padding-left: 2rem;
+  font-size: 1rem;
+  background-color: #43ac6a;
+  border-color: #368a54;
+  color: white;
+  border-radius: 3px;
+  margin-right: 0.3125rem; }
+  #edit-submit:hover, #edit-submit:focus {
+    background-color: #368a54; }
+  #edit-submit:hover, #edit-submit:focus {
+    color: white; }
+  #edit-submit:hover {
+    background-color: #3c9b5f; }
+
+#edit-preview {
   border-style: solid;
   border-width: 0px;
   cursor: pointer;
@@ -4760,15 +4797,120 @@ th.hide-for-touch {
   border-color: #007295;
   color: white;
   border-radius: 3px;
-  margin-right: 1em; }
-  .drupal-button:hover, .drupal-button:focus {
+  margin-right: 0.3125rem; }
+  #edit-preview:hover, #edit-preview:focus {
     background-color: #007295; }
-  .drupal-button:hover, .drupal-button:focus {
+  #edit-preview:hover, #edit-preview:focus {
     color: white; }
+  #edit-preview:hover {
+    background-color: #0080a7; }
 
-#edit-submit {
-  background-color: forestgreen; }
+/*========================
+  Errors form submit buttons
+  =======================*/
+form .error {
+  border: solid #f04124 1px; }
 
+/*==========================
+  menu local taks as subnav
+  ==========================*/
+.tabs {
+  display: block;
+  width: auto;
+  overflow: hidden;
+  margin: -0.25rem 0 1.125rem;
+  padding-top: 0.25rem;
+  margin-right: 0;
+  margin-left: -0.75rem; }
+  .tabs dt {
+    text-transform: uppercase; }
+  .tabs dt, .tabs dd, .tabs li {
+    float: left;
+    display: inline;
+    margin-left: 1rem;
+    margin-bottom: 0.625rem;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-size: 0.875rem;
+    color: #999999; }
+    .tabs dt a, .tabs dd a, .tabs li a {
+      text-decoration: none;
+      color: #999999;
+      padding: 0.1875rem 1rem; }
+      .tabs dt a:hover, .tabs dd a:hover, .tabs li a:hover {
+        color: #737373; }
+    .tabs dt.active a, .tabs dd.active a, .tabs li.active a {
+      border-radius: 3px;
+      font-weight: normal;
+      background: #008cba;
+      padding: 0.1875rem 1rem;
+      cursor: default;
+      color: white; }
+      .tabs dt.active a:hover, .tabs dd.active a:hover, .tabs li.active a:hover {
+        background: #007ba0; }
+
+/*=============================
+  menu menu as buttons groups
+  =============================*/
+#main-menu {
+  list-style: none;
+  margin: 0;
+  left: 0;
+  *zoom: 1;
+  background-color: #008cba; }
+  #main-menu:before, #main-menu:after {
+    content: " ";
+    display: table; }
+  #main-menu:after {
+    clear: both; }
+  #main-menu li {
+    margin: 0;
+    float: left; }
+    #main-menu li > button, #main-menu li .button {
+      border-left: 1px solid;
+      border-color: rgba(255, 255, 255, 0.5); }
+    #main-menu li:first-child button, #main-menu li:first-child .button {
+      border-left: 0; }
+    #main-menu li:first-child {
+      margin-left: 0; }
+  #main-menu li a {
+    border-style: solid;
+    border-width: 0px;
+    cursor: pointer;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    line-height: normal;
+    margin: 0 0 1.25rem;
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    display: inline-block;
+    padding-top: 1rem;
+    padding-right: 2rem;
+    padding-bottom: 1.0625rem;
+    padding-left: 2rem;
+    font-size: 1rem;
+    background-color: #008cba;
+    border-color: #007295;
+    color: white;
+    margin: 0;
+    width: 100%;
+    border-bottom: solid white 1px;
+    border-width: 0 1px 0 0; }
+    #main-menu li a:hover, #main-menu li a:focus {
+      background-color: #007295; }
+    #main-menu li a:hover, #main-menu li a:focus {
+      color: white; }
+  @media only screen and (max-width: 40em) {
+    #main-menu {
+      margin-bottom: 0.625rem; }
+      #main-menu li {
+        width: 100%;
+        border-radius: 0; }
+        #main-menu li a {
+          border-width: 0 0 1px 0; } }
 
 .links {
   margin: 0 auto 1.0625rem auto;
@@ -4798,4 +4940,19 @@ th.hide-for-touch {
     font-size: 0.6875rem;
     background-color: #008cba;
     color: white;
-    border-radius: 3px; }
+    border-radius: 3px;
+    background-color: #e7e7e7;
+    color: #333333;
+    border-radius: 1000px; }
+
+/*========================
+  Global layouts
+  =======================*/
+@media only screen and (max-width: 40em) {
+  #site-informations h1 {
+    text-align: center; }
+  #site-informations h1 small {
+    display: block;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+    text-align: center; } }

@@ -1,23 +1,27 @@
 <div class="row">
 
   <?php if ($logo): ?>
-    <div class="small-12 large-1 columns">
+    <div class="small-12 large-1 columns" id="logo">
       <a href="<?php print $front_page ?>" title="<?php print t('Home') ?>" rel="home" id="logo">
         <img src="<?php print $logo; ?>" alt="<?php print t('Home') ?>" />
       </a>
     </div>
   <?php endif ?>
 
-  <div class="small-12 <?php print $logo ? "large-11" : "large-12"?> columns">
+  <div class="small-12 <?php print $logo ? "large-11" : "large-12"?> columns" id="site-informations">
     <?php if ($site_name): ?>
-      <div id="site-name">
-        <h1>
-          <a href="<?php print $front_page; ?>" title="<?php print t('Home') ?>" rel="home"><?php print $site_name ?></a>
+
+           <h1> <a href="<?php print $front_page; ?>" title="<?php print t('Home') ?>" rel="home"><?php print $site_name ?></a>
+
+
           <?php if ($site_slogan): ?> <small><?php print $site_slogan ?></small> <?php endif ?>
-        </h1>
+           </h1>
+
       </div>
     <?php endif ?>
   </div>
+
+
 
 </div>
 

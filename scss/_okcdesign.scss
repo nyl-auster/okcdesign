@@ -1,0 +1,74 @@
+// We have two ways to make drupal a good friend of foundation :
+// - changing its html (@see plugins directory, this is its job)
+// - use foundation mixins we possible to target drupal classes with foundation css.
+// This is what we do here.
+
+
+/*========================
+  Sexy form submit buttons
+  =======================*/
+
+#edit-submit {
+  @include okcdesign-form-button($success-color);
+}
+
+#edit-preview{
+  @include okcdesign-form-button($primary-color);
+}
+
+/*========================
+  Errors form submit buttons
+  =======================*/
+
+form .error {
+  border: solid $alert-color 1px;
+}
+
+/*==========================
+  menu local taks as subnav
+  ==========================*/
+
+.tabs {
+  @include sub-nav();
+}
+
+/*=============================
+  menu menu as buttons groups
+  =============================*/
+#main-menu {
+  @include okcdesign-menu-top-bar();
+}
+
+.links {
+  @include inline-list;
+
+  a {
+    @include label($radius: true);
+    @include label-style($bg:$secondary-color, $radius:1000px);
+  }
+
+
+
+}
+
+/*========================
+  Global layouts
+  =======================*/
+
+@media #{$small-only} {
+
+  #site-informations {
+
+    h1 {
+      text-align: center;
+    }
+
+    h1 small {
+    display: block;
+    padding-top: rem-calc(10px);
+    padding-bottom: rem-calc(10px);
+    text-align: center;
+    }
+  }
+
+}

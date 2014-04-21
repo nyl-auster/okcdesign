@@ -11,9 +11,7 @@ class core {
   /**
    * Adjust drupal html headers and add css & js required by foundation
    */
-  static function hook_html_head_alter(&$css) {
-
-    $head_elements = &$args['head_elements'];
+  static function hook_html_head_alter(&$head_elements) {
 
     drupal_add_js(drupal_get_path('theme', 'okcfoundation_theme') . '/foundation/bower_components/modernizr/modernizr.js');
     drupal_add_js(drupal_get_path('theme', 'okcfoundation_theme') . '/foundation/bower_components/foundation/js/foundation.min.js');

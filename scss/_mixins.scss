@@ -1,0 +1,43 @@
+@mixin okcdesign-form-button($color) {
+  @include button(
+    $bg:$color,
+    $radius: true
+  );
+  margin-right: rem-calc(5px);
+  &:hover {
+    background-color: scale-color($color, $lightness: -10%);
+  }
+}
+
+/**
+ * Apply only on ul > li > a structure
+ */
+@mixin okcdesign-menu-top-bar($bg:$primary-color, $even:false, $radius:false) {
+  @include button-group-container();
+  background-color: $bg;
+
+  li {
+    @include button-group-style($radius: $radius, $even: $even);
+  }
+  li a {
+    @include button();
+    margin: 0;
+    width : 100%;
+    border-bottom: solid white 1px;
+    border-width: 0 1px 0 0;
+  }
+
+  @media #{$small-only} {
+
+    margin-bottom: rem-calc(10px);
+
+    li{
+      width : 100%;
+      border-radius: 0;
+
+      a{
+        border-width: 0 0 1px 0;
+      }
+    }
+  }
+}

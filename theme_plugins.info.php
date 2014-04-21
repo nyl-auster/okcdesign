@@ -11,16 +11,16 @@ $plugins['breadcrumb'] = array(
   'hooks' => array('hook_breadcrumb')
 );
 
-$plugins['menu_local_tasks__sub_nav'] = array(
-  'hooks' => array('hook_menu_local_tasks', 'hook_menu_local_task'),
-);
+// $plugins['menu_local_tasks__sub_nav'] = array(
+//  'hooks' => array('hook_menu_local_tasks', 'hook_menu_local_task'),
+//);
 
 $plugins['status_messages__alert_box'] = array(
   'hooks' => array('hook_status_messages'),
 );
 
-$plugins['system_main_menu__buttons_group'] = array(
-  'hooks' => array('hook_links__system_main_menu'),
-);
+// $plugins['system_main_menu__buttons_group'] = array(
+//  'hooks' => array('hook_links__system_main_menu'),
+//);
 
 return $plugins;
