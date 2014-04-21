@@ -5,7 +5,7 @@
  * Template.php
  */
 // load plugins system
-include 'inc/theme_plugins_manager.php';
+include 'inc/okcdesign_plugins_manager.php';
 
 /*=============================
    PREPROCESS

@@ -41,32 +41,11 @@
 
 <div class="row">
 
-  <?php if($page['header__grid_1']) : ?>
+  <?php if($page['header']) : ?>
     <div class="small-12 large-3 columns">
       <?php print render($page['header__grid_1']) ?>
     </div>
   <?php endif ?>
-
-  <div class="small-12 large-6 columns">
-    <?php if($page['header__grid_2']) : ?>
-      <div class="small-12 large-12 columns">
-        <?php print render($page['header__grid_2']) ?>
-      </div>
-    <?php endif ?>
-
-    <?php if($page['header__grid_3']) : ?>
-      <div class="small-12 large-12 columns">
-        <?php print render($page['header__grid_3']) ?>
-      </div>
-    <?php endif ?>
-  </div>
-
-  <?php if($page['header__grid_4']) : ?>
-    <div class="small-12 large-3 columns">
-      <?php print render($page['header__grid_4']) ?>
-    </div>
-  <?php endif ?>
-
 
 </div>
 
