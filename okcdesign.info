@@ -1,22 +1,17 @@
 name = OKC Design
-description = Responsive theme based on foundation css framewrok
+description = Responsive theme based on foundation css framework
+
 ;screenshot = images/screenshot.png
 
 core = 7.x
 engine = phptemplate
 
 regions[header] = Header
-
 regions[help] = Help
-
 regions[highlighted] = Highlighted
-
-; content region is required by Drupal
 regions[content] = Content
-
 regions[sidebar_first] = Sidebar first
 regions[sidebar_second] = Sidebar second
-
 regions[footer] = Footer
 
 

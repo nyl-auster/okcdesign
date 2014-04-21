@@ -52,15 +52,37 @@ function drush_okcdesign_okc_sub_theme($name = NULL, $machine_name = NULL, $desc
   $machine_name = str_replace('-', '_', $machine_name);
 
   // Find theme paths.
-  $zurb_path = drush_locate_root() . '/' . drupal_get_path('theme', 'okcdesign');
-  $subtheme_path = dirname($zurb_path) . '/' . $machine_name;
-  $relative_path = str_replace('zurb-foundation', $machine_name, drupal_get_path('theme', 'okcdesign'));
+  $okcdesign_path = drush_locate_root() . '/' . drupal_get_path('theme', 'okcdesign');
+  $subtheme_path = dirname($okcdesign_path) . '/' . $machine_name;
 
-  // Make a fresh copy of the subtheme.
-  $s = drush_copy_dir("$zurb_path/STARTER/", $subtheme_path);
-  if (empty($s)) {
-    return;
-  }
+  // create subtheme directory
+  drush_op('mkdir', $subtheme_path);
+  // paste foundation framework files inside it
+  drush_copy_dir("$okcdesign_path/foundation", "$subtheme_path/foundation");
+
+  // add info file (copy pasted from base theme for now
+  drush_op('copy', "$okcdesign_path/okcdesign.info", "$subtheme_path/$machine_name.info");
+  $file = drush_op('file_get_contents', "$subtheme_path/$machine_name.info");
+  $content = "base theme = okcdesign\r\n" . $file;
+  $content = str_replace('OKC Design', $machine_name, $content);
+  drush_op('file_put_contents', "$subtheme_path/$machine_name.info", $content);
+
+  // create folders
+  drush_op('mkdir', "$subtheme_path/css");
+  drush_op('copy', "$okcdesign_path/css/app.css", "$subtheme_path/css/app.css");
+
+  drush_op('mkdir', "$subtheme_path/scss");
+  drush_op('copy', "$okcdesign_path/scss/app.scss", "$subtheme_path/scss/app.scss");
+  drush_op('copy', "$okcdesign_path/scss/_settings.scss", "$subtheme_path/scss/_settings.scss");
+  drush_op('copy', "$okcdesign_path/scss/_mixins.scss", "$subtheme_path/scss/_mixins.scss");
+
+  drush_op('mkdir', "$subtheme_path/js");
+
+  // Rename files and fill in the theme machine name
+  // uncomment base theme directive
+
+
+  /*
 
 
   // Rename files and fill in the theme machine name
@@ -84,8 +106,9 @@ function drush_okcdesign_okc_sub_theme($name = NULL, $machine_name = NULL, $desc
     )
   ));
 
-  drush_pm_enable_validate($machine_name);
-  drush_pm_enable($machine_name);
+  //drush_pm_enable_validate($machine_name);
+  //drush_pm_enable($machine_name);
+  */
 }
 
 /**
