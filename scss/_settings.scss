@@ -55,18 +55,12 @@ $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 
 // We use these as default colors throughout
 $primary-color: #008CBA;
-//$primary-color: #B6B6B6;
-//$primary-color: #A0D3E8;
 $secondary-color: #e7e7e7;
 $third-color : #f04124;
 $alert-color: #f04124;
 $success-color: #43AC6A;
 $warning-color: #f08a24;
 $info-color: #a0d3e8;
-
-$primary-color: #393939;
-
-$secondary-color: #e7e7e7;
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;
@@ -170,9 +164,9 @@ $secondary-color: #e7e7e7;
 // $code-font-weight: bold;
 
 // We use these to style anchors
-$anchor-text-decoration: none;
-$anchor-font-color: $primary-color;
-$anchor-font-color-hover: scale-color($primary-color, $lightness: -14%);
+// $anchor-text-decoration: none;
+// $anchor-font-color: $primary-color;
+// $anchor-font-color-hover: scale-color($primary-color, $lightness: -14%);
 
 // We use these to style the <hr> element
 // $hr-border-width: 1px;
@@ -299,7 +293,7 @@ $anchor-font-color-hover: scale-color($primary-color, $lightness: -14%);
 // $include-html-nav-classes: $include-html-classes;
 
 // We use this to set the background color for the breadcrumb container.
-$crumb-bg: white;
+// $crumb-bg: white;
 
 // We use these to set the padding around the breadcrumbs.
 // $crumb-padding: rem-calc(9 14 9);
@@ -307,7 +301,7 @@ $crumb-bg: white;
 
 // We use these to control border styles.
 // $crumb-function-factor: -10%;
- $crumb-border-size: 0px;
+// $crumb-border-size: 0px;
 // $crumb-border-style: solid;
 // $crumb-border-color: scale-color($crumb-bg, $lightness: $crumb-function-factor);
 // $crumb-radius: $global-radius;

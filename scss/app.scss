@@ -2,6 +2,14 @@
 @import "foundation";
 @import "mixins";
 
-// uncomment following lines to use foundation css on drupal button forms
-#edit-submit { @include okcdesign-form-button($secondary-color);}
-#edit-preview{ @include okcdesign-form-button($secondary-color);}
+#edit-submit {
+  @include okcdesign-form-button($secondary-color);
+}
+
+#edit-preview{
+  @include okcdesign-form-button($secondary-color);
+}
+
+#main-menu{
+  @include sub-nav($font-size:rem-calc(20))
+}

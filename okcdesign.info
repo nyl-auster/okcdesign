@@ -1,7 +1,7 @@
 name = OKC Design
 description = Responsive theme based on foundation css framework
 
-;screenshot = images/screenshot.png
+screenshot = screenshot.png
 
 core = 7.x
 engine = phptemplate

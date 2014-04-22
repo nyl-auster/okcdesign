@@ -4,24 +4,25 @@
     $bg:$color,
     $radius: true
   );
-  margin-right: rem-calc(5px);
+  margin-top: rem-calc(20);
+  margin-right: rem-calc(20);
   &:hover {
     background-color: scale-color($color, $lightness: -10%);
   }
 }
 
 /**
- * design a ul / lu menu as a button group
- * Apply only on ul > li > a structure
+ * design a ul / lu menu as a button group.
+ * Apply on ul.
  */
 @mixin okcdesign-menu--button-group($bg:$primary-color, $even:false, $radius:false) {
   @include button-group-container();
   background-color: $bg;
 
-  li {
+  li, ol {
     @include button-group-style($radius: $radius, $even: $even);
   }
-  li a {
+  li a, ol a {
     @include button();
     margin: 0;
     width : 100%;
