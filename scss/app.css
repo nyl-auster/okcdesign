@@ -1,18 +1,20 @@
 /*
 Syntax error: File to import not found or unreadable: foundation.
               Load path: /Applications/MAMP/htdocs/okcdesign/sites/all/themes/okcdesign/scss (DEPRECATED)
-        on line 2 of app.scss
+        on line 4 of app.scss
 
-1: @import "settings";
-2: @import "foundation";
-3: @import "mixins";
-4: 
-5: #edit-submit {
-6:   @include okcdesign-form-button($secondary-color);
-7: }
+1: // subthemes : feel free to edit this file !
+2: 
+3: @import "settings";
+4: @import "foundation";
+5: @import "mixins";
+6: 
+7: #edit-submit {
+8:   @include okcdesign-form-button($secondary-color);
+9: }
 
 Backtrace:
-app.scss:2
+app.scss:4
 /Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/import_node.rb:66:in `rescue in import'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/import_node.rb:45:in `import'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/import_node.rb:28:in `imported_file'
@@ -54,4 +56,4 @@ app.scss:2
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: File to import not found or unreadable: foundation.\A               Load path: /Applications/MAMP/htdocs/okcdesign/sites/all/themes/okcdesign/scss (DEPRECATED)\A         on line 2 of app.scss\A \A 1: @import \"settings\";\A 2: @import \"foundation\";\A 3: @import \"mixins\";\A 4: \A 5: #edit-submit {\A 6:   @include okcdesign-form-button($secondary-color);\A 7: }"; }
+  content: "Syntax error: File to import not found or unreadable: foundation.\A               Load path: /Applications/MAMP/htdocs/okcdesign/sites/all/themes/okcdesign/scss (DEPRECATED)\A         on line 4 of app.scss\A \A 1: // subthemes : feel free to edit this file !\A 2: \A 3: @import \"settings\";\A 4: @import \"foundation\";\A 5: @import \"mixins\";\A 6: \A 7: #edit-submit {\A 8:   @include okcdesign-form-button($secondary-color);\A 9: }"; }

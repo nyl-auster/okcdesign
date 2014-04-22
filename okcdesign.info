@@ -1,11 +1,10 @@
 name = OKC Design
 description = Responsive theme based on foundation css framework
-
-screenshot = screenshot.png
-
 core = 7.x
 engine = phptemplate
+screenshot = screenshot.png
 
+; regions
 regions[header] = Header
 regions[help] = Help
 regions[highlighted] = Highlighted
@@ -13,5 +12,23 @@ regions[content] = Content
 regions[sidebar_first] = Sidebar first
 regions[sidebar_second] = Sidebar second
 regions[footer] = Footer
+
+; theme plugins
+okcdesign_plugins[drupal__foundation][title] = Core
+okcdesign_plugins[drupal__foundation][description] = Plug foundation css framework into Drupal.
+okcdesign_plugins[drupal__foundation][hooks][] = hook_html_head_alter
+okcdesign_plugins[drupal__foundation][hooks][] = hook_css_alter
+
+okcdesign_plugins[status_messages__alert_box][title] = Status messages
+okcdesign_plugins[status_messages__alert_box][description] = Plug foundation css framework into Drupal.
+okcdesign_plugins[status_messages__alert_box][hooks][] = hook_status_messages
+
+; default enabled plugins
+settings[okcdesign_plugins_enabled][] = drupal__foundation
+settings[okcdesign_plugins_enabled][] = status_messages__alert_box
+
+settings[test] = 1
+
+
 
 

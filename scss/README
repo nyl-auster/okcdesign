@@ -1,2 +1,2 @@
-Edit this file to compile zurb foundation as needed.
+subthemes : edit thoses files to compile zurb foundation as you want to.
 app.scss & _settings.scss are copies from foundation.

@@ -6,7 +6,7 @@
  * http://foundation.zurb.com/docs/css.html
  */
 
-class core {
+class drupal__foundation {
 
   /**
    * Adjust drupal html headers and add css & js required by foundation

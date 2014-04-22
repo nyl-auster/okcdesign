@@ -7,6 +7,7 @@
 // load plugins system
 include 'inc/okcdesign_plugins_manager.php';
 
+
 /*=============================
    PREPROCESS
  ==============================*/
@@ -49,7 +50,7 @@ function okcdesign_preprocess_page(&$variables) {
 
   // invoke theme plugins as usuals
   $args = array('head_elements' => &$variables);
-  _invoke_theme_plugins(__FUNCTION__, $args);
+  okcdesign_invoke_plugins(__FUNCTION__, $args);
 
 }
 
@@ -58,14 +59,14 @@ function okcdesign_preprocess_page(&$variables) {
  * Implements hook_css_alter()
  */
 function okcdesign_css_alter(&$css) {
-  _invoke_theme_plugins(__FUNCTION__, $css);
+  okcdesign_invoke_plugins(__FUNCTION__, $css);
 }
 
 /**
  * Implements hook_html_head_alter().
  */
 function okcdesign_html_head_alter(&$head_elements) {
-  _invoke_theme_plugins(__FUNCTION__, $head_elements);
+  okcdesign_invoke_plugins(__FUNCTION__, $head_elements);
 }
 
 /**
@@ -80,50 +81,16 @@ function okcdesign_preprocess_links($variables) {
  ==============================*/
 
 /**
- * implements hook_theme_menu_local_task()
- */
-function okcdesign_links__system_main_menu($variables) {
-  $html = _invoke_theme_plugins(__FUNCTION__, $variables);
-  if ($html) return $html;
-  return theme_links($variables);
-}
-
-/**
- * implements hook_theme_menu_local_task()
- */
-function okcdesign_menu_local_task($variables) {
-  $html = _invoke_theme_plugins(__FUNCTION__, $variables);
-  if ($html) return $html;
-  return theme_menu_local_task($variables);
-}
-
-/**
- * implements hook_theme_menu_local_tasks()
- */
-function okcdesign_menu_local_tasks($variables) {
-  $html = _invoke_theme_plugins(__FUNCTION__, $variables);
-  if ($html) return $html;
-  return theme_menu_local_tasks($variables);
-}
-
-/**
  * Implements hook_theme_breadcrumb()
  */
 function okcdesign_breadcrumb($breadcrumb) {
-  $html = _invoke_theme_plugins(__FUNCTION__, $breadcrumb);
+  $html = okcdesign_invoke_plugins(__FUNCTION__, $breadcrumb);
   if ($html) return $html;
   return theme_breadcrumb($breadcrumb);
 }
 
-/**
- * Implements hook_form_alter()
- */
-function okcdesign_form_alter(&$form, &$form_state, $form_id) {
-  _invoke_theme_plugins(__FUNCTION__, $form, $form_state, $form_id);
-}
-
 function okcdesign_status_messages($variables) {
-  $html = _invoke_theme_plugins(__FUNCTION__, $variables);
+  $html = okcdesign_invoke_plugins(__FUNCTION__, $variables);
   if ($html) return $html;
   return theme_status_messages($variables);
 }
