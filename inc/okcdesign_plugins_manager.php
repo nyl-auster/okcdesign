@@ -54,7 +54,7 @@ function okcdesign_invoke_plugins($hook, &$arg1 = array(), &$arg2 = array(), &$a
 
   $plugins = okcdesign_get_plugins();
   $plugins_enabled = array_filter(theme_get_setting('okcdesign_plugins_enabled'));
-  
+
   // plug in only enabled plugins.
   foreach ($plugins_enabled  as $plugin_id) {
     // get full plugin infos from info file.

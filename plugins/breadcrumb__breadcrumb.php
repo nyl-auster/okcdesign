@@ -5,7 +5,7 @@
  * Theme breadcrumb as a foundation breadcrumb
  */
 
-class breadcrumb {
+class breadcrumb__breadcrumb {
 
   static function hook_breadcrumb($variables) {
 

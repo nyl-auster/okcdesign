@@ -20,15 +20,14 @@ okcdesign_plugins[drupal__foundation][hooks][] = hook_html_head_alter
 okcdesign_plugins[drupal__foundation][hooks][] = hook_css_alter
 
 okcdesign_plugins[status_messages__alert_box][title] = Status messages
-okcdesign_plugins[status_messages__alert_box][description] = Plug foundation css framework into Drupal.
+okcdesign_plugins[status_messages__alert_box][description] = Status messages as foundation alert boxes
 okcdesign_plugins[status_messages__alert_box][hooks][] = hook_status_messages
+
+okcdesign_plugins[breadcrumb__breadcrumb][title] = Breadcrumb
+okcdesign_plugins[breadcrumb__breadcrumb][description] = Drupal breadcrumb as foundation breadcrumb
+okcdesign_plugins[breadcrumb__breadcrumb][hooks][] = hook_breadcrumb
 
 ; default enabled plugins
 settings[okcdesign_plugins_enabled][] = drupal__foundation
 settings[okcdesign_plugins_enabled][] = status_messages__alert_box
-
-settings[test] = 1
-
-
-
-
+settings[okcdesign_plugins_enabled][] = breadcrumb
