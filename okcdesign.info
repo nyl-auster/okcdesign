@@ -18,6 +18,12 @@ okcdesign_plugins[drupal__foundation][title] = Core
 okcdesign_plugins[drupal__foundation][description] = Plug foundation css framework into Drupal.
 okcdesign_plugins[drupal__foundation][hooks][] = hook_html_head_alter
 okcdesign_plugins[drupal__foundation][hooks][] = hook_css_alter
+okcdesign_plugins[drupal__foundation][required] = 1
+
+okcdesign_plugins[dynamic_sidebars][title] = Dynamic sidebars
+okcdesign_plugins[dynamic_sidebars][description] = Chande sidebar and content grid witdh dynamically
+okcdesign_plugins[dynamic_sidebars][hooks][] = hook_preprocess_page
+okcdesign_plugins[dynamic_sidebars][required] = 1
 
 okcdesign_plugins[status_messages__alert_box][title] = Status messages
 okcdesign_plugins[status_messages__alert_box][description] = Status messages as foundation alert boxes
@@ -28,6 +34,7 @@ okcdesign_plugins[breadcrumb__breadcrumb][description] = Drupal breadcrumb as fo
 okcdesign_plugins[breadcrumb__breadcrumb][hooks][] = hook_breadcrumb
 
 ; default enabled plugins
+settings[okcdesign_plugins_enabled][] = dynamic_sidebars
 settings[okcdesign_plugins_enabled][] = drupal__foundation
 settings[okcdesign_plugins_enabled][] = status_messages__alert_box
 settings[okcdesign_plugins_enabled][] = breadcrumb
