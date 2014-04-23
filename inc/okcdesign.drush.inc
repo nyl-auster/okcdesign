@@ -18,9 +18,9 @@
  */
 function okcdesign_drush_command() {
   $items = array();
-  $items['okc-sub-theme'] = array(
+  $items['okcdesign-theme'] = array(
     'description' => 'Create a OKC Design sub-theme',
-    'aliases' => array('ost'),
+    'aliases' => array('okc-theme'),
     'arguments' => array(
       'name'         => 'Your sub-theme name.',
       'machine_name' => 'A machine-readable name for your theme, optional only  [a-z, 0-9] ',
@@ -34,6 +34,19 @@ function okcdesign_drush_command() {
       'drush fst "foo bar" "foo_bar"  --description="My supersweet awesome theme"' => 'Create a sub-theme with additional options.',
     ),
   );
+  $items['okcdesign-plugin'] = array(
+    'description' => 'Create a new OKC plugin',
+    'aliases' => array('okc-plugin'),
+    'arguments' => array(
+      'name'         => 'plugin machine name',
+    ),
+    'options' => array(
+      'hooks'  => 'list of hooks, separated with virgules',
+    ),
+    'examples' => array(
+      'drush osp monplugin --hooks="hook_preprocess_page, hook_css_alter"' => 'Create a new plugin responding to specified hooks in plugins/others',
+    ),
+  );
 
   return $items;
 }
@@ -41,7 +54,7 @@ function okcdesign_drush_command() {
 /**
  * Create a Zurb foundation sub-theme.
  */
-function drush_okcdesign_okc_sub_theme($name = NULL, $machine_name = NULL, $description = NULL) {
+function drush_okcdesign_okcdesign_sub_theme($name = NULL, $machine_name = NULL, $description = NULL) {
   if (empty($name)) {
     drush_set_error(dt("Please provide a name for the sub-theme.\nUSAGE:\tdrush ost [name] [machine_name !OPTIONAL] [description !OPTIONAL]\n"));
     return;
@@ -89,6 +102,68 @@ function drush_okcdesign_okc_sub_theme($name = NULL, $machine_name = NULL, $desc
 
 
 }
+
+/**
+ * Create a Zurb foundation sub-theme.
+ */
+function drush_okcdesign_plugin($name = NULL) {
+  if (empty($name)) {
+    drush_set_error(dt("Please provide a name for the plugin."));
+    return;
+  }
+
+  //Filter everything but letters, numbers, underscores, and hyphens
+  $name = preg_replace('/[^a-z0-9_-]+/', '', strtolower($name));
+  $hooks = explode(',', drush_get_option('hooks'));
+  if (empty($hooks)) {
+    drush_set_error(dt("You must at least declare one hook"));
+    return;
+  }
+
+
+  $themepath = drush_locate_root() . '/' . drupal_get_path('theme', 'okcdesign');
+
+  // create class in "others" directory
+  $datas = array();
+  $datas[] = '<?php';
+  $datas[] = "";
+  $datas[] = "class $name {";
+  foreach ($hooks as $hook) {
+    $datas[] = "";
+    $datas[] = '  function ' . $hook . '(&$variables) {';
+    $datas[] = '';
+    $datas[] = '  }';
+  }
+  $datas[] = '';
+  $datas[] = '}';
+
+  $file = "$themepath/plugins/others/$name.php";
+  drush_op('file_put_contents', $file, implode($datas, "\r\n"));
+
+
+  $datas = array();
+  $datas[] = 'okcdesign_plugins[' . $name . '][title] = ' . $name;
+
+  foreach ($hooks as $hook) {
+    $datas[] = 'okcdesign_plugins[' . $name . '][hooks][] = ' . $name;
+  }
+  $datas[] = '';
+  $datas[] = '';
+
+  $file = $themepath . '/okcdesign.info';
+  drush_op('file_put_contents', $file, implode($datas, "\n"), FILE_APPEND);
+
+  // Notify user of the newly created theme.
+  drush_print(dt("\n!name plugin was created. \n",
+    array(
+      '!name' => $name,
+    )
+  ));
+
+
+}
+
+
 
 /**
  * Internal helper: Replace strings in a file.

@@ -13,6 +13,13 @@ regions[sidebar_first] = Sidebar first
 regions[sidebar_second] = Sidebar second
 regions[footer] = Footer
 
+; default enabled plugins
+settings[okcdesign_plugins_enabled][] = dynamic_sidebars
+settings[okcdesign_plugins_enabled][] = drupal__foundation
+settings[okcdesign_plugins_enabled][] = status_messages__alert_box
+settings[okcdesign_plugins_enabled][] = breadcrumb__breadcrumb
+settings[okcdesign_plugins_enabled][] = foundation_topbar
+
 ; theme plugins
 okcdesign_plugins[drupal__foundation][title] = Core
 okcdesign_plugins[drupal__foundation][description] = Plug foundation css framework into Drupal.
@@ -36,10 +43,11 @@ okcdesign_plugins[foundation_topbar][description] = Main and secondary menu as f
 okcdesign_plugins[foundation_topbar][hooks][] = hook_theme
 okcdesign_plugins[foundation_topbar][hooks][] = hook_preprocess_foundation_topbar
 
-; default enabled plugins
-settings[okcdesign_plugins_enabled][] = dynamic_sidebars
-settings[okcdesign_plugins_enabled][] = drupal__foundation
-settings[okcdesign_plugins_enabled][] = status_messages__alert_box
-settings[okcdesign_plugins_enabled][] = breadcrumb__breadcrumb
-settings[okcdesign_plugins_enabled][] = foundation_topbar
+okcdesign_plugins[homepage_remove_title][title] = Remove homepage title
+okcdesign_plugins[homepage_remove_title][description] = Set no title on homepage
+okcdesign_plugins[homepage_remove_title][hooks][] = hook_preprocess_page
+
+okcdesign_plugins[homepage_remove_default_content][title] = Remove homepage default content
+okcdesign_plugins[homepage_remove_default_content][description] = Set no default content on homepage
+okcdesign_plugins[homepage_remove_default_content][hooks][] = hook_preprocess_page
 

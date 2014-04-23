@@ -14,9 +14,15 @@
 spl_autoload_register('okcdesign_plugins_autoloader');
 
 function okcdesign_plugins_autoloader($class_name) {
-  $file = drupal_get_path('theme', 'okcdesign') . "/plugins/$class_name.php";
-  if (is_readable($file)) {
-    include_once $file;
+  $suggestions = array(
+    drupal_get_path('theme', 'okcdesign') . "/plugins/foundation/$class_name.php",
+    drupal_get_path('theme', 'okcdesign') . "/plugins/others/$class_name.php",
+  );
+  foreach ($suggestions as $suggestion) {
+    if (is_readable($suggestion)) {
+      include_once $suggestion;
+      break;
+    }
   }
 }
 
