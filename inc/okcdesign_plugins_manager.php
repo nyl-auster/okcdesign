@@ -13,9 +13,6 @@
 
 spl_autoload_register('okcdesign_plugins_autoloader');
 
-// autoload classes from plugins folder
-// simply include the $class_name file is not sufficient because
-// we might need to include a parent class to, and we dont know its name.
 function okcdesign_plugins_autoloader($class_name) {
   $file = drupal_get_path('theme', 'okcdesign') . "/plugins/$class_name.php";
   if (is_readable($file)) {
@@ -34,7 +31,7 @@ function okcdesign_get_plugins() {
 
   $themes = list_themes();
   $theme = $themes['okcdesign'];
-  if (isset($theme->info['okcdesign_plugins'])) {
+  if (!empty($theme->info['okcdesign_plugins'])) {
     $plugins = $theme->info['okcdesign_plugins'];
   }
   return $plugins;
@@ -50,7 +47,7 @@ function okcdesign_get_plugins() {
  * to render html; so one a result is return, we return it and other plugins
  * are not called.
  */
-function okcdesign_invoke_plugins($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 = array(), &$arg4 = array()) {
+function okcdesign_plugins_dispatch($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 = array(), &$arg4 = array()) {
 
   $plugins = okcdesign_get_plugins();
   $plugins_enabled = array_filter(theme_get_setting('okcdesign_plugins_enabled'));

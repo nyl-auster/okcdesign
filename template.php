@@ -48,32 +48,22 @@ function okcdesign_preprocess_page(&$variables) {
   $variables['sidebar_first_grid_classes'] = $sidebar_first_grid_classes;
   $variables['sidebar_second_grid_classes'] = $sidebar_second_grid_classes;
 
-  // invoke theme plugins as usuals
-  $args = array('head_elements' => &$variables);
-  okcdesign_invoke_plugins(__FUNCTION__, $args);
+  okcdesign_plugins_dispatch(__FUNCTION__, $variables);
 
 }
-
 
 /**
  * Implements hook_css_alter()
  */
-function okcdesign_css_alter(&$css) {
-  okcdesign_invoke_plugins(__FUNCTION__, $css);
+function okcdesign_css_alter(&$variables) {
+  okcdesign_plugins_dispatch(__FUNCTION__, $variables);
 }
 
 /**
  * Implements hook_html_head_alter().
  */
-function okcdesign_html_head_alter(&$head_elements) {
-  okcdesign_invoke_plugins(__FUNCTION__, $head_elements);
-}
-
-/**
- * Implements hook_preprocess_links()
- */
-function okcdesign_preprocess_links($variables) {
-  //dpm($variables);
+function okcdesign_html_head_alter(&$variables) {
+  okcdesign_plugins_dispatch(__FUNCTION__, $variables);
 }
 
 /*=============================
@@ -83,14 +73,14 @@ function okcdesign_preprocess_links($variables) {
 /**
  * Implements hook_theme_breadcrumb()
  */
-function okcdesign_breadcrumb($breadcrumb) {
-  $html = okcdesign_invoke_plugins(__FUNCTION__, $breadcrumb);
+function okcdesign_breadcrumb($variables) {
+  $html = okcdesign_plugins_dispatch(__FUNCTION__, $variables);
   if ($html) return $html;
-  return theme_breadcrumb($breadcrumb);
+  return theme_breadcrumb($variables);
 }
 
 function okcdesign_status_messages($variables) {
-  $html = okcdesign_invoke_plugins(__FUNCTION__, $variables);
+  $html = okcdesign_plugins_dispatch(__FUNCTION__, $variables);
   if ($html) return $html;
   return theme_status_messages($variables);
 }
