@@ -54,7 +54,7 @@ function okcdesign_drush_command() {
 /**
  * Create a Zurb foundation sub-theme.
  */
-function drush_okcdesign_okcdesign_sub_theme($name = NULL, $machine_name = NULL, $description = NULL) {
+function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description = NULL) {
   if (empty($name)) {
     drush_set_error(dt("Please provide a name for the sub-theme.\nUSAGE:\tdrush ost [name] [machine_name !OPTIONAL] [description !OPTIONAL]\n"));
     return;
