@@ -38,6 +38,19 @@ function okcdesign_get_plugins() {
 }
 
 /**
+ * Tell us if a okcdsign plug is enabled
+ * @param $plugin : plugin id, as declared in theme info file.
+ * @return bool
+ */
+function okcdesign_plugin_is_enabled($plugin) {
+  $plugins_enabled = array_filter(theme_get_setting('okcdesign_plugins_enabled'));
+  if (isset($plugins_enabled[$plugin])) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
  * Invoke all plugins for a specific drupal hook. It will look for all
  * plugins responding to a hook and call them.
  *

@@ -6,6 +6,16 @@
  */
 ?>
 
+<?php if  (okcdesign_plugin_is_enabled('foundation_topbar')) :?>
+
+  <?php
+  print theme('foundation_topbar', array(
+    'links_left' => menu_tree_output(menu_tree_all_data(variable_get('menu_primary_links_source', 'main-menu'))),
+    'links_right' => menu_tree_output(menu_tree_all_data(variable_get('menu_primary_links_source', 'user-menu')))
+  ));
+  ?>
+<?php endif ?>
+
   <div class="row-wrapper" id="header-top" >
     <div class="row">
 
@@ -33,26 +43,18 @@
 
       </div> <!-- /#site-informations -->
 
-      <!-- menus -->
-      <?php // print main and secondary menu as foundation top bar if asked. Otherwise, print menus as drupal normally does. ?>
-      <?php if (isset($foundation_topbar)) :?>
+      <?php if($main_menu):?>
+        <nav>
+          <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu'))) ?>
+        </nav>
+      <?php endif ?>
 
+      <?php if ($main_menu || $secondary_menu): ?>
+        <nav class="">
+          <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu'))) ?>
+        </nav>
+      <?php endif; ?>
 
-      <?php else :?>
-
-        <?php if($main_menu):?>
-          <nav>
-            <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu'))) ?>
-          </nav>
-        <?php endif ?>
-
-        <?php if ($main_menu || $secondary_menu): ?>
-          <nav class="">
-            <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu'))) ?>
-          </nav>
-        <?php endif; ?>
-
-      <?php endif;?>
 
       <!-- / menus -->
 

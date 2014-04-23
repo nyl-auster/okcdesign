@@ -13,13 +13,24 @@
 include 'inc/okcdesign_plugins_manager.php';
 
 /*=============================
+   HOOKS
+ ==============================*/
+
+/**
+ * Implements hook_theme()
+ */
+function okcdesign_theme() {
+  $themes = array();
+  okcdesign_plugins_dispatch(__FUNCTION__, $themes);
+  return $themes;
+}
+
+/*=============================
    PREPROCESS
  ==============================*/
 
 /**
  * Implements template_preprocess_page()
- *
- * Dynamic grid classes accroding to the number of displayed columns
  */
 function okcdesign_preprocess_page(&$variables) {
   okcdesign_plugins_dispatch(__FUNCTION__, $variables);
@@ -38,6 +49,14 @@ function okcdesign_css_alter(&$variables) {
 function okcdesign_html_head_alter(&$variables) {
   okcdesign_plugins_dispatch(__FUNCTION__, $variables);
 }
+
+/**
+ * Implements template_preprocess_foundation_topbar()
+ */
+function okcdesign_preprocess_foundation_topbar(&$variables) {
+  okcdesign_plugins_dispatch(__FUNCTION__, $variables);
+}
+
 
 /*=============================
    THEME OVERRIDES
