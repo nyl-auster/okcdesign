@@ -7,7 +7,6 @@
 ?>
 
 <?php if  (okcdesign_plugin_is_enabled('foundation_topbar')) :?>
-
   <?php
   // change source menu if needed !
   print theme('foundation_topbar', array(

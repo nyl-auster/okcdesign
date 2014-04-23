@@ -19,11 +19,12 @@ class foundation_topbar {
   static function hook_preprocess_foundation_topbar(&$variables) {
 
     foreach (element_children($variables['links_left']) as $i) {
-      self::add_active_class($variables['links_left'][$i]);
+      // php 5.4 will complain about references without this extra affectation...
+      self::add_active_class($link = &$variables['links_left'][$i]);
     }
 
-    foreach (element_children($links = $variables['links_right']) as $i) {
-      self::add_active_class($variables['links_right'][$i]);
+    foreach (element_children($variables['links_right']) as $i) {
+      self::add_active_class($link = &$variables['links_right'][$i]);
     }
   }
 

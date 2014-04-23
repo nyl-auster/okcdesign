@@ -44,7 +44,7 @@ function okcdesign_get_plugins() {
  */
 function okcdesign_plugin_is_enabled($plugin) {
   $plugins_enabled = array_filter(theme_get_setting('okcdesign_plugins_enabled'));
-  if (isset($plugins_enabled[$plugin])) {
+  if (in_array($plugin, $plugins_enabled)) {
     return TRUE;
   }
   return FALSE;
