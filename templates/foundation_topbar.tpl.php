@@ -25,11 +25,12 @@
 
     <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 
-    <?php if ($links_left) : ?>
+    <?php if ($links = $links_left) : ?>
     <section class="top-bar-section">
 
       <ul class="left">
-        <?php foreach (element_children($links = $links_left) as $i) :?>
+
+        <?php foreach (element_children($links) as $i) :?>
 
           <?php $link = l($links[$i]['#title'], $links[$i]['#href'], $links[$i]['#localized_options']) ?>
 
@@ -54,10 +55,10 @@
     </section>
     <?php endif ?>
 
-    <?php if ($links_right) : ?>
+    <?php if ($links = $links_right) : ?>
     <section class="top-bar-section">
       <ul class="right">
-        <?php foreach (element_children($links = $links_right) as $i) :?>
+        <?php foreach (element_children($links) as $i) :?>
 
           <?php $link = l($links[$i]['#title'], $links[$i]['#href'], $links[$i]['#localized_options']) ?>
 

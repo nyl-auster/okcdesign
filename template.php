@@ -33,6 +33,16 @@ function okcdesign_theme() {
  * Implements template_preprocess_page()
  */
 function okcdesign_preprocess_page(&$variables) {
+
+
+  if (!module_exists('jquery_update')) {
+    drupal_set_message(t('!module was not found, or your version of jQuery does not meet the minimum version requirement. OKC Design requires jQuery 1.10 or higher. Please install !module, or Zurb Foundation plugins may not work correctly.',
+      array(
+        '!module' => l('jQuery Update', 'https://drupal.org/project/jquery_update', array('external' => TRUE, 'attributes' => array('target' => '_blank'))),
+      )
+    ), 'warning', FALSE);
+  }
+
   okcdesign_plugins_dispatch(__FUNCTION__, $variables);
 }
 

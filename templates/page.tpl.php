@@ -44,20 +44,16 @@
 
       </div> <!-- /#site-informations -->
 
-      <?php if($main_menu):?>
+      <?php if($main_menu || $secondary_menu):?>
         <nav>
-          <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu'))) ?>
+          <?php if ($main_menu) : ?>
+            <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu'))) ?>
+          <?php endif ?>
+          <?php if ($secondary_menu) : ?>
+            <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu'))) ?>
+          <?php endif ?>
         </nav>
       <?php endif ?>
-
-      <?php if ($main_menu || $secondary_menu): ?>
-        <nav class="">
-          <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu'))) ?>
-        </nav>
-      <?php endif; ?>
-
-
-      <!-- / menus -->
 
 
     </div> <!-- /.row -->
