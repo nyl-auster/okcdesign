@@ -88,6 +88,7 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
   drush_op('copy', "$okcdesign_path/scss/app.scss", "$subtheme_path/scss/app.scss");
   drush_op('copy', "$okcdesign_path/scss/_settings.scss", "$subtheme_path/scss/_settings.scss");
   drush_op('copy', "$okcdesign_path/scss/_mixins.scss", "$subtheme_path/scss/_mixins.scss");
+  drush_op('copy', "$okcdesign_path/logo.png", "$subtheme_path/logo.png");
 
   // copy templates
   drush_copy_dir("$okcdesign_path/templates", "$subtheme_path/templates");
@@ -95,9 +96,12 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
 
   drush_op('mkdir', "$subtheme_path/js");
 
+  drush_pm_enable_validate($machine_name);
+  drush_pm_enable($machine_name);
+
 
   // Notify user of the newly created theme.
-  drush_print(dt("\n!name sub-theme was created in !path. Enabled it and set it as default theme in drupal adminstration. \n",
+  drush_print(dt("\n!name sub-theme was created in !path and enabled \n",
     array(
       '!name' => $machine_name,
       '!path' => $subtheme_path,
