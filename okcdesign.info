@@ -40,7 +40,7 @@ okcdesign_plugins[foundation_topbar][hooks][] = hook_preprocess_foundation_topba
 settings[okcdesign_plugins_enabled][] = dynamic_sidebars
 settings[okcdesign_plugins_enabled][] = drupal__foundation
 settings[okcdesign_plugins_enabled][] = status_messages__alert_box
-settings[okcdesign_plugins_enabled][] = breadcrumb
+settings[okcdesign_plugins_enabled][] = breadcrumb__breadcrumb
 
 ; disabled by default :  drupal main and secondary menus as foundation topbar
 ;settings[okcdesign_plugins_enabled][] = foundation_topbar

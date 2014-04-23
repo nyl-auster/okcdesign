@@ -2,7 +2,7 @@
 
 class dynamic_sidebars {
 
-  function hook_preprocess_page(&$variables) {
+  static function hook_preprocess_page(&$variables) {
 
     // by default, content is 12.
     $content_grid_classes = 'small-12 columns';

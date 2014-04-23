@@ -6,7 +6,7 @@
  */
 class status_messages__alert_box {
 
-  function hook_status_messages($variables) {
+  static function hook_status_messages($variables) {
     $display = $variables['display'];
     $output = '';
 
