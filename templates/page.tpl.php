@@ -9,11 +9,13 @@
 <?php if  (okcdesign_plugin_is_enabled('foundation_topbar')) :?>
 
   <?php
+  // change source menu if needed !
   print theme('foundation_topbar', array(
     'links_left' => menu_tree_output(menu_tree_all_data(variable_get('menu_primary_links_source', 'main-menu'))),
     'links_right' => menu_tree_output(menu_tree_all_data(variable_get('menu_primary_links_source', 'user-menu')))
   ));
   ?>
+
 <?php endif ?>
 
   <div class="row-wrapper" id="header-top" >
