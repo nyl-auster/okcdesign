@@ -34,7 +34,7 @@
       </div> <!-- /#site-informations -->
 
       <!-- menus -->
-      <?php // print main and secondary menu as foundation top bar if asked. Otherwise, print theme as drupal normally does. ?>
+      <?php // print main and secondary menu as foundation top bar if asked. Otherwise, print menus as drupal normally does. ?>
       <?php if (isset($foundation_topbar)) :?>
 
 
@@ -92,7 +92,7 @@
 <?php endif ?>
 
 
-  <section id="section-content">
+  <section id="section-content" class="row-wrapper">
     <div class="row">
 
       <?php if ($page['sidebar_first']): ?>
