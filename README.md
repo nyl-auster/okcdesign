@@ -25,7 +25,7 @@ Use the following command to automatically create a subtheme ready to enable and
 
 
 ```shell
-  drush ost {yourthemename}
+  drush okc-theme {yourthemename}
 ```
 
 Compile scss files with sass commands. Note that we are adding
