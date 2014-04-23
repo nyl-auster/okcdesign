@@ -75,7 +75,6 @@ function drush_okcdesign_okc_sub_theme($name = NULL, $machine_name = NULL, $desc
   drush_op('copy', "$okcdesign_path/scss/app.scss", "$subtheme_path/scss/app.scss");
   drush_op('copy', "$okcdesign_path/scss/_settings.scss", "$subtheme_path/scss/_settings.scss");
   drush_op('copy', "$okcdesign_path/scss/_mixins.scss", "$subtheme_path/scss/_mixins.scss");
-  drush_op('copy', "$okcdesign_path/README.txt", "$subtheme_path/README.txt");
 
   drush_op('mkdir', "$subtheme_path/js");
 
