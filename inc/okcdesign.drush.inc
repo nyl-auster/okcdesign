@@ -89,6 +89,10 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
   drush_op('copy', "$okcdesign_path/scss/_settings.scss", "$subtheme_path/scss/_settings.scss");
   drush_op('copy', "$okcdesign_path/scss/_mixins.scss", "$subtheme_path/scss/_mixins.scss");
 
+  // copy templates
+  drush_copy_dir("$okcdesign_path/templates", "$subtheme_path/templates");
+
+
   drush_op('mkdir', "$subtheme_path/js");
 
 
