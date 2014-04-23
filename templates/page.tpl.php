@@ -21,9 +21,8 @@
     <div class="row">
 
       <!-- site name , logo & slogan -->
-      <div id="site-informations">
-
-        <?php if ($site_name || $logo) : ?>
+      <?php if ($site_name || $logo || $site_slogan) : ?>
+        <div id="site-informations">
           <h1>
 
             <?php if ($logo): ?>
@@ -32,17 +31,17 @@
               </a>
             <?php endif ?>
 
-            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-              <?php print $site_name ?>
-            </a>
+            <?php if($site_name): ?>
+              <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
+                <?php print $site_name ?>
+              </a>
+            <?php endif ?>
 
             <?php if ($site_slogan): ?> <small><?php print $site_slogan ?></small> <?php endif ?>
 
           </h1>
-        <?php endif ?>
-
-
-      </div> <!-- /#site-informations -->
+        </div> <!-- /#site-informations -->
+      <?php endif ?>
 
       <?php if($main_menu || $secondary_menu):?>
         <nav>
