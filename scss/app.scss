@@ -15,3 +15,12 @@
 #main-menu{
   @include sub-nav($font-size:rem-calc(20))
 }
+
+.tabs {
+ @include sub-nav();
+}
+
+.submitted{
+  @include label($bg : $secondary-color);
+  margin-bottom: rem-calc(15);
+}

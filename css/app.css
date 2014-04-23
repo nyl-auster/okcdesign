@@ -5372,3 +5372,64 @@ th.hide-for-touch {
       #main-menu dd.active a:hover,
       #main-menu li.active a:hover {
         background: #0078a0; }
+
+.tabs {
+  display: block;
+  width: auto;
+  overflow: hidden;
+  margin: -0.25rem 0 1.125rem;
+  padding-top: 0.25rem;
+  margin-right: 0;
+  margin-left: -0.75rem; }
+  .tabs dt {
+    text-transform: uppercase; }
+  .tabs dt,
+  .tabs dd,
+  .tabs li {
+    float: left;
+    display: inline;
+    margin-left: 1rem;
+    margin-bottom: 0.625rem;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-size: 0.875rem;
+    color: #999999; }
+    .tabs dt a,
+    .tabs dd a,
+    .tabs li a {
+      text-decoration: none;
+      color: #999999;
+      padding: 0.1875rem 1rem; }
+      .tabs dt a:hover,
+      .tabs dd a:hover,
+      .tabs li a:hover {
+        color: #737373; }
+    .tabs dt.active a,
+    .tabs dd.active a,
+    .tabs li.active a {
+      border-radius: 3px;
+      font-weight: normal;
+      background: #008cba;
+      padding: 0.1875rem 1rem;
+      cursor: default;
+      color: white; }
+      .tabs dt.active a:hover,
+      .tabs dd.active a:hover,
+      .tabs li.active a:hover {
+        background: #0078a0; }
+
+.submitted {
+  font-weight: normal;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+  display: inline-block;
+  position: relative;
+  margin-bottom: inherit;
+  padding: 0.25rem 0.5rem 0.375rem;
+  font-size: 0.6875rem;
+  background-color: #e7e7e7;
+  color: #333333;
+  margin-bottom: 0.9375rem; }

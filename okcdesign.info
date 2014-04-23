@@ -31,8 +31,15 @@ okcdesign_plugins[breadcrumb__breadcrumb][title] = Breadcrumb
 okcdesign_plugins[breadcrumb__breadcrumb][description] = Drupal breadcrumb as foundation breadcrumb
 okcdesign_plugins[breadcrumb__breadcrumb][hooks][] = hook_breadcrumb
 
+okcdesign_plugins[main_and_secondary_menu__topbar][title] = Top bar
+okcdesign_plugins[main_and_secondary_menu__topbar][description] = Main and secondary menu as foundation topbar
+okcdesign_plugins[main_and_secondary_menu__topbar][hooks][] = hook_preprocess_page
+
 ; default enabled plugins
 settings[okcdesign_plugins_enabled][] = dynamic_sidebars
 settings[okcdesign_plugins_enabled][] = drupal__foundation
 settings[okcdesign_plugins_enabled][] = status_messages__alert_box
 settings[okcdesign_plugins_enabled][] = breadcrumb
+
+; disabled by default :  drupal main and secondary menus as foundation topbar
+;settings[okcdesign_plugins_enabled][] = main_and_secondary_menu__topbar
