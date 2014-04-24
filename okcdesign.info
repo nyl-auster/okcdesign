@@ -51,3 +51,6 @@ okcdesign_plugins[homepage_remove_default_content][title] = Remove homepage defa
 okcdesign_plugins[homepage_remove_default_content][description] = Set no default content on homepage
 okcdesign_plugins[homepage_remove_default_content][hooks][] = hook_preprocess_page
 
+okcdesign_plugins[remove_breadcrumb][title] = remove_breadcrumb
+okcdesign_plugins[remove_breadcrumb][hooks][] = hook_preprocess_page
+

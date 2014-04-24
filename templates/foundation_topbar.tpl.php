@@ -19,7 +19,7 @@
 
     <?php if ($site_name = variable_get('site_name', '')): ?>
     <li class="name">
-      <h1><a href="<?php url('<front>')?>"><?php print $site_name ?></a></h1>
+      <h1><a href="<?php print url('<front>')?>"><?php print $site_name ?></a></h1>
     </li>
     <?php endif ?>
 

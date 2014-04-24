@@ -29,11 +29,11 @@ Use the following command to automatically create a subtheme ready to enable and
 ```
 
 Compile scss files with sass commands. Note that we are adding
-path to foundation vendor directory, this is required for compilation to work as expected.
+path to foundation vendor directory, from okcdesign base theme. this is required for compilation to work as expected.
 Run this command from your sub theme root directory :
 
 ```shell
-  sass --watch scss:css --load-path foundation/bower_components/foundation/scss
+  sass --watch scss:css --load-path ../okcdesign/vendors/zurb/foundation/bower_components/foundation/scss
 ```
 
 foundation vendor directory has been installed with following command :
