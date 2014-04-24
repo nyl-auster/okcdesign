@@ -26,10 +26,7 @@ class drupal__foundation {
     drupal_add_js($theme_path . '/' . OKCDESIGN_VENDORS_DIRECTORY .'/foundation/js/foundation.min.js');
 
     // @TODO move icon to their own plugins
-    drupal_add_css($theme_path. '/' . OKCDESIGN_VENDORS_DIRECTORY .'/foundation-icons/foundation_icons_general/stylesheets/general_foundicons.css');
-    drupal_add_css($theme_path. '/' . OKCDESIGN_VENDORS_DIRECTORY .'/foundation-icons/foundation_icons_accessibility/stylesheets/accessibility_foundicons.css');
-    drupal_add_css($theme_path. '/' . OKCDESIGN_VENDORS_DIRECTORY .'/foundation-icons/foundation_icons_general_enclosed/stylesheets/general_enclosed_foundicons.css');
-    drupal_add_css($theme_path. '/' . OKCDESIGN_VENDORS_DIRECTORY .'/foundation-icons/foundation_icons_social/stylesheets/social_foundicons.css');
+    drupal_add_css($theme_path. '/' . OKCDESIGN_VENDORS_DIRECTORY .'/foundation-icon-fonts/foundation-icons.css');
 
 
     // HTML5 charset declaration.
