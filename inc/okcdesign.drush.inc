@@ -151,7 +151,7 @@ function drush_okcdesign_plugin($name = NULL) {
   $datas[] = 'okcdesign_plugins[' . $name . '][title] = ' . $name;
 
   foreach ($hooks as $hook) {
-    $datas[] = 'okcdesign_plugins[' . $name . '][hooks][] = ' . $name;
+    $datas[] = 'okcdesign_plugins[' . $name . '][hooks][] = ' . $hook;
   }
   $datas[] = '';
   $datas[] = '';
@@ -168,8 +168,6 @@ function drush_okcdesign_plugin($name = NULL) {
 
 
 }
-
-
 
 /**
  * Internal helper: Replace strings in a file.
