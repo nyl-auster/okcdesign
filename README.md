@@ -53,7 +53,7 @@ Adapt load path to your directory structure if needed.
   sass --watch scss:css --load-path ../okcdesign/bower_components/foundation/scss
 ```
 
-COMPILE OKCDESIGN
+OKCDESIGN DEVELOPMENT
 -------------------
 
 Only if you contribute to okcdesign, the following command allow scss compilation.
@@ -61,6 +61,14 @@ Run it at the root of ockdesign theme :
 
 ```shell
   sass --watch scss:css --load-path bower_components/foundation/scss
+```
+
+there is a drush command to create a new plugin, creating needed files, code and
+updating theme info file as needed. For example, if we want a plugin
+responding to hook_preprocess_page and hook_html_head_alter :
+
+```shell
+  drush okc-plugin pluginname --hooks="hook_preprocess_page, hook_html_head_alter"
 ```
 
 DRUPAL MODULES 
