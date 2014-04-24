@@ -28,27 +28,24 @@ Use the following command to automatically create a subtheme ready to enable and
   drush okc-theme {yourthemename}
 ```
 
+COMPILE IN SUBTHEME
+-------------------
+
 Compile scss files with sass commands. Note that we are adding
 path to foundation vendor directory, from okcdesign base theme. this is required for compilation to work as expected.
-Run this command from your sub theme root directory :
+Run this command from your sub theme root directory , or adjust load path if your
+directory structure is different :
 
 ```shell
-  sass --watch scss:css --load-path ../okcdesign/vendors/zurb/foundation/bower_components/foundation/scss
+  sass --watch scss:css --load-path ../okcdesign/bower_components/foundation/scss
 ```
 
-foundation vendor directory has been installed with following command :
+All libraries in okcdesign base theme have been downloaded and are updated with "bower".
+
+COMPILE OKCDESIGN
+-------------------
 
 ```shell
-  foundation new foundation --libsass
+  sass --watch scss:css --load-path bower_components/foundation/scss
 ```
-
-So he can be updated easily with following command if you wish.
-
-```shell
-  foundation update
-```
-
-(@see foundation frameworks doc on how to install foundation with sass for more informations,
-you'll need foundation ruby-gem, bower, nodejs etc...)
-
 

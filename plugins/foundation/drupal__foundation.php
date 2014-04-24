@@ -14,10 +14,11 @@ class drupal__foundation {
   static function hook_html_head_alter(&$head_elements) {
 
     $theme_path = drupal_get_path('theme', OKCDESIGN_THEME_NAME);
+    // will be same path as theme path if okcdesign is default theme.
     $subtheme_path = (drupal_get_path('theme', $GLOBALS['theme']));
 
     // for subtheme, use subtheme foundation.css
-    drupal_add_css($subtheme_path . '/css/foundation.css');
+    drupal_add_css($subtheme_path . '/css/app.css');
 
     // for other files, use okcdesign files to not dupplicate theme, for easier maintenance of all subthemes.
     drupal_add_js($theme_path . '/js/app.js');

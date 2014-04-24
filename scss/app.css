@@ -1,7 +1,7 @@
 /*
-Syntax error: An @import loop has been found: foundation.scss imports itself
-        on line 4 of foundation.scss
-        from line 4 of foundation.scss
+Syntax error: File to import not found or unreadable: foundation.
+              Load path: /Applications/MAMP/htdocs/okcdesign/sites/all/themes/okcdesign/scss (DEPRECATED)
+        on line 4 of app.scss
 
 1: // subthemes : feel free to edit this file !
 2: 
@@ -14,23 +14,12 @@ Syntax error: An @import loop has been found: foundation.scss imports itself
 9: }
 
 Backtrace:
-foundation.scss:4
-foundation.scss:4
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/visitors/perform.rb:518:in `handle_import_loop!'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/visitors/perform.rb:290:in `visit_import'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/stack.rb:79:in `block in with_base'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/stack.rb:121:in `with_frame'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/stack.rb:79:in `with_base'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/visitors/perform.rb:152:in `visit'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/visitors/perform.rb:297:in `block (2 levels) in visit_import'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/visitors/perform.rb:297:in `map'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/visitors/perform.rb:297:in `block in visit_import'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/stack.rb:88:in `block in with_import'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/stack.rb:121:in `with_frame'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/stack.rb:88:in `with_import'
-/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/visitors/perform.rb:294:in `visit_import'
+app.scss:4
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/import_node.rb:66:in `rescue in import'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/import_node.rb:45:in `import'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/import_node.rb:28:in `imported_file'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/import_node.rb:37:in `css_import?'
+/Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/visitors/perform.rb:283:in `visit_import'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/visitors/base.rb:36:in `visit'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/stack.rb:79:in `block in with_base'
@@ -67,4 +56,4 @@ foundation.scss:4
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: An @import loop has been found: foundation.scss imports itself\A         on line 4 of foundation.scss\A         from line 4 of foundation.scss\A \A 1: // subthemes : feel free to edit this file !\A 2: \A 3: @import \"settings\";\A 4: @import \"foundation\";\A 5: @import \"mixins\";\A 6: \A 7: #edit-submit {\A 8:   @include okcdesign-form-button($secondary-color);\A 9: }"; }
+  content: "Syntax error: File to import not found or unreadable: foundation.\A               Load path: /Applications/MAMP/htdocs/okcdesign/sites/all/themes/okcdesign/scss (DEPRECATED)\A         on line 4 of app.scss\A \A 1: // subthemes : feel free to edit this file !\A 2: \A 3: @import \"settings\";\A 4: @import \"foundation\";\A 5: @import \"mixins\";\A 6: \A 7: #edit-submit {\A 8:   @include okcdesign-form-button($secondary-color);\A 9: }"; }
