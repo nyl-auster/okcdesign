@@ -13,15 +13,24 @@ class drupal__foundation {
    */
   static function hook_html_head_alter(&$head_elements) {
 
+    $theme_path = drupal_get_path('theme', OKCDESIGN_THEME_NAME);
+    // will be same path as theme path if okcdesign is default theme.
+    $subtheme_path = (drupal_get_path('theme', $GLOBALS['theme']));
 
+    // for subtheme, use subtheme foundation.css
+    drupal_add_css($subtheme_path . '/css/app.css');
 
-    drupal_add_js(drupal_get_path('theme', 'okcdesign') . '/js/app.js');
-    // following files will be included by the subtheme and not okcdesign
-    // if a subtheme is created from drush ost command.
-    drupal_add_js(drupal_get_path('theme', $GLOBALS['theme']) . '/foundation/bower_components/modernizr/modernizr.js');
-    drupal_add_js(drupal_get_path('theme', $GLOBALS['theme']) . '/foundation/bower_components/foundation/js/foundation.min.js');
-    drupal_add_css(drupal_get_path('theme', $GLOBALS['theme']) . '/css/app.css');
-    drupal_add_css(drupal_get_path('theme', $GLOBALS['theme']) . '/foundation/icons/foundation-icons.css');
+    // for other files, use okcdesign files to not dupplicate theme, for easier maintenance of all subthemes.
+    drupal_add_js($theme_path . '/js/app.js');
+    drupal_add_js($theme_path . '/' . OKCDESIGN_VENDORS_DIRECTORY .'/modernizr/modernizr.js');
+    drupal_add_js($theme_path . '/' . OKCDESIGN_VENDORS_DIRECTORY .'/foundation/js/foundation.min.js');
+
+    // @TODO move icon to their own plugins
+    drupal_add_css($theme_path. '/' . OKCDESIGN_VENDORS_DIRECTORY .'/foundation-icons/foundation_icons_general/stylesheets/general_foundicons.css');
+    drupal_add_css($theme_path. '/' . OKCDESIGN_VENDORS_DIRECTORY .'/foundation-icons/foundation_icons_accessibility/stylesheets/accessibility_foundicons.css');
+    drupal_add_css($theme_path. '/' . OKCDESIGN_VENDORS_DIRECTORY .'/foundation-icons/foundation_icons_general_enclosed/stylesheets/general_enclosed_foundicons.css');
+    drupal_add_css($theme_path. '/' . OKCDESIGN_VENDORS_DIRECTORY .'/foundation-icons/foundation_icons_social/stylesheets/social_foundicons.css');
+
 
     // HTML5 charset declaration.
     $head_elements['system_meta_content_type']['#attributes'] = array(
@@ -78,3 +87,4 @@ class drupal__foundation {
 
 
 }
+

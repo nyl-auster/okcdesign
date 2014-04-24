@@ -9,6 +9,9 @@
  * @see okcdesign_plugins_manager.php
  */
 
+define('OKCDESIGN_THEME_NAME', 'okcdesign');
+define('OKCDESIGN_VENDORS_DIRECTORY', 'bower_components');
+
 // load plugins system
 include 'inc/okcdesign_plugins_manager.php';
 
