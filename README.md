@@ -71,6 +71,8 @@ responding to hook_preprocess_page and hook_html_head_alter :
   drush okc-plugin pluginname --hooks="hook_preprocess_page, hook_html_head_alter"
 ```
 
+Plugin will appear automatically in admin settings page, ready to be enabled.
+
 DRUPAL MODULES 
 -------------------
 
