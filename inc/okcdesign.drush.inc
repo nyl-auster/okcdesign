@@ -70,8 +70,6 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
 
   // create subtheme directory
   drush_op('mkdir', $subtheme_path);
-  // paste foundation framework files inside it
-  drush_copy_dir("$okcdesign_path/foundation", "$subtheme_path/foundation");
 
   // add info file (copy pasted from base theme for now
   drush_op('copy', "$okcdesign_path/okcdesign.info", "$subtheme_path/$machine_name.info");
