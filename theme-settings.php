@@ -42,7 +42,7 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
   $form['okcdesign']['plugins']['okcdesign_plugins_enabled'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Enable'),
-    '#description' => t('Apdapt drupal html markup to foundation css'),
+    '#description' => t('Theme plugins.'),
     '#options' => $options,
     '#default_value' => theme_get_setting('okcdesign_plugins_enabled')
   );
