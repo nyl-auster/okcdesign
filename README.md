@@ -16,7 +16,10 @@ rewriting drupal html, which is an heavy and painfull operation.
 
 It also comes with usefull libraries, located in bower_components directory.
 (this directory is maintened and updated with bower, a package front-end manager by twitter.
-
+Currently is included :
+- full foundation framework 
+- animate.css 
+- foundation-icon-fonts
 
 PLUGINS
 ----------
