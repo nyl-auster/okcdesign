@@ -21,9 +21,10 @@ It also comes with usefull libraries, located in bower_components directory.
 PLUGINS
 ----------
 
-OKC Design works with plugins, which are some kink of modules for your theme.
-Only enabled features and libray that you actually need, in theme settings.
-You may also simply edit info for that, to keep configurations in theme info file.
+OKC Design works with plugins, which are some kind of tiny modules for your theme.
+Only enabled plugins that you actually need, in theme settings; OKC design will take
+care of loading associated files and code.
+You may also simply edit info for that, to keep your configuration in theme info file. (recommended)
 
 
 START
@@ -52,7 +53,6 @@ Adapt load path to your directory structure if needed.
   sass --watch scss:css --load-path ../okcdesign/bower_components/foundation/scss
 ```
 
-
 COMPILE OKCDESIGN
 -------------------
 
@@ -62,4 +62,13 @@ Run it at the root of ockdesign theme :
 ```shell
   sass --watch scss:css --load-path bower_components/foundation/scss
 ```
+
+DRUPAL MODULES 
+-------------------
+
+use module block_classes or okcfoundation-D7 in this repository if you want
+to place block in the grid from block configuration pages.
+okcfoundation-D7 is a fork of block_classes, adding the possibility
+to stock your blocks classes in the theme info file; and to set different
+classes for different pages.
 
