@@ -14,15 +14,9 @@
 spl_autoload_register('okcdesign_plugins_autoloader');
 
 function okcdesign_plugins_autoloader($class_name) {
-  $suggestions = array(
-    drupal_get_path('theme', 'okcdesign') . "/plugins/foundation/$class_name.php",
-    drupal_get_path('theme', 'okcdesign') . "/plugins/others/$class_name.php",
-  );
-  foreach ($suggestions as $suggestion) {
-    if (is_readable($suggestion)) {
-      include_once $suggestion;
-      break;
-    }
+  $file = drupal_get_path('theme', 'okcdesign') . "/" . OKCDESIGN_PLUGINS_DIRECTORY . "/$class_name.php";
+    if (is_readable($file)) {
+      include_once $file;
   }
 }
 
@@ -70,7 +64,7 @@ function okcdesign_plugins_dispatch($hook, &$arg1 = array(), &$arg2 = array(), &
 
   $plugins = okcdesign_get_plugins();
   $plugins_enabled = array_filter(theme_get_setting('okcdesign_plugins_enabled'));
-  //kpr($plugins);exit;
+  dpm($plugins_enabled);
 
   // plug in only enabled plugins.
   foreach ($plugins_enabled  as $plugin_id) {
@@ -82,7 +76,8 @@ function okcdesign_plugins_dispatch($hook, &$arg1 = array(), &$arg2 = array(), &
     $method = str_replace('okcdesign' . '', 'hook', $hook);
     // if plugins declared a method to fire for this particular hook, call it.
     if (in_array($method, $plugin_infos['hooks'])) {
-      $result = $class::$method($arg1, $arg2, $arg3, $arg4);
+      $plugin = new $class();
+      $result = $plugin->$method($arg1, $arg2, $arg3, $arg4);
       // if we have a return, this is a theme function returning html,
       // we have to return it to Drupal.
       if ($result) return $result;

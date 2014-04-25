@@ -5,9 +5,9 @@
  * Theme breadcrumb as a foundation breadcrumb
  */
 
-class breadcrumb__breadcrumb {
+class foundation_breadcrumb extends okcdesign_plugin_base {
 
-  static function hook_breadcrumb($variables) {
+  function hook_breadcrumb($variables) {
 
     if (empty($variables['breadcrumb'])) return;
 

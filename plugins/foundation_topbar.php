@@ -2,7 +2,7 @@
 
 class foundation_topbar {
 
-  static function hook_theme(&$themes) {
+  function hook_theme(&$themes) {
     $themes['foundation_topbar'] = array(
       'variables' => array(
         'links_right' => array() ,
@@ -16,7 +16,7 @@ class foundation_topbar {
     );
   }
 
-  static function hook_preprocess_foundation_topbar(&$variables) {
+  function hook_preprocess_foundation_topbar(&$variables) {
 
     foreach (element_children($variables['links_left']) as $i) {
       // php 5.4 will complain about references without this extra affectation...
@@ -32,7 +32,7 @@ class foundation_topbar {
    * Add missing active class, that is normally handled by theme_links
    * @param $link
    */
-  static function add_active_class(&$link) {
+  function add_active_class(&$link) {
     global $language_url;
     global $user;
     if (isset($link['#href'])

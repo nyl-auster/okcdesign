@@ -71,35 +71,34 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
   // create subtheme directory
   drush_op('mkdir', $subtheme_path);
 
-  // add info file (copy pasted from base theme for now
-  drush_op('copy', "$okcdesign_path/okcdesign.info", "$subtheme_path/$machine_name.info");
-  $file = drush_op('file_get_contents', "$subtheme_path/$machine_name.info");
-  $content = "base theme = okcdesign\r\n" . $file;
-  $content = str_replace('OKC Design', $machine_name, $content);
-  drush_op('file_put_contents', "$subtheme_path/$machine_name.info", $content);
-
-  // create folders
+  // create css folder and add app.css file
   drush_op('mkdir', "$subtheme_path/css");
   drush_op('copy', "$okcdesign_path/css/app.css", "$subtheme_path/css/app.css");
 
+  // create scss folder and add scss files
   drush_op('mkdir', "$subtheme_path/scss");
   drush_op('copy', "$okcdesign_path/scss/app.scss", "$subtheme_path/scss/app.scss");
   drush_op('copy', "$okcdesign_path/scss/_settings.scss", "$subtheme_path/scss/_settings.scss");
   drush_op('copy', "$okcdesign_path/scss/_mixins.scss", "$subtheme_path/scss/_mixins.scss");
   drush_op('copy', "$okcdesign_path/logo.png", "$subtheme_path/logo.png");
 
-  // copy templates
-  drush_copy_dir("$okcdesign_path/templates", "$subtheme_path/templates");
-
-
+  // create templated directory
+  drush_op('mkdir', "$subtheme_path/templates");
+  // create js directory
   drush_op('mkdir', "$subtheme_path/js");
 
-  drush_pm_enable_validate($machine_name);
-  drush_pm_enable($machine_name);
-
+  // create subtheme info file
+  $datas = array();
+  $datas[] = "name = $machine_name";
+  $datas[] = "description = a subtheme of " . OKCDESIGN_THEME_NAME;
+  $datas[] = "base theme = " . OKCDESIGN_THEME_NAME;
+  $datas[] = "engine = phptemplate";
+  $datas[] = "";
+  $file = "$subtheme_path/$machine_name.php";
+  drush_op('file_put_contents', "$subtheme_path/$machine_name.info", implode($datas, "\r\n"));
 
   // Notify user of the newly created theme.
-  drush_print(dt("\n!name sub-theme was created in !path and enabled \n",
+  drush_print(dt("\n!name sub-theme was created in !path. Enable and set default in theme administration \n",
     array(
       '!name' => $machine_name,
       '!path' => $subtheme_path,

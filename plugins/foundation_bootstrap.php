@@ -6,28 +6,20 @@
  * http://foundation.zurb.com/docs/css.html
  */
 
-class drupal__foundation {
+class foundation_bootstrap extends okcdesign_plugin_base {
 
   /**
    * Adjust drupal html headers and add css & js required by foundation
    */
-  static function hook_html_head_alter(&$head_elements) {
-
-    $theme_path = drupal_get_path('theme', OKCDESIGN_THEME_NAME);
-    // will be same path as theme path if okcdesign is default theme.
-    $subtheme_path = (drupal_get_path('theme', $GLOBALS['theme']));
+  function hook_html_head_alter(&$head_elements) {
 
     // for subtheme, use subtheme foundation.css
-    drupal_add_css($subtheme_path . '/css/app.css');
+    drupal_add_css($this->default_theme_path . '/css/app.css');
 
     // for other files, use okcdesign files to not dupplicate theme, for easier maintenance of all subthemes.
-    drupal_add_js($theme_path . '/js/app.js');
-    drupal_add_js($theme_path . '/' . OKCDESIGN_VENDORS_DIRECTORY .'/modernizr/modernizr.js');
-    drupal_add_js($theme_path . '/' . OKCDESIGN_VENDORS_DIRECTORY .'/foundation/js/foundation.min.js');
-
-    // @TODO move icon to their own plugins
-    drupal_add_css($theme_path. '/' . OKCDESIGN_VENDORS_DIRECTORY .'/foundation-icon-fonts/foundation-icons.css');
-
+    drupal_add_js($this->base_theme_path . '/js/app.js');
+    drupal_add_js($this->base_theme_path . '/' . $this->vendors_directory . '/modernizr/modernizr.js');
+    drupal_add_js($this->base_theme_path . '/' . $this->vendors_directory . '/foundation/js/foundation.min.js');
 
     // HTML5 charset declaration.
     $head_elements['system_meta_content_type']['#attributes'] = array(
