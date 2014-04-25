@@ -64,7 +64,6 @@ function okcdesign_plugins_dispatch($hook, &$arg1 = array(), &$arg2 = array(), &
 
   $plugins = okcdesign_get_plugins();
   $plugins_enabled = array_filter(theme_get_setting('okcdesign_plugins_enabled'));
-  dpm($plugins_enabled);
 
   // plug in only enabled plugins.
   foreach ($plugins_enabled  as $plugin_id) {
