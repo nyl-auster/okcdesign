@@ -32,7 +32,7 @@ To compile scss file correctly you *MUST* specify path to foundation framework, 
 in "okcdesign" theme; like this (adapth path to your directory structure if needed)
 
 ```shell
-  sass --watch scss:css --load-path ../okcdesign/bower_components/foundation/scss
+  sass --watch scss:css -I ../okcdesign/bower_components/foundation/scss -I ../okcdesign/scss
 ```
 
 

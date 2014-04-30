@@ -1,20 +1,22 @@
 /*
 Syntax error: File to import not found or unreadable: foundation.
               Load path: /Applications/MAMP/htdocs/okcdesign/sites/all/themes/okcdesign/scss (DEPRECATED)
-        on line 4 of app.scss
+        on line 6 of app.scss
 
 1: // subthemes : feel free to edit this file !
 2: 
-3: @import "settings";
-4: @import "foundation";
-5: @import "okcdesign-mixins";
-6: 
-7: #edit-submit {
-8:   @include okcdesign-form-button($secondary-color);
-9: }
+3: // import foundation settings.
+4: @import "settings";
+5: // import foundation framework
+6: @import "foundation";
+7: // import okcdesign mixins
+8: @import "okcdesign-mixins";
+9: 
+10: #edit-submit {
+11:   @include okcdesign-form-button($secondary-color);
 
 Backtrace:
-app.scss:4
+app.scss:6
 /Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/import_node.rb:66:in `rescue in import'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/import_node.rb:45:in `import'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.3.4/lib/sass/tree/import_node.rb:28:in `imported_file'
@@ -56,4 +58,4 @@ app.scss:4
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: File to import not found or unreadable: foundation.\A               Load path: /Applications/MAMP/htdocs/okcdesign/sites/all/themes/okcdesign/scss (DEPRECATED)\A         on line 4 of app.scss\A \A 1: // subthemes : feel free to edit this file !\A 2: \A 3: @import \"settings\";\A 4: @import \"foundation\";\A 5: @import \"okcdesign-mixins\";\A 6: \A 7: #edit-submit {\A 8:   @include okcdesign-form-button($secondary-color);\A 9: }"; }
+  content: "Syntax error: File to import not found or unreadable: foundation.\A               Load path: /Applications/MAMP/htdocs/okcdesign/sites/all/themes/okcdesign/scss (DEPRECATED)\A         on line 6 of app.scss\A \A 1: // subthemes : feel free to edit this file !\A 2: \A 3: // import foundation settings.\A 4: @import \"settings\";\A 5: // import foundation framework\A 6: @import \"foundation\";\A 7: // import okcdesign mixins\A 8: @import \"okcdesign-mixins\";\A 9: \A 10: #edit-submit {\A 11:   @include okcdesign-form-button($secondary-color);"; }
