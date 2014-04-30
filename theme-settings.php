@@ -56,7 +56,7 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
   );
   // disabled plugin that are required by other plugins
   foreach ($required_plugins as $plugin) {
-    $form['okcdesign']['plugins']['okcdesign_plugins_enabled'][$plugin] = array('#attributes' => array('readonly' => 'readonly'));
+    //$form['okcdesign']['plugins']['okcdesign_plugins_enabled'][$plugin] = array('#disabled' => 'disabled');
   }
 
 
