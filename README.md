@@ -28,12 +28,13 @@ Use the following drush command to automatically create a subtheme, then go to t
   drush okc-theme {yourthemename}
 ```
 
-To compile scss file correctly you *MUST* specify path to foundation framework, located
-in "okcdesign" theme; like this (adapth path to your directory structure if needed)
+Then go to your freshly created subtheme, and run following command with sass to start working
+with scss files :
 
 ```shell
   sass --watch scss:css -I ../okcdesign/bower_components/foundation/scss -I ../okcdesign/scss
 ```
+The "-I" options is mandatory to load foundation components from okcdesign base theme.
 
 
 PLUGINS
