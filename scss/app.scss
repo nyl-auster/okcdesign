@@ -2,7 +2,7 @@
 
 @import "settings";
 @import "foundation";
-@import "mixins";
+@import "okcdesign-mixins";
 
 #edit-submit {
   @include okcdesign-form-button($secondary-color);

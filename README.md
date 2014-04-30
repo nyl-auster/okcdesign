@@ -5,13 +5,17 @@ OKCDesign is a Drupal 7 starter theme, based mainly on zurb foundation css frame
 
 http://foundation.zurb.com/
 
-It allows your subtheme to be natively responsive, using foundation grid system, 
-and a clean design by default using foudation css instead of Drupal native css.
+Features :
+- Responsive design based on zurb foundation grid system
+- html 5
+- Zero drupal css on your ways, only core css required for administrative tasks are kept
+  (contextual links, overlay ...)
+- Powerfull theme plugin system : only enable what you want for your project
+- A ready to use responsive menu top bar, perfect for mobile devices
+- A powerfull html template for drupal menu, easy to override and customize.
 
-All drupal css, except those needed for administration purposes, are completely
-removed.
 
-OKC Design try to use when possible foundation mixins and scss rather than
+OKC Design try to use  possible foundation mixins and scss rather than
 rewriting drupal html, which is an heavy and painfull operation.
 
 It also comes with usefull libraries, located in bower_components directory.

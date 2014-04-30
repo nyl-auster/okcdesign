@@ -7,7 +7,7 @@ Syntax error: File to import not found or unreadable: foundation.
 2: 
 3: @import "settings";
 4: @import "foundation";
-5: @import "mixins";
+5: @import "okcdesign-mixins";
 6: 
 7: #edit-submit {
 8:   @include okcdesign-form-button($secondary-color);
@@ -56,4 +56,4 @@ app.scss:4
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: File to import not found or unreadable: foundation.\A               Load path: /Applications/MAMP/htdocs/okcdesign/sites/all/themes/okcdesign/scss (DEPRECATED)\A         on line 4 of app.scss\A \A 1: // subthemes : feel free to edit this file !\A 2: \A 3: @import \"settings\";\A 4: @import \"foundation\";\A 5: @import \"mixins\";\A 6: \A 7: #edit-submit {\A 8:   @include okcdesign-form-button($secondary-color);\A 9: }"; }
+  content: "Syntax error: File to import not found or unreadable: foundation.\A               Load path: /Applications/MAMP/htdocs/okcdesign/sites/all/themes/okcdesign/scss (DEPRECATED)\A         on line 4 of app.scss\A \A 1: // subthemes : feel free to edit this file !\A 2: \A 3: @import \"settings\";\A 4: @import \"foundation\";\A 5: @import \"okcdesign-mixins\";\A 6: \A 7: #edit-submit {\A 8:   @include okcdesign-form-button($secondary-color);\A 9: }"; }

@@ -79,7 +79,6 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
   drush_op('mkdir', "$subtheme_path/scss");
   drush_op('copy', "$okcdesign_path/scss/app.scss", "$subtheme_path/scss/app.scss");
   drush_op('copy', "$okcdesign_path/scss/_settings.scss", "$subtheme_path/scss/_settings.scss");
-  drush_op('copy', "$okcdesign_path/scss/_mixins.scss", "$subtheme_path/scss/_mixins.scss");
   drush_op('copy', "$okcdesign_path/logo.png", "$subtheme_path/logo.png");
 
   // create templated directory
@@ -93,6 +92,7 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
   $datas[] = "description = a subtheme of " . OKCDESIGN_THEME_NAME;
   $datas[] = "base theme = " . OKCDESIGN_THEME_NAME;
   $datas[] = "engine = phptemplate";
+  $datas[] = "core = 7.x";
   $datas[] = "";
   $file = "$subtheme_path/$machine_name.php";
   drush_op('file_put_contents', "$subtheme_path/$machine_name.info", implode($datas, "\r\n"));
