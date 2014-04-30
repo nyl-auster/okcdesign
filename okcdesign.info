@@ -14,6 +14,7 @@ regions[sidebar_second] = Sidebar second
 regions[footer] = Footer
 
 ; default enabled plugins
+settings[okcdesign_plugins_enabled][] = check_requirements
 settings[okcdesign_plugins_enabled][] = foundation_bootstrap
 settings[okcdesign_plugins_enabled][] = foundation_breadcrumb
 settings[okcdesign_plugins_enabled][] = foundation_topbar
@@ -61,5 +62,8 @@ okcdesign_plugins[animate_css][hooks][] = hook_html_head_alter
 
 okcdesign_plugins[foundation_icon_fonts][title] = foundation_icon_fonts
 okcdesign_plugins[foundation_icon_fonts][description] = Set icons using foundation special fonts
-okcdesign_plugins[foundation_icon_fonts][hooks][] = hook_html_head_alter 
+okcdesign_plugins[foundation_icon_fonts][hooks][] = hook_html_head_alter
+
+okcdesign_plugins[check_requirements][title] = check_requirements
+okcdesign_plugins[check_requirements][hooks][] = hook_preprocess_page
 

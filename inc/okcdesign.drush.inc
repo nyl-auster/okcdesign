@@ -155,7 +155,7 @@ function drush_okcdesign_plugin($name = NULL) {
   $lines[] = '';
   $lines[] = '}';
 
-  $file = "$themepath/plugins/others/$name.php";
+  $file = "$themepath/plugins/$name.php";
   drush_op('file_put_contents', $file, implode($lines, "\r\n"));
 
 
