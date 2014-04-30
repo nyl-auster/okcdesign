@@ -31,7 +31,6 @@ function okcdesign_drush_command() {
     ),
     'examples' => array(
       'drush fst "custom theme name"' => 'Create a sub-theme with the default options.',
-      'drush fst "foo bar" "foo_bar"  --description="My supersweet awesome theme"' => 'Create a sub-theme with additional options.',
     ),
   );
   $items['okcdesign-plugin'] = array(
@@ -68,34 +67,48 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
   $okcdesign_path = drush_locate_root() . '/' . drupal_get_path('theme', 'okcdesign');
   $subtheme_path = dirname($okcdesign_path) . '/' . $machine_name;
 
-  // create subtheme directory
+  // create directory structure
   drush_op('mkdir', $subtheme_path);
-
-  // create css folder and add app.css file
-  drush_op('mkdir', "$subtheme_path/css");
-  drush_op('copy', "$okcdesign_path/css/app.css", "$subtheme_path/css/app.css");
-
-  // create scss folder and add scss files
   drush_op('mkdir', "$subtheme_path/scss");
+  drush_op('mkdir', "$subtheme_path/css");
+  drush_op('mkdir', "$subtheme_path/templates");
+  drush_op('mkdir', "$subtheme_path/js");
+
+  // add default files.
+  drush_op('copy', "$okcdesign_path/css/app.css", "$subtheme_path/css/app.css");
   drush_op('copy', "$okcdesign_path/scss/app.scss", "$subtheme_path/scss/app.scss");
   drush_op('copy', "$okcdesign_path/scss/_settings.scss", "$subtheme_path/scss/_settings.scss");
   drush_op('copy', "$okcdesign_path/logo.png", "$subtheme_path/logo.png");
 
-  // create templated directory
-  drush_op('mkdir', "$subtheme_path/templates");
-  // create js directory
-  drush_op('mkdir', "$subtheme_path/js");
 
   // create subtheme info file
-  $datas = array();
-  $datas[] = "name = $machine_name";
-  $datas[] = "description = a subtheme of " . OKCDESIGN_THEME_NAME;
-  $datas[] = "base theme = " . OKCDESIGN_THEME_NAME;
-  $datas[] = "engine = phptemplate";
-  $datas[] = "core = 7.x";
-  $datas[] = "";
-  $file = "$subtheme_path/$machine_name.php";
-  drush_op('file_put_contents', "$subtheme_path/$machine_name.info", implode($datas, "\r\n"));
+  $lines = array(
+    "name = $machine_name",
+    "description = a subtheme of okcdesign",
+    "base theme = okcdesign",
+    "engine = phptemplate",
+    "core = 7.x",
+    "",
+  );
+  $file = "$subtheme_path/$machine_name.info";
+  drush_op('file_put_contents', $file, implode($lines, "\r\n"));
+
+  // create template.php file
+  $lines = array(
+    '<?php',
+    '',
+  );
+  $file = "$subtheme_path/template.php";
+  drush_op('file_put_contents', $file, implode($lines, "\r\n"));
+
+  // create readme file
+  $lines = array(
+    'Run following command to compile your scss files with sass : ',
+    'sass --watch scss:css -I ../okcdesign/bower_components/foundation/scss -I ../okcdesign/scss',
+    ''
+  );
+  $file = "$subtheme_path/README.txt";
+  drush_op('file_put_contents', $file, implode($lines, "\r\n"));
 
   // Notify user of the newly created theme.
   drush_print(dt("\n!name sub-theme was created in !path. Enable and set default in theme administration \n",
@@ -129,34 +142,34 @@ function drush_okcdesign_plugin($name = NULL) {
   $themepath = drush_locate_root() . '/' . drupal_get_path('theme', 'okcdesign');
 
   // create class in "others" directory
-  $datas = array();
-  $datas[] = '<?php';
-  $datas[] = "";
-  $datas[] = "class $name {";
+  $lines = array();
+  $lines[] = '<?php';
+  $lines[] = "";
+  $lines[] = "class $name {";
   foreach ($hooks as $hook) {
-    $datas[] = "";
-    $datas[] = '  function ' . $hook . '(&$variables) {';
-    $datas[] = '';
-    $datas[] = '  }';
+    $lines[] = "";
+    $lines[] = '  function ' . $hook . '(&$variables) {';
+    $lines[] = '';
+    $lines[] = '  }';
   }
-  $datas[] = '';
-  $datas[] = '}';
+  $lines[] = '';
+  $lines[] = '}';
 
   $file = "$themepath/plugins/others/$name.php";
-  drush_op('file_put_contents', $file, implode($datas, "\r\n"));
+  drush_op('file_put_contents', $file, implode($lines, "\r\n"));
 
 
-  $datas = array();
-  $datas[] = 'okcdesign_plugins[' . $name . '][title] = ' . $name;
+  $lines = array();
+  $lines[] = 'okcdesign_plugins[' . $name . '][title] = ' . $name;
 
   foreach ($hooks as $hook) {
-    $datas[] = 'okcdesign_plugins[' . $name . '][hooks][] = ' . $hook;
+    $lines[] = 'okcdesign_plugins[' . $name . '][hooks][] = ' . $hook;
   }
-  $datas[] = '';
-  $datas[] = '';
+  $lines[] = '';
+  $lines[] = '';
 
   $file = $themepath . '/okcdesign.info';
-  drush_op('file_put_contents', $file, implode($datas, "\n"), FILE_APPEND);
+  drush_op('file_put_contents', $file, implode($lines, "\n"), FILE_APPEND);
 
   // Notify user of the newly created theme.
   drush_print(dt("\n!name plugin was created. \n",
