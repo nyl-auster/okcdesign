@@ -30,7 +30,7 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
   $form['okcdesign']['plugins'] = array(
     '#type' => 'fieldset',
     '#title' => t('Plugins'),
-    '#description' => t('Apply foundation styles to Drupal elements'),
+    '#description' => t('Enable additionnals plugins for your theme'),
   );
 
   $options = array();
@@ -40,24 +40,23 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     $description = isset($datas['description']) ? $datas['description'] : 'No description provided';
     if ($required_by) {
       $required_plugins[] = $id;
-      $description .= '<br/>required by ' . implode(', ', $required_by);
+      $description .= '<br/><strong>required by</strong> : ' . implode(', ', $required_by);
     }
     if (isset($datas['dependencies'])) {
-      $description .= "<br /> depends on " . implode(', ', $datas['dependencies']);
+      $description .= "<br /><strong> depends on</strong> : " . implode(', ', $datas['dependencies']);
     }
-    $options[$id] = $datas['title'] . ' - <em>' . $description . '</em>';
+    $options[$id] = $datas['title'] . ' - ' .  $description . ' <hr />';
   }
 
   $form['okcdesign']['plugins']['okcdesign_plugins_enabled'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Enable'),
-    '#description' => t('Theme plugins.'),
     '#options' => $options,
     '#default_value' => theme_get_setting('okcdesign_plugins_enabled')
   );
   // disabled plugin that are required by other plugins
   foreach ($required_plugins as $plugin) {
-    $form['okcdesign']['plugins']['okcdesign_plugins_enabled'][$plugin] = array('#disabled' => TRUE);
+    $form['okcdesign']['plugins']['okcdesign_plugins_enabled'][$plugin] = array('#attributes' => array('readonly' => 'readonly'));
   }
 
 
