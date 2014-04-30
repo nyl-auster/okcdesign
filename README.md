@@ -21,7 +21,7 @@ START
 
 To start develop, you  *MUST* create a OKC Design subtheme.
 
-Use the following drush command to automatically create a subtheme, then go to theme admnistration page to set it by default :
+Use the following drush command to automatically create a subtheme, then go to theme administration page to set it by default :
 
 
 ```shell
