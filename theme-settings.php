@@ -34,8 +34,17 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
   );
 
   $options = array();
-  foreach(okcdesign_get_plugins() as $id => $datas) {
+  $required_plugins = array();
+  foreach($plugins = okcdesign_get_plugins() as $id => $datas) {
+    $required_by = okcdesign_check_plugin_dependencies($id);
     $description = isset($datas['description']) ? $datas['description'] : 'No description provided';
+    if ($required_by) {
+      $required_plugins[] = $id;
+      $description .= '<br/>required by ' . implode(', ', $required_by);
+    }
+    if (isset($datas['dependencies'])) {
+      $description .= "<br /> depends on " . implode(', ', $datas['dependencies']);
+    }
     $options[$id] = $datas['title'] . ' - <em>' . $description . '</em>';
   }
 
@@ -46,7 +55,12 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     '#options' => $options,
     '#default_value' => theme_get_setting('okcdesign_plugins_enabled')
   );
+  // disabled plugin that are required by other plugins
+  foreach ($required_plugins as $plugin) {
+    $form['okcdesign']['plugins']['okcdesign_plugins_enabled'][$plugin] = array('#disabled' => TRUE);
+  }
 
 
 
 }
+

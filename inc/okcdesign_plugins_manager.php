@@ -15,8 +15,8 @@ spl_autoload_register('okcdesign_plugins_autoloader');
 
 function okcdesign_plugins_autoloader($class_name) {
   $file = drupal_get_path('theme', 'okcdesign') . "/" . OKCDESIGN_PLUGINS_DIRECTORY . "/$class_name.php";
-    if (is_readable($file)) {
-      include_once $file;
+  if (is_readable($file)) {
+    include_once $file;
   }
 }
 
@@ -83,4 +83,24 @@ function okcdesign_plugins_dispatch($hook, &$arg1 = array(), &$arg2 = array(), &
     }
   }
 
+}
+
+/**
+ * @param $plugin_name
+ * @return array()
+ *    array of plugin dependencies
+ */
+function okcdesign_check_plugin_dependencies($plugin_id) {
+  $plugins = okcdesign_get_plugins();
+  $plugin_dependencies = array();
+  foreach ($plugins as $id => $plugin) {
+    if (isset($plugin['dependencies'])) {
+      foreach ($plugin['dependencies'] as $dependency) {
+        if ($dependency == $plugin_id) {
+          $plugin_dependencies[] = $id;
+        }
+      }
+    }
+  }
+  return $plugin_dependencies;
 }

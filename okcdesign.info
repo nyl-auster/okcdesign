@@ -31,19 +31,23 @@ okcdesign_plugins[foundation_bootstrap][hooks][] = hook_css_alter
 okcdesign_plugins[dynamic_sidebars][title] = Dynamic sidebars
 okcdesign_plugins[dynamic_sidebars][description] = Adjust content width according to sidebars
 okcdesign_plugins[dynamic_sidebars][hooks][] = hook_preprocess_page
+okcdesign_plugins[dynamic_sidebars][dependencies][] = foundation_bootstrap
 
 okcdesign_plugins[foundation_alert_box][title] = Status messages
 okcdesign_plugins[foundation_alert_box][description] = Status messages as foundation alert boxes
 okcdesign_plugins[foundation_alert_box][hooks][] = hook_status_messages
+okcdesign_plugins[foundation_alert_box][dependencies][] = foundation_bootstrap
 
 okcdesign_plugins[foundation_breadcrumb][title] = Breadcrumb
 okcdesign_plugins[foundation_breadcrumb][description] = Drupal breadcrumb as foundation breadcrumb
 okcdesign_plugins[foundation_breadcrumb][hooks][] = hook_breadcrumb
+okcdesign_plugins[foundation_breadcrumb][dependencies][] = foundation_bootstrap
 
 okcdesign_plugins[foundation_topbar][title] = Top bar
 okcdesign_plugins[foundation_topbar][description] = Main and secondary menu as foundation topbar
 okcdesign_plugins[foundation_topbar][hooks][] = hook_theme
 okcdesign_plugins[foundation_topbar][hooks][] = hook_preprocess_foundation_topbar
+okcdesign_plugins[foundation_topbar][dependencies][] = foundation_bootstrap
 
 okcdesign_plugins[homepage_remove_title][title] = Remove homepage title
 okcdesign_plugins[homepage_remove_title][description] = Set no title on homepage
@@ -63,7 +67,9 @@ okcdesign_plugins[animate_css][hooks][] = hook_html_head_alter
 okcdesign_plugins[foundation_icon_fonts][title] = foundation_icon_fonts
 okcdesign_plugins[foundation_icon_fonts][description] = Set icons using foundation special fonts
 okcdesign_plugins[foundation_icon_fonts][hooks][] = hook_html_head_alter
+okcdesign_plugins[foundation_icon_fonts][dependencies][] = foundation_bootstrap
 
 okcdesign_plugins[check_requirements][title] = check_requirements
 okcdesign_plugins[check_requirements][hooks][] = hook_preprocess_page
+okcdesign_plugins[check_requirements][dependencies][] = foundation_bootstrap
 
