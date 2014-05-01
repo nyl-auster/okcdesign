@@ -1,12 +1,12 @@
 <?php
 /**
  * @file
- *
  * Template.php
  *
- * All code is dispatched in plugins that may be enabled / disabled
- * in theme administration settings.
- * @see okcdesign_plugins_manager.php
+ * No code should be written here, only invocations
+ * to plugin via theme_plugins_manager.
+ *
+ * @see theme_plugins_manager/theme_plugins_manager.php
  */
 
 define('OKCDESIGN_THEME_NAME', 'okcdesign');
@@ -14,7 +14,7 @@ define('OKCDESIGN_VENDORS_DIRECTORY', 'bower_components');
 define('OKCDESIGN_PLUGINS_DIRECTORY', 'plugins');
 
 // load plugins system
-include 'inc/okcdesign_plugins_manager.php';
+include 'theme_plugins_manager/theme_plugins_manager.php';
 
 /*=============================
    HOOKS

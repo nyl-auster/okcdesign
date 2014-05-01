@@ -2,7 +2,7 @@
 
 function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
 
-  include 'inc/okcdesign_plugins_manager.php';
+  include 'theme_plugins_manager/theme_plugins_manager.php';
 
   $form['okcdesign'] = array(
     '#type' => 'vertical_tabs',
@@ -34,32 +34,48 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
   );
 
   $options = array();
-  $required_plugins = array();
-  foreach($plugins = okcdesign_get_plugins() as $id => $datas) {
-    $required_by = okcdesign_check_plugin_dependencies($id);
-    $description = isset($datas['description']) ? $datas['description'] : 'No description provided';
-    if ($required_by) {
-      $required_plugins[] = $id;
-      $description .= '<br/><strong>required by</strong> : ' . implode(', ', $required_by);
-    }
-    if (isset($datas['dependencies'])) {
-      $description .= "<br /><strong> depends on</strong> : " . implode(', ', $datas['dependencies']);
-    }
-    $options[$id] = $datas['title'] . ' - ' .  $description . ' <hr />';
+  foreach($plugins = theme_get_plugins() as $id => $datas) {
+    $package = isset($datas['package']) ? $datas['package'] : 'others';
+    $form['okcdesign']['plugins'][$package]['#title'] = $datas['package'];
+    $form['okcdesign']['plugins'][$package]['#type'] = 'fieldset';
+    $form['okcdesign']['plugins'][$package]["enable_plugin_$id"] = array(
+      '#type' => 'checkbox',
+      '#title' => _theme_options_title($datas),
+      '#default_value' => theme_get_setting("enable_plugin_$id"),
+    );
   }
-
-  $form['okcdesign']['plugins']['okcdesign_plugins_enabled'] = array(
-    '#type' => 'checkboxes',
-    '#title' => t('Enable'),
-    '#options' => $options,
-    '#default_value' => theme_get_setting('okcdesign_plugins_enabled')
-  );
-  // disabled plugin that are required by other plugins
-  foreach ($required_plugins as $plugin) {
-    //$form['okcdesign']['plugins']['okcdesign_plugins_enabled'][$plugin] = array('#disabled' => 'disabled');
-  }
-
-
 
 }
+
+function _theme_options_title($plugin) {
+
+  $plugins = theme_get_plugins();
+
+  $required_by_plugins = array();
+  foreach ($plugin['required_by_plugins'] as $required_by_plugin) {
+    $required_by_plugins[] = $required_by_plugin['title'];
+  }
+
+  $dependencies = array();
+  if (isset($plugin['dependencies'])) {
+    foreach($plugin['dependencies'] as $id) {
+       $dependencies[] = $plugins[$id]['title'];
+    }
+  }
+
+  $description = $plugin['description'] ? $plugin['description'] : 'No description provided';
+
+  if ($required_by_plugins) {
+    $description .= '<br/> <strong>Required by : </strong>' . implode(', ', $required_by_plugins);
+  }
+
+  if ($dependencies) {
+    $description .= '<br/> <strong>Depends on: </strong>' . implode(', ', $dependencies);
+  }
+
+  $html = '';
+  $html .= $plugin["title"] . ' - ' . $description;
+  return $html;
+}
+
 

@@ -24,16 +24,21 @@ function okcdesign_plugins_autoloader($class_name) {
  * Return registered plugins
  * @return mixed
  */
-function okcdesign_get_plugins() {
+function theme_get_plugins() {
 
   static $plugins = array();
   if ($plugins) return $plugins;
 
   $themes = list_themes();
   $theme = $themes['okcdesign'];
-  if (!empty($theme->info['okcdesign_plugins'])) {
-    $plugins = $theme->info['okcdesign_plugins'];
+  if (!empty($theme->info['theme_plugins'])) {
+    $plugins = $theme->info['theme_plugins'];
+    // add required plugins in our array.
+    foreach ($plugins as $id => $plugin) {
+      $plugins[$id]['required_by_plugins'] = theme_get_required_by_plugins($id);
+    }
   }
+  dpm($plugins);
   return $plugins;
 }
 
@@ -42,7 +47,7 @@ function okcdesign_get_plugins() {
  * @param $plugin : plugin id, as declared in theme info file.
  * @return bool
  */
-function okcdesign_plugin_is_enabled($plugin) {
+function theme_plugin_is_enabled($plugin) {
   $plugins_enabled = array_filter(theme_get_setting('okcdesign_plugins_enabled'));
   if (in_array($plugin, $plugins_enabled)) {
     return TRUE;
@@ -60,9 +65,9 @@ function okcdesign_plugin_is_enabled($plugin) {
  * to render html; so one a result is return, we return it and other plugins
  * are not called.
  */
-function okcdesign_plugins_dispatch($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 = array(), &$arg4 = array()) {
+function theme_plugins_dispatch($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 = array(), &$arg4 = array()) {
 
-  $plugins = okcdesign_get_plugins();
+  $plugins = theme_get_plugins();
   $plugins_enabled = array_filter(theme_get_setting('okcdesign_plugins_enabled'));
 
   // plug in only enabled plugins.
@@ -86,21 +91,23 @@ function okcdesign_plugins_dispatch($hook, &$arg1 = array(), &$arg2 = array(), &
 }
 
 /**
- * @param $plugin_name
+ * Return dependencie for a given plugin
+ * @param $plugin_id
+ *   machine name of the plugin, as defined in theme info file.
  * @return array()
- *    array of plugin dependencies
+ *    array of plugin dependencies or empty array if no dependencies are found.
  */
-function okcdesign_check_plugin_dependencies($plugin_id) {
-  $plugins = okcdesign_get_plugins();
-  $plugin_dependencies = array();
+function theme_get_required_by_plugins($plugin_id) {
+  $plugins = theme_get_plugins();
+  $required_by_plugins = array();
   foreach ($plugins as $id => $plugin) {
     if (isset($plugin['dependencies'])) {
       foreach ($plugin['dependencies'] as $dependency) {
         if ($dependency == $plugin_id) {
-          $plugin_dependencies[] = $id;
+          $required_by_plugins[$id] = $plugins[$id];
         }
       }
     }
   }
-  return $plugin_dependencies;
+  return $required_by_plugins;
 }

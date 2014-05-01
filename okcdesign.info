@@ -14,62 +14,73 @@ regions[sidebar_second] = Sidebar second
 regions[footer] = Footer
 
 ; default enabled plugins
-settings[okcdesign_plugins_enabled][] = check_requirements
-settings[okcdesign_plugins_enabled][] = foundation_bootstrap
-settings[okcdesign_plugins_enabled][] = foundation_breadcrumb
-settings[okcdesign_plugins_enabled][] = foundation_topbar
-settings[okcdesign_plugins_enabled][] = foundation_icon_fonts
-settings[okcdesign_plugins_enabled][] = foundation_alert_box
-settings[okcdesign_plugins_enabled][] = dynamic_sidebars
+settings[enable_plugin_check_requirements] = 1
+settings[enable_plugin_foundation_bootsrap] = 1
+settings[enable_plugin_foundation_breadcrumb] = 1
+settings[enable_plugin_foundation_topbar] = 1
+settings[enable_plugin_foundation_icon_fonts] = 1
+settings[enable_plugin_foundation_alert_box] = 1
+settings[enable_plugin_dynamic_sidebars] = 1
 
 ; theme plugins
-okcdesign_plugins[foundation_bootstrap][title] = Core
-okcdesign_plugins[foundation_bootstrap][description] = Plug foundation css framework into Drupal.
-okcdesign_plugins[foundation_bootstrap][hooks][] = hook_html_head_alter
-okcdesign_plugins[foundation_bootstrap][hooks][] = hook_css_alter
+theme_plugins[foundation_bootstrap][title] = Foundation Core
+theme_plugins[foundation_bootstrap][description] = Plug foundation css framework into Drupal.
+theme_plugins[foundation_bootstrap][hooks][] = hook_html_head_alter
+theme_plugins[foundation_bootstrap][hooks][] = hook_css_alter
+theme_plugins[foundation_bootstrap][package] = foundation
 
-okcdesign_plugins[dynamic_sidebars][title] = Dynamic sidebars
-okcdesign_plugins[dynamic_sidebars][description] = Adjust content width according to sidebars
-okcdesign_plugins[dynamic_sidebars][hooks][] = hook_preprocess_page
-okcdesign_plugins[dynamic_sidebars][dependencies][] = foundation_bootstrap
+theme_plugins[dynamic_sidebars][title] = Dynamic sidebars
+theme_plugins[dynamic_sidebars][description] = Adjust content width according to sidebars
+theme_plugins[dynamic_sidebars][hooks][] = hook_preprocess_page
+theme_plugins[dynamic_sidebars][dependencies][] = foundation_bootstrap
+theme_plugins[dynamic_sidebars][package] = foundation
 
-okcdesign_plugins[foundation_alert_box][title] = Status messages
-okcdesign_plugins[foundation_alert_box][description] = Status messages as foundation alert boxes
-okcdesign_plugins[foundation_alert_box][hooks][] = hook_status_messages
-okcdesign_plugins[foundation_alert_box][dependencies][] = foundation_bootstrap
+theme_plugins[foundation_alert_box][title] = Status messages
+theme_plugins[foundation_alert_box][description] = Status messages as foundation alert boxes
+theme_plugins[foundation_alert_box][hooks][] = hook_status_messages
+theme_plugins[foundation_alert_box][dependencies][] = foundation_bootstrap
+theme_plugins[foundation_alert_box][package] = foundation
 
-okcdesign_plugins[foundation_breadcrumb][title] = Breadcrumb
-okcdesign_plugins[foundation_breadcrumb][description] = Drupal breadcrumb as foundation breadcrumb
-okcdesign_plugins[foundation_breadcrumb][hooks][] = hook_breadcrumb
-okcdesign_plugins[foundation_breadcrumb][dependencies][] = foundation_bootstrap
+theme_plugins[foundation_breadcrumb][title] = Breadcrumb
+theme_plugins[foundation_breadcrumb][description] = Drupal breadcrumb as foundation breadcrumb
+theme_plugins[foundation_breadcrumb][hooks][] = hook_breadcrumb
+theme_plugins[foundation_breadcrumb][dependencies][] = foundation_bootstrap
+theme_plugins[foundation_breadcrumb][package] = foundation
 
-okcdesign_plugins[foundation_topbar][title] = Top bar
-okcdesign_plugins[foundation_topbar][description] = Main and secondary menu as foundation topbar
-okcdesign_plugins[foundation_topbar][hooks][] = hook_theme
-okcdesign_plugins[foundation_topbar][hooks][] = hook_preprocess_foundation_topbar
-okcdesign_plugins[foundation_topbar][dependencies][] = foundation_bootstrap
+theme_plugins[foundation_topbar][title] = Top bar
+theme_plugins[foundation_topbar][description] = Main and secondary menu as foundation topbar
+theme_plugins[foundation_topbar][hooks][] = hook_theme
+theme_plugins[foundation_topbar][hooks][] = hook_preprocess_foundation_topbar
+theme_plugins[foundation_topbar][dependencies][] = foundation_bootstrap
+theme_plugins[foundation_topbar][package] = foundation
 
-okcdesign_plugins[homepage_remove_title][title] = Remove homepage title
-okcdesign_plugins[homepage_remove_title][description] = Set no title on homepage
-okcdesign_plugins[homepage_remove_title][hooks][] = hook_preprocess_page
+theme_plugins[homepage_remove_title][title] = Remove homepage title
+theme_plugins[homepage_remove_title][description] = Set no title on homepage
+theme_plugins[homepage_remove_title][hooks][] = hook_preprocess_page
+theme_plugins[homepage_remove_title][package] = others
 
-okcdesign_plugins[homepage_remove_default_content][title] = Remove homepage default content
-okcdesign_plugins[homepage_remove_default_content][description] = Set no default content on homepage
-okcdesign_plugins[homepage_remove_default_content][hooks][] = hook_preprocess_page
+theme_plugins[homepage_remove_default_content][title] = Remove homepage default content
+theme_plugins[homepage_remove_default_content][description] = Set no default content on homepage
+theme_plugins[homepage_remove_default_content][hooks][] = hook_preprocess_page
+theme_plugins[homepage_remove_default_content][package] = others
 
-okcdesign_plugins[breadcrumb_remove][title] = Remove breadcrumb
-okcdesign_plugins[breadcrumb_remove][hooks][] = hook_preprocess_page
+theme_plugins[breadcrumb_remove][title] = Remove breadcrumb
+theme_plugins[breadcrumb_remove][hooks][] = hook_preprocess_page
+theme_plugins[breadcrumb_remove][package] = others
 
-okcdesign_plugins[animate_css][title] = Animate Css
-okcdesign_plugins[animate_css][description] = Add animate css libary from Daniel Eden. Add class css to your markup to animate them !
-okcdesign_plugins[animate_css][hooks][] = hook_html_head_alter
+theme_plugins[animate_css][title] = Animate Css
+theme_plugins[animate_css][description] = Add animate css libary from Daniel Eden. Add class css to your markup to animate them !
+theme_plugins[animate_css][hooks][] = hook_html_head_alter
+theme_plugins[animate_css][package] = others
 
-okcdesign_plugins[foundation_icon_fonts][title] = foundation_icon_fonts
-okcdesign_plugins[foundation_icon_fonts][description] = Set icons using foundation special fonts
-okcdesign_plugins[foundation_icon_fonts][hooks][] = hook_html_head_alter
-okcdesign_plugins[foundation_icon_fonts][dependencies][] = foundation_bootstrap
+theme_plugins[foundation_icon_fonts][title] = foundation_icon_fonts
+theme_plugins[foundation_icon_fonts][description] = Set icons using foundation special fonts
+theme_plugins[foundation_icon_fonts][hooks][] = hook_html_head_alter
+theme_plugins[foundation_icon_fonts][dependencies][] = foundation_bootstrap
+theme_plugins[foundation_icon_fonts][package] = foundation
 
-okcdesign_plugins[check_requirements][title] = check_requirements
-okcdesign_plugins[check_requirements][hooks][] = hook_preprocess_page
-okcdesign_plugins[check_requirements][dependencies][] = foundation_bootstrap
+theme_plugins[check_requirements][title] = check_requirements
+theme_plugins[check_requirements][hooks][] = hook_preprocess_page
+theme_plugins[check_requirements][dependencies][] = foundation_bootstrap
+theme_plugins[check_requirements][package] = foundation
 
