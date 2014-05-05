@@ -116,5 +116,4 @@ $plugins['foundation_grid_viewer'] = array(
   'dependencies' => array('foundation'),
   'package' => 'foundation',
 );
-// lot of problems happen if you forget this line.
 return $plugins;

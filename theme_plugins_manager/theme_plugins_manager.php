@@ -19,7 +19,7 @@ spl_autoload_register('okcdesign_plugins_autoloader');
  * @param $class_name
  */
 function okcdesign_plugins_autoloader($class_name) {
-  $file = drupal_get_path('theme', 'okcdesign') . "/" . theme_get_setting('okcdesign_plugins_directory') . "/$class_name.php";
+  $file = drupal_get_path('theme', 'okcdesign') . "/theme_plugins/$class_name.php";
   if (is_readable($file)) {
     include_once $file;
   }
