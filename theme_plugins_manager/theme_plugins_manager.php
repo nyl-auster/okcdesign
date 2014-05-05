@@ -47,14 +47,10 @@ function theme_get_plugins() {
   static $plugins = array();
   if ($plugins) return $plugins;
 
-  $themes = list_themes();
-  $theme = $themes['okcdesign'];
-  if (!empty($theme->info['theme_plugins'])) {
-    $plugins = $theme->info['theme_plugins'];
-    // add required plugins in our array.
-    foreach ($plugins as $id => $plugin) {
-      $plugins[$id]['required_by_plugins'] = theme_get_required_by_plugins($id);
-    }
+  $plugins = include drupal_get_path('theme', 'okcdesign') . '/theme_plugins_registry.php';
+  // fetch plugins which required this plugin to work.
+  foreach ($plugins as $id => $plugin) {
+    $plugins[$id]['required_by_plugins'] = theme_get_required_by_plugins($id);
   }
   return $plugins;
 }
