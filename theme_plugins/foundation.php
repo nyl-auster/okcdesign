@@ -6,7 +6,7 @@
  * http://foundation.zurb.com/docs/css.html
  */
 
-class foundation_bootstrap extends theme_plugins {
+class foundation extends theme_plugin_base {
 
   /**
    * Adjust drupal html headers and add css & js required by foundation

@@ -1,6 +1,6 @@
 <?php
 
-class check_requirements {
+class foundation_check_requirements {
 
   function hook_preprocess_page(&$variables) {
 

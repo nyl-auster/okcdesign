@@ -13,45 +13,49 @@ regions[sidebar_first] = Sidebar first
 regions[sidebar_second] = Sidebar second
 regions[footer] = Footer
 
+; private okc settings
+settings[okcdesign_plugins_directory] = theme_plugins
+settings[okcdesign_vendors_directory] = bower_components
+settings[okcdesign_theme_name] = okcdesign
+
 ; default enabled plugins
-settings[enable_plugin_check_requirements] = 1
-settings[enable_plugin_foundation_bootsrap] = 1
-settings[enable_plugin_foundation_breadcrumb] = 1
-settings[enable_plugin_foundation_topbar] = 1
-settings[enable_plugin_foundation_icon_fonts] = 1
-settings[enable_plugin_foundation_alert_box] = 1
-settings[enable_plugin_dynamic_sidebars] = 1
+settings[theme_plugin_foundation] = 1
+settings[theme_plugin_foundation_check_requirements] = 1
+settings[theme_plugin_foundation_topbar] = 1
+settings[theme_plugin_foundation_icon_fonts] = 1
+settings[theme_plugin_foundation_breadcrumb] = 1
+settings[theme_plugin_dynamic_sidebars] = 1
 
 ; theme plugins
-theme_plugins[foundation_bootstrap][title] = Foundation Core
-theme_plugins[foundation_bootstrap][description] = Plug foundation css framework into Drupal.
-theme_plugins[foundation_bootstrap][hooks][] = hook_html_head_alter
-theme_plugins[foundation_bootstrap][hooks][] = hook_css_alter
-theme_plugins[foundation_bootstrap][package] = foundation
+theme_plugins[foundation][title] = Foundation Core
+theme_plugins[foundation][description] = Plug foundation css framework into Drupal.
+theme_plugins[foundation][hooks][] = hook_html_head_alter
+theme_plugins[foundation][hooks][] = hook_css_alter
+theme_plugins[foundation][package] = foundation
 
 theme_plugins[dynamic_sidebars][title] = Dynamic sidebars
 theme_plugins[dynamic_sidebars][description] = Adjust content width according to sidebars
 theme_plugins[dynamic_sidebars][hooks][] = hook_preprocess_page
-theme_plugins[dynamic_sidebars][dependencies][] = foundation_bootstrap
+theme_plugins[dynamic_sidebars][dependencies][] = foundation
 theme_plugins[dynamic_sidebars][package] = foundation
 
 theme_plugins[foundation_alert_box][title] = Status messages
 theme_plugins[foundation_alert_box][description] = Status messages as foundation alert boxes
 theme_plugins[foundation_alert_box][hooks][] = hook_status_messages
-theme_plugins[foundation_alert_box][dependencies][] = foundation_bootstrap
+theme_plugins[foundation_alert_box][dependencies][] = foundation
 theme_plugins[foundation_alert_box][package] = foundation
 
 theme_plugins[foundation_breadcrumb][title] = Breadcrumb
 theme_plugins[foundation_breadcrumb][description] = Drupal breadcrumb as foundation breadcrumb
 theme_plugins[foundation_breadcrumb][hooks][] = hook_breadcrumb
-theme_plugins[foundation_breadcrumb][dependencies][] = foundation_bootstrap
+theme_plugins[foundation_breadcrumb][dependencies][] = foundation
 theme_plugins[foundation_breadcrumb][package] = foundation
 
 theme_plugins[foundation_topbar][title] = Top bar
 theme_plugins[foundation_topbar][description] = Main and secondary menu as foundation topbar
 theme_plugins[foundation_topbar][hooks][] = hook_theme
 theme_plugins[foundation_topbar][hooks][] = hook_preprocess_foundation_topbar
-theme_plugins[foundation_topbar][dependencies][] = foundation_bootstrap
+theme_plugins[foundation_topbar][dependencies][] = foundation
 theme_plugins[foundation_topbar][package] = foundation
 
 theme_plugins[homepage_remove_title][title] = Remove homepage title
@@ -76,11 +80,11 @@ theme_plugins[animate_css][package] = others
 theme_plugins[foundation_icon_fonts][title] = foundation_icon_fonts
 theme_plugins[foundation_icon_fonts][description] = Set icons using foundation special fonts
 theme_plugins[foundation_icon_fonts][hooks][] = hook_html_head_alter
-theme_plugins[foundation_icon_fonts][dependencies][] = foundation_bootstrap
+theme_plugins[foundation_icon_fonts][dependencies][] = foundation
 theme_plugins[foundation_icon_fonts][package] = foundation
 
-theme_plugins[check_requirements][title] = check_requirements
-theme_plugins[check_requirements][hooks][] = hook_preprocess_page
-theme_plugins[check_requirements][dependencies][] = foundation_bootstrap
-theme_plugins[check_requirements][package] = foundation
+theme_plugins[foundation_check_requirements][title] = check_requirements
+theme_plugins[foundation_check_requirements][hooks][] = hook_preprocess_page
+theme_plugins[foundation_check_requirements][dependencies][] = foundation
+theme_plugins[foundation_check_requirements][package] = foundation
 

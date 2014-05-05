@@ -5,7 +5,7 @@
  * Theme breadcrumb as a foundation breadcrumb
  */
 
-class foundation_breadcrumb extends theme_plugins {
+class foundation_breadcrumb extends theme_plugin_base {
 
   function hook_breadcrumb($variables) {
 

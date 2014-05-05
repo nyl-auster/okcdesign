@@ -38,10 +38,10 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     $package = isset($datas['package']) ? $datas['package'] : 'others';
     $form['okcdesign']['plugins'][$package]['#title'] = $datas['package'];
     $form['okcdesign']['plugins'][$package]['#type'] = 'fieldset';
-    $form['okcdesign']['plugins'][$package]["enable_plugin_$id"] = array(
+    $form['okcdesign']['plugins'][$package]["theme_plugin_$id"] = array(
       '#type' => 'checkbox',
       '#title' => _theme_options_title($datas),
-      '#default_value' => theme_get_setting("enable_plugin_$id"),
+      '#default_value' => theme_get_setting("theme_plugin_$id"),
     );
   }
 

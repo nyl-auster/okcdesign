@@ -14,7 +14,7 @@
 spl_autoload_register('okcdesign_plugins_autoloader');
 
 function okcdesign_plugins_autoloader($class_name) {
-  $file = drupal_get_path('theme', 'okcdesign') . "/" . OKCDESIGN_PLUGINS_DIRECTORY . "/$class_name.php";
+  $file = drupal_get_path('theme', 'okcdesign') . "/" . theme_get_setting('okcdesign_plugins_directory') . "/$class_name.php";
   if (is_readable($file)) {
     include_once $file;
   }
@@ -38,7 +38,6 @@ function theme_get_plugins() {
       $plugins[$id]['required_by_plugins'] = theme_get_required_by_plugins($id);
     }
   }
-  dpm($plugins);
   return $plugins;
 }
 
@@ -48,11 +47,23 @@ function theme_get_plugins() {
  * @return bool
  */
 function theme_plugin_is_enabled($plugin) {
-  $plugins_enabled = array_filter(theme_get_setting('okcdesign_plugins_enabled'));
-  if (in_array($plugin, $plugins_enabled)) {
-    return TRUE;
+  $result = theme_get_setting("theme_plugin_$plugin");
+  return $result ? TRUE : FALSE;
+}
+
+/**
+ * Return enabled plugins.
+ * @return array
+ */
+function theme_plugin_get_enabled_plugins() {
+  $enabled = array();
+  $plugins = theme_get_plugins();
+  foreach($plugins as $id => $datas) {
+    if (theme_get_setting("theme_plugin_$id")) {
+      $enabled[$id] = $id;
+    }
   }
-  return FALSE;
+  return $enabled;
 }
 
 /**
@@ -65,10 +76,10 @@ function theme_plugin_is_enabled($plugin) {
  * to render html; so one a result is return, we return it and other plugins
  * are not called.
  */
-function theme_plugins_dispatch($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 = array(), &$arg4 = array()) {
+function theme_plugins_invoke($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 = array(), &$arg4 = array()) {
 
   $plugins = theme_get_plugins();
-  $plugins_enabled = array_filter(theme_get_setting('okcdesign_plugins_enabled'));
+  $plugins_enabled = theme_plugin_get_enabled_plugins();
 
   // plug in only enabled plugins.
   foreach ($plugins_enabled  as $plugin_id) {
