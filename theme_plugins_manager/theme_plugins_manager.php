@@ -1,7 +1,8 @@
 <?php
 /**
- * To let user choose how different parts of Drupal are affected
- * by foundation framework, we use a system of "plugin".
+ * OKC Design theme use a systeme of plugin. Thinks plugins as
+ * module for a theme : only enable in theme settings administration
+ * what you need.
  *
  * Template.php implements all existing hooks and asked all plugins
  * if the have something to do in this hook. So a plugin can talk to
@@ -13,6 +14,10 @@
 
 spl_autoload_register('okcdesign_plugins_autoloader');
 
+/**
+ * Autoloader for plugins.
+ * @param $class_name
+ */
 function okcdesign_plugins_autoloader($class_name) {
   $file = drupal_get_path('theme', 'okcdesign') . "/" . theme_get_setting('okcdesign_plugins_directory') . "/$class_name.php";
   if (is_readable($file)) {
@@ -23,7 +28,9 @@ function okcdesign_plugins_autoloader($class_name) {
 /**
  * Helper to retrieve configuration of a plugin
  * @param $plugin_id : plugin machine name
- * @param $name : name of settings to fetch
+ * @param $name : name of setting to fetch
+ * @param $default_value : a default value if no value exists for this settings.
+ * @return value of the requested settings.
  */
 function theme_plugin_get_setting($plugin_id, $name ,$default_value = NULL) {
   $settings = theme_get_setting("theme_plugin_settings_$plugin_id");
@@ -53,7 +60,7 @@ function theme_get_plugins() {
 }
 
 /**
- * Tell us if a okcdsign plug is enabled
+ * Tell us if a okcdesign plugin is enabled
  * @param $plugin : plugin id, as declared in theme info file.
  * @return bool
  */
@@ -63,7 +70,7 @@ function theme_plugin_is_enabled($plugin) {
 }
 
 /**
- * Return enabled plugins.
+ * Return all enabled plugins.
  * @return array
  */
 function theme_plugin_get_enabled_plugins() {

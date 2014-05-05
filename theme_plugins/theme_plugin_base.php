@@ -12,6 +12,10 @@ class theme_plugin_base {
   protected $default_theme_path = '';
   protected $vendors_directory = '';
 
+  // use this method to provide a configuration form for the plugin.
+  // @see foundation_topbar for a working example.
+  function settings_form(){}
+
   function __construct() {
     $this->base_theme_name = theme_get_setting('okcdesign_theme_name');
     $this->base_theme_path = drupal_get_path('theme', $this->base_theme_name);
