@@ -72,6 +72,7 @@ $plugins['homepage_remove_default_content'] = array(
   ),
   'package' => 'others',
 );
+/* in contradiction with "theme as foundation breadcrumb"
 $plugins['breadcrumb_remove'] = array(
   'title' => 'Remove breadcrumb',
   'hooks' => array(
@@ -79,6 +80,7 @@ $plugins['breadcrumb_remove'] = array(
   ),
   'package' => 'others',
 );
+*/
 $plugins['animate_css'] = array(
  'title' => 'Animate Css',
  'description' => 'Add animate css libary from Daniel Eden. Add class css to your markup to animate them !',
