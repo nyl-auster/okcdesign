@@ -159,17 +159,24 @@ function drush_okcdesign_plugin($name = NULL) {
   drush_op('file_put_contents', $file, implode($lines, "\r\n"));
 
 
+  // declare plugin in the plugin registry
   $lines = array();
-  $lines[] = 'theme_plugins[' . $name . '][title] = ' . $name;
-
+  $lines[] = sprintf('$plugins[\'%s\'] = array(', $name);
+  $lines[] = "  'title' => '$name',";
+  $lines[] = "  'hooks' => array(";
   foreach ($hooks as $hook) {
-    $lines[] = 'theme_plugins[' . $name . '][hooks][] = ' . $hook;
+    $lines[] = "    '$hook',";
   }
+  $lines[] = '  ),';
+  $lines[] = ');';
   $lines[] = '';
-  $lines[] = '';
+  $lines[] = 'return $plugins;';
 
-  $file = $themepath . '/okcdesign.info';
-  drush_op('file_put_contents', $file, implode($lines, "\n"), FILE_APPEND);
+  $file = $themepath . '/theme_plugins_registry.php';
+  $file_contents = drush_op('file_get_contents', $file);
+  $file_contents = str_replace('return $plugins;', '', $file_contents);
+  $file_contents .= implode($lines, "\n");
+  drush_op('file_put_contents', $file, $file_contents);
 
   // Notify user of the newly created theme.
   drush_print(dt("\n!name plugin was created. \n",

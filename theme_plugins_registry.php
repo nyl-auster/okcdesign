@@ -126,6 +126,4 @@ $plugins['foundation_grid_viewer'] = array(
   'package' => 'foundation',
 );
 
-
 return $plugins;
-
