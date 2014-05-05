@@ -52,6 +52,7 @@ $plugins['foundation_topbar'] = array(
   'hooks' => array(
     'hook_theme',
     'hook_preprocess_foundation_topbar',
+    'hook_preprocess_page',
   ),
   'dependencies' => array('foundation'),
   'package' => 'foundation_topbar',

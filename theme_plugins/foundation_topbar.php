@@ -54,6 +54,15 @@ class foundation_topbar {
     }
   }
 
+  function hook_preprocess_page(&$variables) {
+    $links_left = menu_tree_output(menu_tree_all_data(theme_plugin_get_setting('foundation_topbar', 'menu_left', 'main-menu')));
+    $links_right = menu_tree_output(menu_tree_all_data(theme_plugin_get_setting('foundation_topbar', 'menu_right', 'user-menu')));
+    $variables['foundation_topbar'] = theme('foundation_topbar', array(
+      'links_left' => $links_left,
+      'links_right' => $links_right)
+    );
+  }
+
   /**
    * Add missing active class, that is normally handled by theme_links
    * @param $link

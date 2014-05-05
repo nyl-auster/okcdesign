@@ -10,12 +10,8 @@
   <?php print $foundation_grid_viewer ?>
 <?php endif ?>
 
-<?php if  (theme_plugin_is_enabled('foundation_topbar')) :?>
-  <?php
-  $vars['links_left'] = menu_tree_output(menu_tree_all_data(theme_plugin_get_setting('foundation_topbar', 'menu_left', 'main-menu')));
-  $vars['links_right'] = menu_tree_output(menu_tree_all_data(theme_plugin_get_setting('foundation_topbar', 'menu_right', 'user-menu')));
-  print theme('foundation_topbar', $vars);
-  ?>
+<?php if(isset($foundation_topbar)) :?>
+  <?php print $foundation_topbar ?>
 <?php endif ?>
 
   <div class="row-wrapper" id="header-top" >
@@ -58,7 +54,6 @@
 
     </div> <!-- /.row -->
   </div> <!-- /.row-wrapper-->
-
 
 <?php if($page['header']) : ?>
   <header class="row-wrapper">
