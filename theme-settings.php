@@ -17,9 +17,12 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     '#description' => t('Enable additionnals plugins for your theme'),
   );
 
+
+    $plugins = theme_get_plugins();
   // we build individual checkboxes because it is easier for us to disabled
   // checkboxes from required plugins this way with drupal FAPI.
-  foreach($plugins = theme_get_plugins() as $id => $datas) {
+  foreach($plugins as $id => $datas) {
+
     $package = isset($datas['package']) ? $datas['package'] : 'others';
     $form['okcdesign']['plugins'][$package]['#title'] = $datas['package'];
     $form['okcdesign']['plugins'][$package]['#type'] = 'fieldset';
@@ -37,6 +40,7 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
       $form['okcdesign']['plugins'][$package]["settings_$id"]["theme_plugin_settings_$id"]['#tree'] = TRUE;
     }
   }
+
 
   /*
    * General Settings.
@@ -57,10 +61,9 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
 
 }
 
-function _okcdesign_build_checkbox($id, $plugin, &$form) {
+function _okcdesign_build_checkbox($id, $plugin) {
 
   $plugins = theme_get_plugins();
-  $object = new $id;
 
   $required_by_plugins = array();
   foreach ($plugin['required_by_plugins'] as $required_by_plugin) {
@@ -69,8 +72,8 @@ function _okcdesign_build_checkbox($id, $plugin, &$form) {
 
   $dependencies = array();
   if (isset($plugin['dependencies'])) {
-    foreach($plugin['dependencies'] as $id) {
-      $dependencies[] = $plugins[$id]['title'];
+    foreach($plugin['dependencies'] as $dependencie_id) {
+      $dependencies[] = $plugins[$dependencie_id]['title'];
     }
   }
 
@@ -89,6 +92,7 @@ function _okcdesign_build_checkbox($id, $plugin, &$form) {
     '#type' => 'checkbox',
     '#title' => $title,
     '#default_value' => theme_get_setting("theme_plugin_$id"),
+
   );
 
   // do not allow user to disabled a plugin that is required by others plugins

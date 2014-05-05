@@ -89,4 +89,5 @@ theme_plugins[foundation_check_requirements][title] = check_requirements
 theme_plugins[foundation_check_requirements][hooks][] = hook_preprocess_page
 theme_plugins[foundation_check_requirements][dependencies][] = foundation
 theme_plugins[foundation_check_requirements][package] = foundation
+theme_plugins[foundation_check_requirements][required] = 1
 
