@@ -155,15 +155,15 @@ function drush_okcdesign_plugin($name = NULL) {
   $lines[] = '';
   $lines[] = '}';
 
-  $file = "$themepath/plugins/$name.php";
+  $file = "$themepath/theme_plugins/$name.php";
   drush_op('file_put_contents', $file, implode($lines, "\r\n"));
 
 
   $lines = array();
-  $lines[] = 'okcdesign_plugins[' . $name . '][title] = ' . $name;
+  $lines[] = 'theme_plugins[' . $name . '][title] = ' . $name;
 
   foreach ($hooks as $hook) {
-    $lines[] = 'okcdesign_plugins[' . $name . '][hooks][] = ' . $hook;
+    $lines[] = 'theme_plugins[' . $name . '][hooks][] = ' . $hook;
   }
   $lines[] = '';
   $lines[] = '';
