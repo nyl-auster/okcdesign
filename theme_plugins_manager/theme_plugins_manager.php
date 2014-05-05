@@ -25,9 +25,9 @@ function okcdesign_plugins_autoloader($class_name) {
  * @param $plugin_id : plugin machine name
  * @param $name : name of settings to fetch
  */
-function theme_plugin_get_setting($plugin_id, $name) {
+function theme_plugin_get_setting($plugin_id, $name ,$default_value = NULL) {
   $settings = theme_get_setting("theme_plugin_settings_$plugin_id");
-  $value =  (!empty($settings[$name])) ? $settings[$name] : NULL;
+  $value =  isset($settings[$name]) ? $settings[$name] : $default_value;
   return $value;
 }
 

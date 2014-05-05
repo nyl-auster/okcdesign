@@ -6,14 +6,14 @@ class foundation_topbar {
     $form['menu_left'] = array(
       '#type' => 'select',
       '#title' => 'Left menu',
-      '#options' => menu_get_menus(),
-      '#default_value' => theme_plugin_get_setting(__CLASS__, 'menu_left'),
+      '#options' => array('' => '<none>') + menu_get_menus(),
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'menu_left', 'main-menu'),
     );
     $form['menu_right'] = array(
       '#type' => 'select',
       '#title' => 'Right menu',
-      '#options' => menu_get_menus(),
-      '#default_value' => theme_plugin_get_setting(__CLASS__, 'menu_right'),
+      '#options' => array('' => '<none>') + menu_get_menus(),
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'menu_right', 'user-menu'),
     );
     $form['sticky'] = array(
       '#type' => 'checkbox',
