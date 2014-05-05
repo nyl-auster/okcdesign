@@ -17,9 +17,9 @@ class theme_plugin_base {
   function settings_form(){}
 
   function __construct() {
-    $this->base_theme_name = theme_get_setting('okcdesign_theme_name');
+    $this->base_theme_name = 'okcdesign';
     $this->base_theme_path = drupal_get_path('theme', $this->base_theme_name);
-    $this->vendors_directory = theme_get_setting('okcdesign_vendors_directory');
+    $this->vendors_directory = 'bower_components';
     $this->default_theme_path = drupal_get_path('theme', $GLOBALS['theme']);
   }
 

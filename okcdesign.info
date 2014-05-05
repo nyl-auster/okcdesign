@@ -13,11 +13,6 @@ regions[sidebar_first] = Sidebar first
 regions[sidebar_second] = Sidebar second
 regions[footer] = Footer
 
-; private okc settings
-settings[okcdesign_plugins_directory] = theme_plugins
-settings[okcdesign_vendors_directory] = bower_components
-settings[okcdesign_theme_name] = okcdesign
-
 ; default enabled plugins
 settings[theme_plugin_foundation] = 1
 settings[theme_plugin_foundation_check_requirements] = 1
