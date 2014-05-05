@@ -26,7 +26,7 @@ class foundation_grid_viewer {
 
   function theme_grid_viewer($columns) {
     $html = array();
-    $html[] = '<div style="position:relative" class="row">';
+    $html[] = '<div style="position:relative;opacity:0.5" class="row">';
     $html[] = '<div style="position:absolute;top:0;height:100%;width:100%">';
     for($i =1; $i <= $columns; $i++) {
       $html[] = '<div style="" class="small-1 columns">';
