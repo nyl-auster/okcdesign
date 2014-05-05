@@ -94,7 +94,7 @@
     <div class="row">
 
       <?php if ($page['sidebar_first']): ?>
-        <aside id="sidebar-first" class="small-12 <?php print $sidebar_first_grid_classes ?>">
+        <aside id="sidebar-first" class="<?php print $sidebar_first_grid_classes ?>">
           <?php print render($page['sidebar_first']) ?>
         </aside>
       <?php endif ?>

@@ -15,6 +15,16 @@ class foundation_topbar {
       '#options' => menu_get_menus(),
       '#default_value' => theme_plugin_get_setting(__CLASS__, 'menu_right'),
     );
+    $form['sticky'] = array(
+      '#type' => 'checkbox',
+      '#title' => 'Make topbar sticky at the top of the page',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'sticky'),
+    );
+    $form['contain_to_grid'] = array(
+      '#type' => 'checkbox',
+      '#title' => 'Set to grid width instead of full page width',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'contain_to_grid'),
+    );
     return $form;
   }
 

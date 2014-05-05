@@ -11,78 +11,94 @@
  */
 ?>
 
-<nav class="top-bar" data-topbar>
+<?php if (theme_plugin_get_setting('foundation_topbar', 'sticky')) :?>
+<div class="fixed">
+  <?php endif ?>
 
-  <?php // render the first level ourself, to make it super customizable by overriding this template ?>
-
-  <ul class="title-area">
-
-    <?php if ($site_name = variable_get('site_name', '')): ?>
-    <li class="name">
-      <h1><a href="<?php print url('<front>')?>"><?php print $site_name ?></a></h1>
-    </li>
+  <?php if (theme_plugin_get_setting('foundation_topbar', 'contain_to_grid')) :?>
+  <div class="contain-to-grid">
     <?php endif ?>
 
-    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+    <nav class="top-bar" data-topbar>
 
-    <?php if ($links = $links_left) : ?>
-    <section class="top-bar-section">
+      <?php // render the first level ourself, to make it super customizable by overriding this template ?>
 
-      <ul class="left">
+      <ul class="title-area">
 
-        <?php foreach (element_children($links) as $i) :?>
+        <?php if ($site_name = variable_get('site_name', '')): ?>
+          <li class="name">
+            <h1><a href="<?php print url('<front>')?>"><?php print $site_name ?></a></h1>
+          </li>
+        <?php endif ?>
 
-          <?php $link = l($links[$i]['#title'], $links[$i]['#href'], $links[$i]['#localized_options']) ?>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 
-          <?php if ($links[$i]['#below']) : ?>
+        <?php if ($links = $links_left) : ?>
+          <section class="top-bar-section">
 
-            <?php $links[$i]['#attributes']['class'][] = 'has-dropdown' ?>
-            <li <?php print drupal_attributes($links[$i]['#attributes']) ?>>
-              <?php print $link ?>
-              <?php print theme('foundation_topbar_submenu', array('links' => $links[$i]['#below'])) ?>
-            </li>
+            <ul class="left">
 
-          <?php else : ?>
+              <?php foreach (element_children($links) as $i) :?>
 
-            <li <?php print drupal_attributes($links[$i]['#attributes']) ?>>
-              <?php print $link ?>
-            </li>
+                <?php $link = l($links[$i]['#title'], $links[$i]['#href'], $links[$i]['#localized_options']) ?>
 
-          <?php endif ?>
+                <?php if ($links[$i]['#below']) : ?>
 
-        <?php endforeach ?>
+                  <?php $links[$i]['#attributes']['class'][] = 'has-dropdown' ?>
+                  <li <?php print drupal_attributes($links[$i]['#attributes']) ?>>
+                    <?php print $link ?>
+                    <?php print theme('foundation_topbar_submenu', array('links' => $links[$i]['#below'])) ?>
+                  </li>
+
+                <?php else : ?>
+
+                  <li <?php print drupal_attributes($links[$i]['#attributes']) ?>>
+                    <?php print $link ?>
+                  </li>
+
+                <?php endif ?>
+
+              <?php endforeach ?>
+            </ul>
+          </section>
+        <?php endif ?>
+
+        <?php if ($links = $links_right) : ?>
+          <section class="top-bar-section">
+            <ul class="right">
+              <?php foreach (element_children($links) as $i) :?>
+
+                <?php $link = l($links[$i]['#title'], $links[$i]['#href'], $links[$i]['#localized_options']) ?>
+
+                <?php if ($links[$i]['#below']) : ?>
+
+                  <?php $links[$i]['#attributes']['class'][] = 'has-dropdown' ?>
+                  <li <?php print drupal_attributes($links[$i]['#attributes']) ?>>
+                    <?php print $link ?>
+                    <?php print theme('foundation_topbar_submenu', array('links' => $links[$i]['#below'])) ?>
+                  </li>
+
+                <?php else : ?>
+
+                  <li <?php print drupal_attributes($links[$i]['#attributes']) ?>>
+                    <?php print $link ?>
+                  </li>
+
+                <?php endif ?>
+
+              <?php endforeach ?>
+            </ul>
+          </section>
+        <?php endif ?>
+
       </ul>
-    </section>
-    <?php endif ?>
+    </nav>
 
-    <?php if ($links = $links_right) : ?>
-    <section class="top-bar-section">
-      <ul class="right">
-        <?php foreach (element_children($links) as $i) :?>
+    <?php if (theme_plugin_get_setting('foundation_topbar', 'contain_to_grid')) :?>
+  </div>
+<?php endif; ?>
 
-          <?php $link = l($links[$i]['#title'], $links[$i]['#href'], $links[$i]['#localized_options']) ?>
-
-          <?php if ($links[$i]['#below']) : ?>
-
-            <?php $links[$i]['#attributes']['class'][] = 'has-dropdown' ?>
-            <li <?php print drupal_attributes($links[$i]['#attributes']) ?>>
-              <?php print $link ?>
-              <?php print theme('foundation_topbar_submenu', array('links' => $links[$i]['#below'])) ?>
-            </li>
-
-          <?php else : ?>
-
-            <li <?php print drupal_attributes($links[$i]['#attributes']) ?>>
-              <?php print $link ?>
-            </li>
-
-          <?php endif ?>
-
-        <?php endforeach ?>
-      </ul>
-    </section>
-    <?php endif ?>
-
-  </ul>
-</nav>
+  <?php if (theme_plugin_get_setting('foundation_topbar', 'sticky')) :?>
+</div>
+<?php endif; ?>
 
