@@ -4,6 +4,10 @@ class foundation_check_requirements {
 
   function hook_preprocess_page(&$variables) {
 
+    if (!module_exists('menu')) {
+      drupal_set_message("menu module is required, please enable it.");
+    }
+
     // inform user that jquery_update is required for our theme
     if (!module_exists('jquery_update')) {
       drupal_set_message(t('!module was not found. OKC Design requires jQuery 1.10 or higher. Please install !module, or Zurb Foundation plugins may not work correctly.',

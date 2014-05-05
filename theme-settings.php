@@ -8,7 +8,7 @@
  */
 function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
 
-  include 'theme_plugins_manager/theme_plugins_manager.php';
+  include_once 'theme_plugins_manager/theme_plugins_manager.php';
 
   // create vertical tables
   $form['okcdesign'] = array(
@@ -56,8 +56,10 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     '#title' => t('General Settings'),
   );
   foreach (array('theme_settings', 'logo', 'favicon') as $field) {
-    $form['okcdesign']['general'][$field] =  $form[$field];
-    unset($form[$field]);
+    if (isset($form['okcdesign']['general'][$field])) {
+      $form['okcdesign']['general'][$field] =  $form[$field];
+      unset($form[$field]);
+    }
   }
 
 }

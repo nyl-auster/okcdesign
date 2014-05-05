@@ -82,12 +82,12 @@ $plugins['breadcrumb_remove'] = array(
 );
 */
 $plugins['animate_css'] = array(
- 'title' => 'Animate Css',
- 'description' => 'Add animate css libary from Daniel Eden. Add class css to your markup to animate them !',
- 'hooks' => array(
-   'hook_html_head_alter',
- ),
- 'package' => 'others',
+  'title' => 'Animate Css',
+  'description' => 'Add animate css libary from Daniel Eden. Add class css to your markup to animate them !',
+  'hooks' => array(
+    'hook_html_head_alter',
+  ),
+  'package' => 'others',
 );
 
 $plugins['foundation_icon_fonts'] = array(

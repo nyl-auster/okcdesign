@@ -10,7 +10,7 @@
  */
 
 // load plugins system
-include 'theme_plugins_manager/theme_plugins_manager.php';
+include_once 'theme_plugins_manager/theme_plugins_manager.php';
 
 /*=============================
    HOOKS
