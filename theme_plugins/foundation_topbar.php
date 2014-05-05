@@ -2,6 +2,22 @@
 
 class foundation_topbar {
 
+  function settings_form() {
+    $form['menu_left'] = array(
+      '#type' => 'select',
+      '#title' => 'Left menu',
+      '#options' => menu_get_menus(),
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'menu_left'),
+    );
+    $form['menu_right'] = array(
+      '#type' => 'select',
+      '#title' => 'Right menu',
+      '#options' => menu_get_menus(),
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'menu_right'),
+    );
+    return $form;
+  }
+
   function hook_theme(&$themes) {
     $themes['foundation_topbar'] = array(
       'variables' => array(

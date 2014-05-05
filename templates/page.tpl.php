@@ -8,10 +8,10 @@
 
 <?php if  (theme_plugin_is_enabled('foundation_topbar')) :?>
   <?php
-  // change source menu if needed !
+  // change source menu if needed here.
   print theme('foundation_topbar', array(
-    'links_left' => menu_tree_output(menu_tree_all_data(variable_get('menu_primary_links_source', 'main-menu'))),
-    'links_right' => menu_tree_output(menu_tree_all_data(variable_get('menu_primary_links_source', 'user-menu'))),
+    'links_left' => menu_tree_output(menu_tree_all_data(theme_plugin_get_setting('foundation_topbar', 'menu_left'))),
+    'links_right' => menu_tree_output(menu_tree_all_data(theme_plugin_get_setting('foundation_topbar', 'menu_right'))),
   ));
   ?>
 

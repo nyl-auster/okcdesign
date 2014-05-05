@@ -21,6 +21,17 @@ function okcdesign_plugins_autoloader($class_name) {
 }
 
 /**
+ * Helper to retrieve configuration of a plugin
+ * @param $plugin_id : plugin machine name
+ * @param $name : name of settings to fetch
+ */
+function theme_plugin_get_setting($plugin_id, $name) {
+  $settings = theme_get_setting("theme_plugin_settings_$plugin_id");
+  $value =  (!empty($settings[$name])) ? $settings[$name] : NULL;
+  return $value;
+}
+
+/**
  * Return registered plugins
  * @return mixed
  */

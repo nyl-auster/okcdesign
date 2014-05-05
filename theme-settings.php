@@ -9,6 +9,35 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     '#weight' => -10,
   );
 
+
+
+  $form['okcdesign']['plugins'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Theme plugins'),
+    '#description' => t('Enable additionnals plugins for your theme'),
+  );
+
+  // we build individual checkboxes because it is easier for us to disabled
+  // checkboxes from required plugins this way with drupal FAPI.
+  foreach($plugins = theme_get_plugins() as $id => $datas) {
+    $package = isset($datas['package']) ? $datas['package'] : 'others';
+    $form['okcdesign']['plugins'][$package]['#title'] = $datas['package'];
+    $form['okcdesign']['plugins'][$package]['#type'] = 'fieldset';
+    $form['okcdesign']['plugins'][$package]["theme_plugin_$id"] = _okcdesign_build_checkbox($id, $datas, $form);
+
+    $object = new $id;
+    if (method_exists($object, 'settings_form')) {
+      $form['okcdesign']['plugins'][$package]["settings_$id"] =  array(
+        '#title' => "Configure " . $datas['title'],
+        '#type' => 'fieldset',
+        '#collapsible' => TRUE,
+        '#collapsed' => TRUE,
+      );
+      $form['okcdesign']['plugins'][$package]["settings_$id"]["theme_plugin_settings_$id"] = $object->settings_form();
+      $form['okcdesign']['plugins'][$package]["settings_$id"]["theme_plugin_settings_$id"]['#tree'] = TRUE;
+    }
+  }
+
   /*
    * General Settings.
    */
@@ -26,30 +55,12 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
   $form['okcdesign']['general']['favicon'] = $form['favicon'];
   unset($form['favicon']);
 
-
-  $form['okcdesign']['plugins'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('Plugins'),
-    '#description' => t('Enable additionnals plugins for your theme'),
-  );
-
-  $options = array();
-  foreach($plugins = theme_get_plugins() as $id => $datas) {
-    $package = isset($datas['package']) ? $datas['package'] : 'others';
-    $form['okcdesign']['plugins'][$package]['#title'] = $datas['package'];
-    $form['okcdesign']['plugins'][$package]['#type'] = 'fieldset';
-    $form['okcdesign']['plugins'][$package]["theme_plugin_$id"] = array(
-      '#type' => 'checkbox',
-      '#title' => _theme_options_title($datas),
-      '#default_value' => theme_get_setting("theme_plugin_$id"),
-    );
-  }
-
 }
 
-function _theme_options_title($plugin) {
+function _okcdesign_build_checkbox($id, $plugin, &$form) {
 
   $plugins = theme_get_plugins();
+  $object = new $id;
 
   $required_by_plugins = array();
   foreach ($plugin['required_by_plugins'] as $required_by_plugin) {
@@ -59,23 +70,34 @@ function _theme_options_title($plugin) {
   $dependencies = array();
   if (isset($plugin['dependencies'])) {
     foreach($plugin['dependencies'] as $id) {
-       $dependencies[] = $plugins[$id]['title'];
+      $dependencies[] = $plugins[$id]['title'];
     }
   }
 
-  $description = isset($plugin['description']) ? $plugin['description'] : 'No description provided';
+  $title = $plugin['title'];
+  $title .= isset($plugin['description']) ? ' - ' . $plugin['description'] : ' - No description provided';
 
   if ($required_by_plugins) {
-    $description .= '<br/> <strong>Required by : </strong>' . implode(', ', $required_by_plugins);
+    $title .= '<br/> <strong>Required by : </strong>' . implode(', ', $required_by_plugins);
   }
 
   if ($dependencies) {
-    $description .= '<br/> <strong>Depends on: </strong>' . implode(', ', $dependencies);
+    $title .= '<br/> <strong>Depends on: </strong>' . implode(', ', $dependencies);
   }
 
-  $html = '';
-  $html .= $plugin["title"] . ' - ' . $description;
-  return $html;
+  $checkbox = array(
+    '#type' => 'checkbox',
+    '#title' => $title,
+    '#default_value' => theme_get_setting("theme_plugin_$id"),
+  );
+
+  // do not allow user to disabled a plugin that is required by others plugins
+  if ($required_by_plugins || !empty($plugin['required'])) {
+    $checkbox['#disabled'] = TRUE;
+    $checkbox['#title'] .= "<br /> This plugin is required by the theme and can not be disabled";
+  }
+
+  return $checkbox;
 }
 
 
