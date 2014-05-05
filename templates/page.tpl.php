@@ -6,6 +6,10 @@
  */
 ?>
 
+<?php if (isset($foundation_grid_viewer)) : ?>
+  <?php print $foundation_grid_viewer ?>
+<?php endif ?>
+
 <?php if  (theme_plugin_is_enabled('foundation_topbar')) :?>
   <?php
   $vars['links_left'] = menu_tree_output(menu_tree_all_data(theme_plugin_get_setting('foundation_topbar', 'menu_left', 'main-menu')));

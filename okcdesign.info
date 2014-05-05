@@ -91,3 +91,8 @@ theme_plugins[foundation_check_requirements][dependencies][] = foundation
 theme_plugins[foundation_check_requirements][package] = foundation
 theme_plugins[foundation_check_requirements][required] = 1
 
+theme_plugins[foundation_grid_viewer][title] = foundation_grid_viewer
+theme_plugins[foundation_grid_viewer][hooks][] = hook_preprocess_page
+theme_plugins[foundation_grid_viewer][dependencies][] = foundation
+theme_plugins[foundation_grid_viewer][package] = foundation
+
