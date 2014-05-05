@@ -63,7 +63,7 @@ function _theme_options_title($plugin) {
     }
   }
 
-  $description = $plugin['description'] ? $plugin['description'] : 'No description provided';
+  $description = isset($plugin['description']) ? $plugin['description'] : 'No description provided';
 
   if ($required_by_plugins) {
     $description .= '<br/> <strong>Required by : </strong>' . implode(', ', $required_by_plugins);
