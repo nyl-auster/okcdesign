@@ -37,7 +37,7 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
 
     // call settings_form() method in plugin object if exists; and use this as
     // plugin configuration form.
-    $object = new $id;
+    $object = $id::get_instance();
     if (method_exists($object, 'settings_form') && $object->settings_form()) {
       $form['okcdesign']['plugins'][$package]["settings_$id"] =  array(
         '#title' => "Configure " . $datas['title'],

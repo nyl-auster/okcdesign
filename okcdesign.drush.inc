@@ -118,7 +118,7 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
 }
 
 /**
- * Create a Zurb foundation sub-theme.
+ * Create a new okcdesign theme plugin
  */
 function drush_okcdesign_plugin($name = NULL) {
   if (empty($name)) {
@@ -141,7 +141,7 @@ function drush_okcdesign_plugin($name = NULL) {
   $lines = array();
   $lines[] = '<?php';
   $lines[] = "";
-  $lines[] = "class $name {";
+  $lines[] = "class $name extends theme_plugin {";
   foreach ($hooks as $hook) {
     $lines[] = "";
     $lines[] = '  function ' . $hook . '(&$variables) {';
