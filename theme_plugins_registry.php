@@ -48,14 +48,14 @@ $plugins['foundation_breadcrumb'] = array(
 );
 $plugins['foundation_topbar'] = array(
   'title' => 'Top bar',
-  'description' => 'Main and secondary menu as foundation topbar',
+  'description' => 'Display drupal menus of your choice in a mobile-friendly top bar',
   'hooks' => array(
     'hook_theme',
     'hook_preprocess_foundation_topbar',
     'hook_preprocess_page',
   ),
   'dependencies' => array('foundation'),
-  'package' => 'foundation_topbar',
+  'package' => 'foundation',
 );
 $plugins['homepage_remove_title'] = array(
   'title' => 'Remove homepage title',
