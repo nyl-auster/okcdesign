@@ -20,7 +20,7 @@ class theme_plugin_base {
     $this->base_theme_name = 'okcdesign';
     $this->base_theme_path = drupal_get_path('theme', $this->base_theme_name);
     $this->vendors_directory = 'bower_components';
-    $this->default_theme_path = drupal_get_path('theme', $GLOBALS['theme']);
+    $this->default_theme_path = drupal_get_path('theme', variable_get('theme_default'));
   }
 
   /**
