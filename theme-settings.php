@@ -56,7 +56,7 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     '#title' => t('General Settings'),
   );
   foreach (array('theme_settings', 'logo', 'favicon') as $field) {
-    if (isset($form['okcdesign']['general'][$field])) {
+    if (isset($form[$field])) {
       $form['okcdesign']['general'][$field] =  $form[$field];
       unset($form[$field]);
     }

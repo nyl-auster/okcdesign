@@ -30,19 +30,17 @@ class dynamic_sidebars extends theme_plugin_base {
       'left_only' => "When only left sidebar is present",
       'right_only' => "When only right sidebar is present",
       'both' => "When both sidebars are presents",
-      'none' => "No sidebars is present at all"
+      'none' => "No sidebar is present at all"
     );
     foreach ($cases as $case_id => $case_name) {
       $form[$case_id] = array('#type' => 'fieldset', '#title' => $case_name);
       $case_settings = theme_plugin_get_setting(__CLASS__, $case_id, $this->$case_id);
-      if ($case_id != "none") {
-        $form[$case_id]['sidebar'] = array(
-          '#type' => 'textfield',
-          '#title' => 'Foundation classes : sidebar',
-          '#default_value' => $case_settings['sidebar'],
-          '#description' => "example : small-12 large-4 columns"
-        );
-      }
+      $form[$case_id]['sidebar'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Foundation classes : sidebar',
+        '#default_value' => $case_settings['sidebar'],
+        '#description' => "example : small-12 large-4 columns"
+      );
       $form[$case_id]['content'] = array(
         '#type' => 'textfield',
         '#title' => 'Foundation classes : content',
