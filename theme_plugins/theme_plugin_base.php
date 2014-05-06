@@ -12,15 +12,28 @@ class theme_plugin_base {
   protected $default_theme_path = '';
   protected $vendors_directory = '';
 
+  private static $instance = NULL;
+
   // use this method to provide a configuration form for the plugin.
   // @see foundation_topbar for a working example.
   function settings_form(){}
 
-  function __construct() {
+  private function __construct() {
     $this->base_theme_name = 'okcdesign';
     $this->base_theme_path = drupal_get_path('theme', $this->base_theme_name);
     $this->vendors_directory = 'bower_components';
     $this->default_theme_path = drupal_get_path('theme', variable_get('theme_default'));
+  }
+
+  static function get_instance() {
+    if (self::$instance) {
+      return self::$instance;
+    }
+    else {
+      // we want to instanciate child class, not parent class.
+      $class = get_called_class();
+      return new $class;
+    }
   }
 
   /**

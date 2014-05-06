@@ -95,17 +95,20 @@ function theme_plugins_invoke($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 
   $plugins = theme_get_plugins();
   $plugins_enabled = theme_plugin_get_enabled_plugins();
 
+
   // plug in only enabled plugins.
   foreach ($plugins_enabled  as $plugin_id) {
+
     // get full plugin infos from info file.
     $plugin_infos = $plugins[$plugin_id];
     // plugin id is corresponding file / class name.
-    $class = $plugin_id;
+
     // for okcdesign_preprocess_page, call method hook_preprocess_page() in plugin class.
     $method = str_replace('okcdesign' . '', 'hook', $hook);
     // if plugins declared a method to fire for this particular hook, call it.
+
     if (in_array($method, $plugin_infos['hooks'])) {
-      $plugin = new $class();
+      $plugin = $plugin_id::get_instance();
       $result = $plugin->$method($arg1, $arg2, $arg3, $arg4);
       // if we have a return, this is a theme function returning html,
       // we have to return it to Drupal.

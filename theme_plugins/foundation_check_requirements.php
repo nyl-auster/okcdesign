@@ -1,6 +1,6 @@
 <?php
 
-class foundation_check_requirements {
+class foundation_check_requirements extends theme_plugin_base {
 
   function hook_preprocess_page(&$variables) {
 
