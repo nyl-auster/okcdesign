@@ -13,10 +13,10 @@ class foundation extends theme_plugin_base {
    */
   function hook_html_head_alter(&$head_elements) {
 
-    // for subtheme, use subtheme foundation.css
+    // for subtheme, use subtheme app.css
     drupal_add_css($this->default_theme_path . '/css/app.css');
 
-    // for other files, use okcdesign files to not dupplicate theme, for easier maintenance of all subthemes.
+    // for other files, use okcdesign files to not duplicate theme, for easier maintenance of all subthemes.
     drupal_add_js($this->base_theme_path . '/js/app.js');
     drupal_add_js($this->base_theme_path . '/' . $this->vendors_directory . '/modernizr/modernizr.js');
     drupal_add_js($this->base_theme_path . '/' . $this->vendors_directory . '/foundation/js/foundation.min.js');
