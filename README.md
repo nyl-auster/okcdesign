@@ -17,19 +17,35 @@ REQUIREMENTS
 -------------
 
 - PHP 5.3+ (unless you like the "unexpected T_PAAMAYIM_NEKUDOTAYIM" error)
-
-To get the best from okcdesign and recompile scss yourself, you'll need several things :
-- foundation requirements to work with sass : http://foundation.zurb.com/docs/sass.html
+- foundation requirements to work with sass & foundation 5 : http://foundation.zurb.com/docs/sass.html :
   - Git
   - Ruby 1.9+
   - NodeJs
-
 - jquery_update drupal module with jquery >= 1.10
 - drush
 
+INSTALLATION
+-----------------
+
+To start develop, you  *MUST* create a OKC Design subtheme.
+
+- first make sure that parent theme is named "okcdesign" and not "okcdesign-1.x.x" if you download it from a release.
+
+- Use the following drush command to automatically create a subtheme, then go to theme administration page to set it by default :
+
+```shell
+  drush okc-theme {yourthemename}
+```
+
+Now go to your freshly created subtheme, and run following command to start working
+with scss files :
+
+```shell
+  grunt
+```
+
 SCSS COMPILATION
 ------------------
-
 
 The most efficient way is to simply type the following command at the root of your subtheme :
 ```shell
@@ -43,24 +59,6 @@ alternatively, you can use sass, but you MUST include foundation components from
 
 ```shell
   sass --watch scss:css -I ../okcdesign/bower_components/foundation/scss -I ../okcdesign/scss
-```
-
-START
------------------
-
-To start develop, you  *MUST* create a OKC Design subtheme.
-
-Use the following drush command to automatically create a subtheme, then go to theme administration page to set it by default :
-
-```shell
-  drush okc-theme {yourthemename}
-```
-
-Now go to your freshly created subtheme, and run following command to start working
-with scss files :
-
-```shell
-  grunt
 ```
 
 
