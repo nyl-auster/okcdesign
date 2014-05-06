@@ -22,15 +22,26 @@ To get the best from okcdesign and recompile scss yourself, you'll need several 
   - Ruby 1.9+
   - NodeJs
 
-jquery_update drupal module with jquery >= 1.10
+- jquery_update drupal module with jquery >= 1.10
+- drush
 
 SCSS COMPILATION
 ------------------
 
-simply run "grunt".
+
+The most efficient way is to simply type the following command at the root of your subtheme :
+```shell
+  grunt
+```
+
 It will read informations from Gruntfile.js and package.json to compile your project.
 It uses libsass, which compile scss a lot faster than sass command.
 
+alternatively, you can use sass, but you MUST include foundation components from okcdesign theme, this way :
+
+```shell
+  sass --watch scss:css -I ../okcdesign/bower_components/foundation/scss -I ../okcdesign/scss
+```
 
 START
 -----------------
@@ -38,7 +49,6 @@ START
 To start develop, you  *MUST* create a OKC Design subtheme.
 
 Use the following drush command to automatically create a subtheme, then go to theme administration page to set it by default :
-
 
 ```shell
   drush okc-theme {yourthemename}
@@ -51,33 +61,4 @@ with scss files :
   grunt
 ```
 
-
-CONTRIBUTE TO OKCDESIGN DEVELOPMENT
-------------------------------------
-
-Only if you contribute to okcdesign, the following command allow scss compilation.
-Run it at the root of ockdesign theme :
-
-```shell
-  grunt
-```
-
-there is a drush command to create a new plugin, creating needed files, code and
-updating theme info file as needed. For example, if we want a plugin
-responding to hook_preprocess_page and hook_html_head_alter :
-
-```shell
-  drush okc-plugin pluginname --hooks="hook_preprocess_page, hook_html_head_alter"
-```
-
-Plugin will appear automatically in admin settings page, ready to be enabled.
-
-DRUPAL MODULES 
--------------------
-
-use module block_classes or okcfoundation-D7 in this repository if you want
-to place block in the grid from block configuration pages.
-okcfoundation-D7 is a fork of block_classes, adding the possibility
-to stock your blocks classes in the theme info file; and to set different
-classes for different pages.
 
