@@ -1,6 +1,6 @@
 <?php
 
-class foundation_grid_viewer {
+class foundation_grid_viewer extends theme_plugin_base {
 
   function settings_form() {
     $form['display_above_theme'] = array(
@@ -18,21 +18,7 @@ class foundation_grid_viewer {
     $variables['foundation_grid_viewer'] = $this->theme_grid_viewer($columns);
   }
 
-  private function get_foundation_settings() {
-    $file = file(drupal_get_path('theme', $GLOBALS['theme']) . '/scss/_settings.scss');
-    $settings = array(
-      'total_columns' => NULL,
-    );
-    foreach ($file as $line) {
-      if (strpos($line, '$total-columns') !== FALSE) {
-        $parts = explode(':', $line);
-        if (isset($parts[1])) {
-          $settings['total_columns'] = str_replace(';', '', $parts[1]);
-        }
-      }
-    }
-    return $settings;
-  }
+
 
   function theme_grid_viewer($columns) {
     $above = theme_plugin_get_setting(__CLASS__, 'display_above_theme', 0);

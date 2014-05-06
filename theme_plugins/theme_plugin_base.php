@@ -23,5 +23,25 @@ class theme_plugin_base {
     $this->default_theme_path = drupal_get_path('theme', $GLOBALS['theme']);
   }
 
+  /**
+   * Helper function to get foundation settings stored in _settings.scss file.
+   * @return array
+   */
+  protected function get_foundation_settings() {
+    $file = file(drupal_get_path('theme', variable_get('theme_default', 'okcdesign')). '/scss/_settings.scss');
+    $settings = array(
+      'total_columns' => NULL,
+    );
+    foreach ($file as $line) {
+      if (strpos($line, '$total-columns') !== FALSE) {
+        $parts = explode(':', $line);
+        if (isset($parts[1])) {
+          $settings['total_columns'] = str_replace(';', '', $parts[1]);
+        }
+      }
+    }
+    return $settings;
+  }
+
 }
 
