@@ -4,12 +4,9 @@ OKC Design
 OKCDesign is a Drupal 7 starter theme for developers, based on zurb foundation 5 framework :
 http://foundation.zurb.com/
 
-Use "drush okc-theme yourthemename" to create a subtheme and start working.
-*Never* edit okcdesign files unless you wish to contribute to the project.
-
 Features :
-- Get all the power of foundation :  Grid system, components, responsive design etc...
-- a ready-to-use integration of foundation topbar to Drupal, working out of the box.
+- Enjoy all the foundation goodness in Drupal 7 :  Grid system, components, responsive design etc...
+- A ready-to-use integration of foundation topbar to Drupal, working out of the box.
 - Remove all drupal native css, excepts those very needed for administration purposes
 - Powerfull theme plugin system : Enabled plugins you need, configure them as needed.
 
@@ -27,7 +24,7 @@ REQUIREMENTS
 INSTALLATION
 -----------------
 
-To start develop, you  *MUST* create a OKC Design subtheme.
+To start develop, you  *MUST* create a OKC Design subtheme. *Never* edit okcdesign files unless you wish to contribute to the project.
 
 - first make sure that parent theme is named "okcdesign" and not "okcdesign-1.x.x" if you download it from a release.
 
