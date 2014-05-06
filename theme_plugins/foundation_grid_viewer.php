@@ -1,6 +1,6 @@
 <?php
 
-class foundation_grid_viewer extends theme_plugin_base {
+class foundation_grid_viewer extends theme_plugin {
 
   function settings_form() {
     $form['display_above_theme'] = array(

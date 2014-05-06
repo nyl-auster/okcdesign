@@ -1,6 +1,6 @@
 <?php
 
-class homepage_remove_title extends theme_plugin_base {
+class homepage_remove_title extends theme_plugin {
 
   function hook_preprocess_page(&$variables) {
     if (drupal_is_front_page()) {

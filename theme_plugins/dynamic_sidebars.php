@@ -4,7 +4,7 @@
  * Class dynamic_sidebars
  */
 
-class dynamic_sidebars extends theme_plugin_base {
+class dynamic_sidebars extends theme_plugin {
 
   // default grid classes when there is only sidebar left
   protected $left_only = array(

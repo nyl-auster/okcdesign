@@ -4,7 +4,7 @@
  *
  * Theme drupal status messages as foundation alert boxes
  */
-class foundation_alert_box extends theme_plugin_base {
+class foundation_alert_box extends theme_plugin {
 
   function hook_status_messages($variables) {
     $display = $variables['display'];

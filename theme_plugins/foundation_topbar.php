@@ -1,6 +1,6 @@
 <?php
 
-class foundation_topbar extends theme_plugin_base {
+class foundation_topbar extends theme_plugin {
 
   function settings_form() {
     $form['menu_left'] = array(

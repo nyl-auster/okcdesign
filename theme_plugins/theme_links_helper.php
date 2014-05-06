@@ -1,6 +1,6 @@
 <?php
 
-class theme_links_helper extends theme_plugin_base {
+class theme_links_helper extends theme_plugin {
 
   public $global_wrapper_markup = 'div';
   public $global_wrapper_attributes = array();
