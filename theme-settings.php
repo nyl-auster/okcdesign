@@ -15,19 +15,9 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     '#type' => 'vertical_tabs',
     '#weight' => -10,
   );
-  // put Drupal settings in a "General settings" vertical tab
-  $form['okcdesign']['general'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('General Settings'),
-  );
-  foreach (array('theme_settings', 'logo', 'favicon') as $field) {
-    if (isset($form[$field])) {
-      $form['okcdesign']['general'][$field] =  $form[$field];
-      unset($form[$field]);
-    }
-  }
 
   // Create a "theme plugins" vertical tabs to enable / disabled theme plugins.
+  // and set it in first position
   $form['okcdesign']['plugins'] = array(
     '#type' => 'fieldset',
     '#title' => t('Theme plugins'),
@@ -64,6 +54,18 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
       '#markup' => "<hr/>"
     );
 
+  }
+
+  // put back Drupal settings in a "General settings" vertical tab
+  $form['okcdesign']['general'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('General Settings'),
+  );
+  foreach (array('theme_settings', 'logo', 'favicon') as $field) {
+    if (isset($form[$field])) {
+      $form['okcdesign']['general'][$field] =  $form[$field];
+      unset($form[$field]);
+    }
   }
 
 

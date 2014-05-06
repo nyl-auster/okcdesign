@@ -67,12 +67,12 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
   $okcdesign_path = drush_locate_root() . '/' . drupal_get_path('theme', 'okcdesign');
   $subtheme_path = dirname($okcdesign_path) . '/' . $machine_name;
 
-  // create directory structure
-  drush_op('mkdir', $subtheme_path);
-  drush_op('mkdir', "$subtheme_path/scss");
-  drush_op('mkdir', "$subtheme_path/css");
-  drush_op('mkdir', "$subtheme_path/templates");
-  drush_op('mkdir', "$subtheme_path/js");
+
+  // Copy JS files from base theme to sub-theme. We copy them now instead of
+  // including them by default to keep the base theme small and also to avoid
+  // having to update the Foundation JS in two places every time a new version
+  // is released.
+  drush_copy_dir("{$okcdesign_path}/STARTER", "$subtheme_path", FILE_EXISTS_MERGE);
 
   // add default files.
   drush_op('copy', "$okcdesign_path/css/app.css", "$subtheme_path/css/app.css");
@@ -91,14 +91,6 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
     "",
   );
   $file = "$subtheme_path/$machine_name.info";
-  drush_op('file_put_contents', $file, implode($lines, "\r\n"));
-
-  // create template.php file
-  $lines = array(
-    '<?php',
-    '',
-  );
-  $file = "$subtheme_path/template.php";
   drush_op('file_put_contents', $file, implode($lines, "\r\n"));
 
   // create readme file
