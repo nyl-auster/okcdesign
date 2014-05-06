@@ -10,6 +10,8 @@
  *   witch exactly this name.
  * - required : if TRUE, user won't be able to disabled this via administration.
  * - dependencies : plugins needed by our plugins.
+ * - enabled_by_default : is this plugin enabled by default, when user has not
+ *   submitted yet theme settings form ?
  */
 
 $plugins['foundation'] = array(
@@ -73,15 +75,6 @@ $plugins['homepage_remove_default_content'] = array(
   ),
   'package' => 'others',
 );
-/* in contradiction with "theme as foundation breadcrumb"
-$plugins['breadcrumb_remove'] = array(
-  'title' => 'Remove breadcrumb',
-  'hooks' => array(
-    'hook_preprocess_page',
-  ),
-  'package' => 'others',
-);
-*/
 $plugins['animate_css'] = array(
   'title' => 'Animate Css',
   'description' => 'Add animate css libary from Daniel Eden. Add class css to your markup to animate them !',
@@ -90,7 +83,6 @@ $plugins['animate_css'] = array(
   ),
   'package' => 'others',
 );
-
 $plugins['foundation_icon_fonts'] = array(
   'title' => 'foundation_icon_fonts',
   'description' => 'Set icons using foundation special fonts',
@@ -100,7 +92,6 @@ $plugins['foundation_icon_fonts'] = array(
   'dependencies' => array('foundation'),
   'package' => 'foundation',
 );
-
 $plugins['foundation_check_requirements'] = array(
   'title' => 'check_requirements',
   'hooks' => array(

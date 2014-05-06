@@ -47,7 +47,15 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
       $form['okcdesign']['plugins'][$package]["settings_$id"]["theme_plugin_settings_$id"] = $object->settings_form();
       $form['okcdesign']['plugins'][$package]["settings_$id"]["theme_plugin_settings_$id"]['#tree'] = TRUE;
     }
+
+    $form['okcdesign']['plugins'][$package][$id]['divider'] = array(
+      '#type' => 'item',
+      '#markup' => "<hr/>"
+    );
+
   }
+
+
 
 
   // put Drupal settings in a "General settings" vertical tab
@@ -91,13 +99,16 @@ function _okcdesign_build_checkbox($id, $plugin) {
 
   // build a title for the checkbox, adding description and
   // all dependencies informations.
-  $title = $plugin['title'];
-  $title .= isset($plugin['description']) ? ' - ' . $plugin['description'] : ' - No description provided';
+  $description = '';
+  $title = "<strong>" . strtoupper($plugin['title']) . "</strong>";
+  if (isset($plugin['description'])) {
+    $title .= " - " . $plugin['description'];
+  }
   if ($required_by_plugins) {
-    $title .= '<br/> <strong>Required by : </strong>' . implode(', ', $required_by_plugins);
+    $description .= '<br/> <strong>Required by : </strong>' . implode(', ', $required_by_plugins);
   }
   if ($dependencies) {
-    $title .= '<br/> <strong>Depends on: </strong>' . implode(', ', $dependencies);
+    $description .= '<br/> <strong>Depends on: </strong>' . implode(', ', $dependencies);
   }
 
   // create checkbox
@@ -105,13 +116,15 @@ function _okcdesign_build_checkbox($id, $plugin) {
     '#type' => 'checkbox',
     '#title' => $title,
     '#default_value' => theme_get_setting("theme_plugin_$id"),
+    '#description' =>  $description,
 
   );
 
   // do not allow user to disable a plugin that is required by others plugins
   if ($required_by_plugins || !empty($plugin['required'])) {
-    $checkbox['#disabled'] = TRUE;
-    $checkbox['#title'] .= "<br /> This plugin is required by the theme and can not be disabled";
+    // comment disabled, may cause troubles when savings settings.
+    //$checkbox['#disabled'] = TRUE;
+
   }
 
   return $checkbox;
