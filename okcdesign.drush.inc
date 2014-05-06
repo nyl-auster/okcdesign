@@ -98,6 +98,14 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
   $file = "$subtheme_path/$machine_name.info";
   drush_op('file_put_contents', $file, implode($lines, "\r\n"));
 
+  // create gitignore file, do not track node_modules folder by default,
+  // this just for local compilations with grunt.
+  $lines = array(
+    "node_modules"
+  );
+  $file = "$subtheme_path/.gitignore";
+  drush_op('file_put_contents', $file, implode($lines, "\r\n"));
+
   // Notify user of the newly created theme.
   drush_print(dt("\n!name sub-theme was created in !path. Enable and set default in theme administration \n",
     array(
