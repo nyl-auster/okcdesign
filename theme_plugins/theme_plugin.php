@@ -3,7 +3,7 @@
  * Base class to build a plugin, provided helpers variables.
  */
 
-class theme_plugin_base {
+class theme_plugin {
 
   protected $base_theme_name = '';
   // path of okcdesign theme
