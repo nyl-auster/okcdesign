@@ -16,6 +16,6 @@ FOUNDATION SETTINGS
 --------------------
 
 Foundation is a css framework. To take full advantages of foundation power, you
-must édit scss/_settings.scss file of your subtheme and set variables suitable
+must edit scss/_settings.scss file of your subtheme and set variables suitable
 for your project :
 configure grids, main colors, main radius, default displaying of all foundation elements.
