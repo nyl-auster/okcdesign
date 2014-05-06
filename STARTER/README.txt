@@ -1,10 +1,21 @@
-Compile with "Grunt"
+COMPILE WITH GRUNT & LIBSASS
+-----------------------------
 
-just type "grunt" at the root of your base theme.
-Grunt is much faster than sass classic compilation.
+Run following command, at the root of your subtheme :
+   grunt
 
-Compile with Sass :
-You have to specify where is base_theme to include its foundation components, this way :
 
-sass --watch scss:css -I ../okcdesign/bower_components/foundation/scss -I ../okcdesign/scss
+COMPILE WITH SASS
+-------------------
+Run following command at the root of your subtheme.
 
+  sass --watch scss:css -I ../okcdesign/bower_components/foundation/scss -I ../okcdesign/scss
+
+
+FOUNDATION SETTINGS
+--------------------
+
+Foundation is a css framework. To take full advantages of foundation power, you
+must édit scss/_settings.scss file of your subtheme and set variables suitable
+for your project :
+configure grids, main colors, main radius, default displaying of all foundation elements.

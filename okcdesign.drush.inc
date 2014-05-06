@@ -80,7 +80,6 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
   drush_op('copy', "$okcdesign_path/scss/_settings.scss", "$subtheme_path/scss/_settings.scss");
   drush_op('copy', "$okcdesign_path/logo.png", "$subtheme_path/logo.png");
 
-
   // create subtheme info file
   $lines = array(
     "name = $machine_name",
@@ -91,15 +90,6 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
     "",
   );
   $file = "$subtheme_path/$machine_name.info";
-  drush_op('file_put_contents', $file, implode($lines, "\r\n"));
-
-  // create readme file
-  $lines = array(
-    'Run following command to compile your scss files with sass : ',
-    'sass --watch scss:css -I ../okcdesign/bower_components/foundation/scss -I ../okcdesign/scss',
-    ''
-  );
-  $file = "$subtheme_path/README.txt";
   drush_op('file_put_contents', $file, implode($lines, "\r\n"));
 
   // Notify user of the newly created theme.
