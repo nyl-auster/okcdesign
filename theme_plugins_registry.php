@@ -10,8 +10,6 @@
  *   witch exactly this name.
  * - required : if TRUE, user won't be able to disabled this via administration.
  * - dependencies : plugins needed by our plugins.
- * - enabled_by_default : is this plugin enabled by default, when user has not
- *   submitted yet theme settings form ?
  */
 
 $plugins['foundation'] = array(
