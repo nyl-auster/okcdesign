@@ -108,12 +108,12 @@
 
       <?php // sidebars and content classes use foundation classes, see dynamic_sidebars plugins ?>
       <?php if ($page['sidebar_first']): ?>
-        <aside id="sidebar-first" class="<?php print $sidebar_first_classes ?>">
+        <aside id="sidebar-first" class="<?php if (isset($sidebar_first_classes)) print $sidebar_first_classes ?>">
           <?php print render($page['sidebar_first']) ?>
         </aside>
       <?php endif ?>
 
-      <div id="content" class="<?php print $content_classes ?>">
+      <div id="content" class="<?php if (isset($content_classes)) print $content_classes ?>">
 
         <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']) ?></div><?php endif ?>
         <a id="main-content"></a>
@@ -128,7 +128,7 @@
       </div>
 
       <?php if ($page['sidebar_second']): ?>
-        <aside id="sidebar-second" class="<?php print $sidebar_second_classes ?>">
+        <aside id="sidebar-second" class="<?php if (isset($sidebar_second_classes)) print $sidebar_second_classes ?>">
           <?php print render($page['sidebar_second']) ?>
         </aside>
       <?php endif; ?>
