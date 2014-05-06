@@ -16,6 +16,8 @@ Features :
 REQUIREMENTS
 -------------
 
+- PHP 5.3+ (unless you like the "unexpected T_PAAMAYIM_NEKUDOTAYIM" error)
+
 To get the best from okcdesign and recompile scss yourself, you'll need several things :
 - foundation requirements to work with sass : http://foundation.zurb.com/docs/sass.html
   - Git
