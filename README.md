@@ -74,3 +74,15 @@ alternatively, you can use sass, but you MUST include foundation components from
 ```shell
   sass --watch scss:css -I ../okcdesign/bower_components/foundation/scss -I ../okcdesign/scss
 ```
+GRID SYSTEM WITH BLOCKS SETTINGS
+--------------------------------
+
+Using okcdesign default regions with a module like block_classes, you can easily place blocks on the grid just by adding a few classes.
+Example, based on 12 columns grid :
+a "small-12 medium-6 large-12 columns" class means that this block will take all the page width on small screens, half-width on medium devices and only 1/3 of page witdh on large screens.
+See foundation docs on Grid for more fun stuff.
+
+![Logo](https://raw.githubusercontent.com/nyl-auster/okcdesign/master/images/demo-regions.png)
+
+Using okcfoundation module, you may defined different classes for different page, for the same block:
+![Logo](https://raw.githubusercontent.com/nyl-auster/okcdesign/master/images/demo-block.png)
