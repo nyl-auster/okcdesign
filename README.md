@@ -42,12 +42,19 @@ To start develop, you  *MUST* create a OKC Design subtheme. *Never* edit okcdesi
   drush okc-theme {yourthemename}
 ```
 
-Now go to your freshly created subtheme, and run following command to start working
+- Now go to your freshly created subtheme, and run following command to start working
 with scss files :
 
 ```shell
   grunt
 ```
+- scss folder from your subtheme will contain two interesting files :
+  - app.scss is the main file, including all others scss files. (including _settings.scss file)
+  - _settings.scss file is the file configuring all foundation default values. This is where you can configure grid, default colors, font-size and a lot more.
+  - You'll have to create new scss files and import them in app.scss. Organize them the way you like.
+
+Scss files are compiled and compressed in css directory by default, but you may edit Grunfile.js to configure things differently.
+
 
 SCSS COMPILATION
 ------------------
@@ -65,5 +72,3 @@ alternatively, you can use sass, but you MUST include foundation components from
 ```shell
   sass --watch scss:css -I ../okcdesign/bower_components/foundation/scss -I ../okcdesign/scss
 ```
-
-
