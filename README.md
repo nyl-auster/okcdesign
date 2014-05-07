@@ -79,7 +79,8 @@ GRID SYSTEM WITH BLOCKS SETTINGS
 
 Using okcdesign default regions with a module like block_class ( https://drupal.org/project/block_class ) , you can easily place blocks on the grid just by adding a few classes to them.
 Example, based on 12 columns grid :
-a "small-12 medium-6 large-12 columns" class means that this block will take all the page width on small screens, half-width on medium devices and only 1/3 of page witdh on large screens.
+
+a *"small-12 medium-6 large-4 columns"* class means that this block will take all the page width on small screens, half-width on medium devices and only 1/3 of page witdh on large screens.
 See foundation docs on Grid for more fun stuff.
 
 ![Logo](https://raw.githubusercontent.com/nyl-auster/okcdesign/master/images/demo-regions.png)
