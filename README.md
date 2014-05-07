@@ -31,7 +31,10 @@ INSTALLATION
 
 To start develop, you  *MUST* create a OKC Design subtheme. *Never* edit okcdesign files unless you wish to contribute to the project.
 
-- first make sure that parent theme is named "okcdesign" and not "okcdesign-1.x.x" if you download it from a release.
+- Get last version of okcdesign, download a release tag (recommended) or clone master (unstable) for
+  the last dev version.
+
+- Make sure that parent theme is named "*okcdesign*" and not "okcdesign-1.x.x" if you download it from a release tag !
 
 - Use the following drush command to automatically create a subtheme, then go to theme administration page to set it by default :
 
