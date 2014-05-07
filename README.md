@@ -55,6 +55,8 @@ with scss files :
 
 Scss files are compiled and compressed in css directory by default, but you may edit Grunfile.js to configure things differently.
 
+- customize html : copy templates from okcdesign/templates to your subtheme/templates (do not forget to flush drupal caches)
+
 
 SCSS COMPILATION
 ------------------
