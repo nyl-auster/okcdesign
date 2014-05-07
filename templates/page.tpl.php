@@ -4,16 +4,19 @@
  * @see modules/system/page.tpl.php for drupal documentation of a page.tpl.php
  *
  * This is only a very basic example of how to use foundation classes.
+ * Copy to your subtheme to start working with foundation grids as you need.
  *
  * class "row" is a special class dedicated to foundation framework.
  * Please @see http://foundation.zurb.com/docs/components/grid.html on how to use.
  * It's up to you to override this template and use grid classes as you like.
  *
- * row-wrapper is a optionnal wrapper provided by this template and is not a part
- * of foundation itself.
+ * Sidebars are handled by foundation grid classes, that may be configured
+ * in theme settings if needed.
+ *
+ * The grid settings can be configured in _settings.scss file.
  *
  * Alternatively, you may wish to keep your html semantic with foundation grid mixins
- * to define rows and columns in your scss rather than in html.
+ * to define rows and columns in your scss, rather than in html classes.
  */
 ?>
 
@@ -22,7 +25,7 @@
   <?php print $foundation_grid_viewer ?>
 <?php endif ?>
 
-<?php //display toolbar, if foundation_topbar plugin is enabled in theme settings. ?>
+<?php //display topbar, if foundation_topbar plugin is enabled in theme settings. ?>
 <?php if(isset($foundation_topbar)) :?>
   <?php print $foundation_topbar ?>
 <?php endif ?>

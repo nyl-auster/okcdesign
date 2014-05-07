@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * Display choosen menus in a mobile-friendly foundation topbar.
+ */
 class foundation_topbar extends theme_plugin {
 
+  /**
+   * Plugin configuration form. Let user choose which menus he wants
+   * to print in the main topbar.
+   */
   function settings_form() {
     $form['menu_left'] = array(
       '#type' => 'select',
@@ -64,10 +71,10 @@ class foundation_topbar extends theme_plugin {
   }
 
   /**
-   * Add missing active class, that is normally handled by theme_links
+   * Add missing active class, that is normally handled by theme_links...
    * @param $link
    */
-  function add_active_class(&$link) {
+  private function add_active_class(&$link) {
     global $language_url;
     global $user;
     if (isset($link['#href'])

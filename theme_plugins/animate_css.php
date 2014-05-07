@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Include animate.css library
+ * Class animate_css
+ */
 class animate_css extends theme_plugin {
 
   function hook_html_head_alter(&$variables) {

@@ -1,9 +1,14 @@
 <?php
-/**
- * Change sidebars width dynamically, using foundation grid classes.
- * Class dynamic_sidebars
- */
 
+/**
+ * Resize width of sidebars and content according to the device.
+ * Sidebar left or right are printed only if they contains blocks,
+ * so we take care of all use cases as best as we can.
+ *
+ * We offer a rather complex form as we can't be sure that the
+ * grid contains only 12 columns; so we have to let use choose exactly
+ * what he wants to fits its foundation grid configuration.
+ */
 class dynamic_sidebars extends theme_plugin {
 
   // default grid classes when there is only sidebar left
@@ -24,6 +29,9 @@ class dynamic_sidebars extends theme_plugin {
     'content' => 'small-12 columns',
   );
 
+  /**
+   * Plugin configuration form.
+   */
   function settings_form() {
 
     $cases = array(
@@ -52,6 +60,11 @@ class dynamic_sidebars extends theme_plugin {
     return $form;
   }
 
+  /**
+   * Change dynamically classes according to user defined settings, or using
+   * default values if user did not configured anything yet.
+   * @param $variables
+   */
   function hook_preprocess_page(&$variables) {
 
     $left_only = theme_plugin_get_setting(__CLASS__, 'left_only', $this->left_only);
@@ -77,12 +90,13 @@ class dynamic_sidebars extends theme_plugin {
       $sidebar_first_classes = '';
       $content_classes = $right_only['content'];
     }
+    // It node sidebars are displayed
     elseif (empty($variables['page']['sidebar_first']) && empty($variables['page']['sidebar_second'])) {
       $sidebar_second_classes = $sidebar_first_classes = $none['sidebar'];
       $content_classes = $none['content'];
     }
 
-    // send our dynamic grid classes to the page.tpl.php template
+    // send our dynamic foundation classes to the page.tpl.php template
     $variables['content_classes'] = $content_classes;
     $variables['sidebar_first_classes'] = $sidebar_first_classes;
     $variables['sidebar_second_classes'] = $sidebar_second_classes;

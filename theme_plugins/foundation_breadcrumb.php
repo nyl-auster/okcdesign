@@ -1,8 +1,8 @@
 <?php
 /**
- * Class foundation_breadcrumb
+ * Override of theme_breadcrumb()
  *
- * Theme breadcrumb as a foundation breadcrumb
+ * Theme drupal breadcrumb as a foundation breadcrumb
  */
 
 class foundation_breadcrumb extends theme_plugin {

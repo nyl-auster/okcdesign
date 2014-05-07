@@ -9,6 +9,8 @@
  * - hooks : on which hooks this plugin must be invoked. Plugin then must implement a method
  *   witch exactly this name.
  * - required : if TRUE, user won't be able to disabled this via administration.
+ *   @TODO required key does not work anymore, as disabled attributes use on checkbox
+ *   cause trouble when saving settings. (values are not POSTED)
  * - dependencies : plugins needed by our plugins.
  */
 

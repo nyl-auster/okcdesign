@@ -3,7 +3,7 @@
  * @file
  * Template.php
  *
- * No code should be written here, only invocations
+ * No custom code should be written here, only invocations
  * to plugin via theme_plugins_manager.
  *
  * @see theme_plugins_manager/theme_plugins_manager.php

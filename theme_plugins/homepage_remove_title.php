@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Remove node title from homepage.
+ */
 class homepage_remove_title extends theme_plugin {
 
   function hook_preprocess_page(&$variables) {

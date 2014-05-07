@@ -1,11 +1,11 @@
 <?php
-/**
- * @file
- *
- * This plugin does only things required to make foundation works with Drupal.
- * http://foundation.zurb.com/docs/css.html
- */
 
+/**
+ * This plugin plug foundation css/js framework into Drupal.
+ * http://foundation.zurb.com/docs/css.html
+ *
+ * It also removes all unecessary css files, that may interfere with foundation css.
+ */
 class foundation extends theme_plugin {
 
   /**

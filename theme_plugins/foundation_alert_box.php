@@ -1,6 +1,6 @@
 <?php
 /**
- * Class status_messages__alert_box
+ * Override of theme_status_messages()
  *
  * Theme drupal status messages as foundation alert boxes
  */

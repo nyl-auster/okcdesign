@@ -1,8 +1,13 @@
 <?php
 
 /**
+ * implements hook_form_FORM_ID_alter()
+ *
+ * Plugins configuration form.
+ *
  * Reorganize theme settings in vertical tabs.
- * Puts plugin tab in first.
+ * Puts plugins tab in first.
+ *
  * @param $form
  * @param $form_state
  */
@@ -35,8 +40,7 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     $form['okcdesign']['plugins'][$package]['#type'] = 'fieldset';
     $form['okcdesign']['plugins'][$package]["theme_plugin_$id"] = _okcdesign_build_checkbox($id, $datas, $form);
 
-    // call settings_form() method in plugin object if exists; and use this as
-    // plugin configuration form.
+    // call settings_form() to add plugin form configuration.
     $object = $id::get_instance();
     if (method_exists($object, 'settings_form') && $object->settings_form()) {
       $form['okcdesign']['plugins'][$package]["settings_$id"] =  array(
@@ -48,6 +52,7 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
       $form['okcdesign']['plugins'][$package]["settings_$id"]["theme_plugin_settings_$id"] = $object->settings_form();
       $form['okcdesign']['plugins'][$package]["settings_$id"]["theme_plugin_settings_$id"]['#tree'] = TRUE;
     }
+
     // just an html divider
     $form['okcdesign']['plugins'][$package][$id]['divider'] = array(
       '#type' => 'item',
@@ -122,7 +127,7 @@ function _okcdesign_build_checkbox($id, $plugin) {
 
   // do not allow user to disable a plugin that is required by others plugins
   if ($required_by_plugins || !empty($plugin['required'])) {
-    // comment disabled, may cause troubles when savings settings.
+    // disabled, may cause troubles when savings settings.
     //$checkbox['#disabled'] = TRUE;
 
   }

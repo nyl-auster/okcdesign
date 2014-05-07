@@ -1,16 +1,9 @@
 <?php
 /**
  * @file
- * Contains functions only needed for drush integration.
- *
- * Coming from zurb-foundation drupal theme
- *
- * - Create a new directory for the subtheme with
- *   - new info file
- *   - new template.php file
- *   - a copy of okcdesign/foundation folder
- *   - a copy of scss folder
- *   - a copy of css folder
+ * Create drush commands to quickly :
+ * - create a subtheme depending on okcdesign
+ * - create a new plugin for okcdesign.
  */
 
 /**

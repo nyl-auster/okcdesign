@@ -1,8 +1,10 @@
 OKC Design
 -------------
 
-OKCDesign is a Drupal 7 starter theme for developers, based on zurb foundation 5 framework :
+OKCDesign is a profesionnal Drupal 7 starter theme for professionnal developers, based on zurb foundation 5 framework :
+
 http://foundation.zurb.com/
+
 It makes zero assumptions on what your are trying to achieve, it focus on make it easy to use foundation tools with Drupal; and never force you to apply foundation styles to drupal Html when you don't want to. (that's why i forked https://drupal.org/project/zurb-foundation ). Foundation itself is an optionnal plugin technically.
 
 Each time it is possible, you should use foundation mixins rather than trying to rewrite Drupal html, which is a pain in the ass.

@@ -1,25 +1,32 @@
 <?php
 
+/**
+ * Display foundation grid above the theme.
+ */
 class foundation_grid_viewer extends theme_plugin {
 
   function settings_form() {
     $form['display_above_theme'] = array(
       '#type' => 'checkbox',
       '#title' => 'Show review grid in front of the theme',
-      '#description' => 'By default, grid is displayed behind all other html elements of the site',
+      '#description' => 'Grid may be hide by other html elements, enable this to put grid in front of other html elements.',
       '#default_value' => theme_plugin_get_setting(__CLASS__, 'display_above_theme', 0),
     );
     return $form;
   }
 
+  /**
+   * Create a variable in page.tpl.php to display the grid.
+   */
   function hook_preprocess_page(&$variables) {
     $settings = $this->get_foundation_settings();
     $columns = $settings['total_columns'];
     $variables['foundation_grid_viewer'] = $this->theme_grid_viewer($columns);
   }
 
-
-
+  /**
+   * Fake theme functions to display the grid.
+   */
   function theme_grid_viewer($columns) {
     $above = theme_plugin_get_setting(__CLASS__, 'display_above_theme', 0);
     $z_index = $above ? '0' : '-999';

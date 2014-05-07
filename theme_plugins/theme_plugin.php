@@ -1,10 +1,13 @@
 <?php
-/**
- * Base class to build a plugin, provided helpers variables.
- */
 
+/**
+ * This a base class for all plugins.
+ *
+ * A plugin MUST extends this class.
+ */
 class theme_plugin {
 
+  // define variables our plugins may need.
   protected $base_theme_name = '';
   // path of okcdesign theme
   protected $base_theme_path = '';
@@ -25,6 +28,7 @@ class theme_plugin {
     $this->default_theme_path = drupal_get_path('theme', variable_get('theme_default'));
   }
 
+  // yes, plugins are singletons.
   static function get_instance() {
     if (self::$instance) {
       return self::$instance;
@@ -38,6 +42,7 @@ class theme_plugin {
 
   /**
    * Helper function to get foundation settings stored in _settings.scss file.
+   *
    * @return array
    */
   protected function get_foundation_settings() {
