@@ -1,6 +1,6 @@
 OKC Design
 -------------
-![Logo](https://raw.github.com/nyl-auster/okc-design/screenshot.png)
+![Logo](https://raw.githubusercontent.com/nyl-auster/okcdesign/master/screenshot.png)
 
 
 OKCDesign is a profesionnal Drupal 7 starter theme for professionnal developers, based on zurb foundation 5 framework :
