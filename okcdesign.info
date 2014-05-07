@@ -4,19 +4,38 @@ core = 7.x
 engine = phptemplate
 screenshot = screenshot.png
 
-; regions
-regions[header] = Header
-regions[help] = Help
-regions[highlighted] = Highlighted
+; helper grid regions. Help you place blocks on the grid
+; when specifying foundation grid classes for them.package
+; use block_classes for that.
+
+regions[header__row_1] = Header row 1
+regions[header__row_2] = Header row 2
+regions[header__row_3] = Header row 3
+regions[header__row_4] = Header row 4
+
+regions[content_top__row_1] = Content top row 1
+regions[content_top__row_2] = Content top row 2
+regions[content_top__row_3] = Content top row 3
+regions[content_top__row_4] = Content top row 4
+
 regions[content] = Content
 regions[sidebar_first] = Sidebar first
 regions[sidebar_second] = Sidebar second
-regions[footer] = Footer
+
+regions[content_bottom__row_1] = Content bottom row 1
+regions[content_bottom__row_2] = Content bottom row 2
+regions[content_bottom__row_3] = Content bottom row 3
+regions[content_bottom__row_4] = Content bottom row 4
+
+regions[footer__row_1] = Footer row 1
+regions[footer__row_2] = Footer row 2
+regions[footer__row_3] = Footer row 3
+regions[footer__row_4] = Footer row 4
 
 ; default enabled plugins
 settings[theme_plugin_foundation] = 1
 settings[theme_plugin_foundation_check_requirements] = 1
-settings[theme_plugin_foundation_topbar] = 1
+settings[theme_plugin_foundation_topbar] = 0
 settings[theme_plugin_foundation_icon_fonts] = 1
 settings[theme_plugin_foundation_breadcrumb] = 1
 settings[theme_plugin_dynamic_sidebars] = 1

@@ -3,12 +3,7 @@
   @include button(
     $bg:$color,
     $radius: true
-  );
-  margin-top: rem-calc(20);
-  margin-right: rem-calc(20);
-  &:hover {
-    background-color: scale-color($color, $lightness: -10%);
-  }
+  )
 }
 
 /**
