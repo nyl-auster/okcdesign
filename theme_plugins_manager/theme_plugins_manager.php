@@ -113,7 +113,7 @@ function theme_plugin_get_enabled_plugins() {
  * may respond to one hook.
  *
  * - For theme functions, only one plugin may respond, so if
- *   several plugins want to return a theme override, we return only the first...
+ *   several plugins want to return a theme override, we return only the last...
  *
  * For now, it's up to user to not use plugins overriding the same drupal theme function
  */
@@ -121,7 +121,7 @@ function theme_plugins_invoke($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 
 
   $plugins = theme_get_plugins();
   $plugins_enabled = theme_plugin_get_enabled_plugins();
-
+  $result = NULL;
 
   // plug in only enabled plugins.
   foreach ($plugins_enabled  as $plugin_id) {
@@ -137,12 +137,12 @@ function theme_plugins_invoke($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 
     if (in_array($method, $plugin_infos['hooks'])) {
       $plugin = $plugin_id::get_instance();
       $result = $plugin->$method($arg1, $arg2, $arg3, $arg4);
-
-      // if we have a return, this is a theme function returning html,
-      // we have to return it to Drupal.
-      if ($result) return $result;
     }
   }
+
+  // if we have a return, a plugin implements a theme function returning html,
+  // we have to return it to Drupal.
+  if ($result) return $result;
 
 }
 
