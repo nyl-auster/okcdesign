@@ -2,15 +2,12 @@ OKC Design
 -------------
 ![Logo](https://raw.githubusercontent.com/nyl-auster/okcdesign/master/screenshot.png)
 
-
 OKCDesign is a profesionnal Drupal 7 starter theme for professionnal developers, based on zurb foundation 5 framework :
+foundation is a very powerfull front-end, mobile-first, responsive framework.
 
 http://foundation.zurb.com/
 
-It makes zero assumptions on what your are trying to achieve, it focus on make it easy to use foundation tools with Drupal; and never force you to apply foundation styles to drupal Html when you don't want to. (that's why i forked https://drupal.org/project/zurb-foundation ). Foundation itself is an optionnal plugin technically.
-
-Each time it is possible, you should use foundation mixins rather than trying to rewrite Drupal html, which is a pain in the ass.
-However, OKC Design provides optionnals helpers to make it a breeze to customize drupal menus and display them as foudation tobbar, canvas and such; and let you a lot of room to customize it as you like; throught html or plugins configurations.
+OKC Design makes zero assumptions on what your are trying to achieve, it focus on make it easy to use foundation tools with Drupal 7.
 
 Features :
 - Enjoy all the foundation goodness in Drupal 7 :  Grid system, components, responsive design etc...
