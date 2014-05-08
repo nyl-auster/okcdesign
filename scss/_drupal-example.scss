@@ -1,0 +1,15 @@
+// form submit buttons as foundation button.
+.form-submit{
+  @include button();
+}
+
+// main menu as foudation sub-nav
+#main-menu{
+  @include sub-nav();
+}
+
+// secondary menu as foundation inline-list
+#secondary-menu{
+  @include inline-list;
+}
+

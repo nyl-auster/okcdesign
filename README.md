@@ -1,17 +1,28 @@
 OKC Design
 -------------
+
+_ Drupal 7 + Foundation 5 : build professional responsive sites faster ! _
+
 ![Logo](https://raw.githubusercontent.com/nyl-auster/okcdesign/master/screenshot.png)
 
-OKCDesign is a profesionnal Drupal 7 starter theme for professionnal developers, based on zurb foundation 5 framework :
-foundation is a very powerfull front-end, mobile-first, responsive framework.
+OKCDesign is a Drupal 7 starter theme for developers, based on zurb foundation 5 framework :
+foundation is a very powerfull front-end, mobile-first, responsive framework; check it out if you don't know it.
 
 http://foundation.zurb.com/
 
-OKC Design makes zero assumptions on what your are trying to achieve, it focus on make it easy to use foundation tools with Drupal 7.
 
-Features :
+PHILOSOPHY
+----------
+
+OKC Design focus on bring all the power of foundation to your Drupal 7 theme, in order to build professional responsive themes faster.
+It makes zero assumptions on what your are trying to achieve, it focus on make it easy for you to use foundation tools with Drupal 7.
+So make sure to read some docs on foundation frameworks before starting if you don't know how this works at all.
+
+FEATURES
+---------
+
 - Enjoy all the foundation goodness in Drupal 7 :  Grid system, components, responsive design etc...
-- A ready-to-use integration of foundation topbar to Drupal, working out of the box.
+- A ready-to-use integration of foundation topbar to Drupal, working out of the box. (just enable the plugin in theme settings)
 - Remove all drupal native css, excepts those very needed for administration purposes
 - Powerfull theme plugin system : Enabled plugins you need, configure them as needed.
 
@@ -89,3 +100,14 @@ Using okcfoundation module, you may defined different classes for different page
 ![Logo](https://raw.githubusercontent.com/nyl-auster/okcdesign/master/images/demo-block.png)
 
 okcfoundation is also able to store classes for blocks from theme info file rather than in database.
+
+ADDITIONNAL DRUPAL MODULES
+--------------------------------
+
+There is on drupal.org modules based on foundation, they should work with this project :
+https://drupal.org/project/field_orbit
+https://drupal.org/project/zurb_clearing
+https://drupal.org/project/foundation_group
+https://drupal.org/project/zurb_interchange
+https://drupal.org/project/zurb_twentytwenty
+
