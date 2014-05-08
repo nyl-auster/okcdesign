@@ -1,7 +1,7 @@
 OKC Design
 -------------
 
-_ Drupal 7 + Foundation 5 : build professional responsive sites faster ! _
+**Drupal 7 + Foundation 5 : build professional responsive sites faster !**
 
 ![Logo](https://raw.githubusercontent.com/nyl-auster/okcdesign/master/screenshot.png)
 
