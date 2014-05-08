@@ -10,9 +10,9 @@ foundation is a very powerfull front-end, mobile-first, responsive framework; ch
 
 http://foundation.zurb.com/
 
-It is designed to work with optionnal module "okcfoundation", which job is to help you place quickly blocks on OKC Design grids.
+It is designed to work with optionnal module "OKC Layout", which job is to help you place quickly blocks on OKC Design grids.
 
-https://github.com/nyl-auster/okcfoundation-D7
+https://github.com/nyl-auster/okclayout
 
 
 PHILOSOPHY

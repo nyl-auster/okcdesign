@@ -32,42 +32,6 @@
 
 <header>
 
-  <!-- site name , logo & slogan -->
-  <?php if ($site_name || $logo || $site_slogan) : ?>
-    <div class="row">
-      <h1>
-        <?php if ($logo): ?>
-          <a href="<?php print $front_page ?>" title="<?php print t('Home') ?>" rel="home" id="logo">
-            <img src="<?php print $logo; ?>" alt="<?php print t('Home') ?>" />
-          </a>
-        <?php endif ?>
-
-        <?php if($site_name): ?>
-          <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo"> <?php print $site_name ?> </a>
-        <?php endif ?>
-
-        <?php if ($site_slogan): ?> <small><?php print $site_slogan ?></small> <?php endif ?>
-      </h1>
-    </div>
-  <?php endif ?>
-
-  <!-- primary and secondary menus -->
-  <?php if($main_menu || $secondary_menu):?>
-    <div class="row">
-      <div class="small-12 columns">
-        <nav>
-          <?php if ($main_menu) : ?>
-            <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu'))) ?>
-          <?php endif ?>
-          <?php if ($secondary_menu) : ?>
-            <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu'))) ?>
-          <?php endif ?>
-        </nav>
-      </div>
-    </div>
-  <?php endif ?>
-  </div>
-
   <?php // foundation rows ?>
   <div class="row header--row-1">
     <?php if(isset($page['header__row_1'])) print render($page['header__row_1']) ?>
@@ -84,14 +48,6 @@
 
 </header>
 
-<?php if ($breadcrumb): ?>
-  <div class="row" id="breadcrumb">
-    <div class="small-12 columns">
-      <?php print $breadcrumb ?>
-    </div>
-  </div> <!-- /.row -->
-<?php endif ?>
-
 <div class="row content-top--row-1">
   <?php if(isset($page['content_top__row_1'])) print render($page['content_top__row_1']) ?>
 </div>
@@ -104,12 +60,6 @@
 <div class="row content-top--row-4">
   <?php if(isset($page['content_top__row_4'])) print render($page['content_top__row_4']) ?>
 </div>
-
-<?php if ($messages) : ?>
-  <div id="messages">
-    <?php print $messages ?>
-  </div> <!-- /.row -->
-<?php endif ?>
 
 <section class="content">
   <div class="row">
