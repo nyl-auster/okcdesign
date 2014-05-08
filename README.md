@@ -105,9 +105,9 @@ ADDITIONNAL DRUPAL MODULES
 --------------------------------
 
 There is on drupal.org modules based on foundation, they should work with this project :
-https://drupal.org/project/field_orbit
-https://drupal.org/project/zurb_clearing
-https://drupal.org/project/foundation_group
-https://drupal.org/project/zurb_interchange
-https://drupal.org/project/zurb_twentytwenty
+- https://drupal.org/project/field_orbit
+- https://drupal.org/project/zurb_clearing
+- https://drupal.org/project/foundation_group
+- https://drupal.org/project/zurb_interchange
+- https://drupal.org/project/zurb_twentytwenty
 
