@@ -10,6 +10,10 @@ foundation is a very powerfull front-end, mobile-first, responsive framework; ch
 
 http://foundation.zurb.com/
 
+It is designed to work with optionnal module "okcfoundation", which job is to help you place quickly blocks on OKC Design grids.
+
+https://github.com/nyl-auster/okcfoundation-D7
+
 
 PHILOSOPHY
 ----------
@@ -88,8 +92,8 @@ alternatively, you can use sass, but you MUST include foundation components from
 GRID SYSTEM WITH BLOCKS SETTINGS
 --------------------------------
 
-Using okcdesign default regions with a module like block_class ( https://drupal.org/project/block_class ) , you can easily place blocks on the grid just by adding a few classes to them.
-Example, based on 12 columns grid :
+If you are using https://github.com/nyl-auster/okcfoundation-D7 , you'll be able to quickly place blocks on the grid.
+It add a textarea to register foundation classes for a block, or you may use theme info file to register your blocks layout.
 
 a *"small-12 medium-6 large-4 columns"* class means that this block will take all the page width on small screens, half-width on medium devices and only 1/3 of page witdh on large screens.
 See foundation docs on Grid for more fun stuff.
@@ -99,7 +103,7 @@ See foundation docs on Grid for more fun stuff.
 Using okcfoundation module, you may defined different classes for different page, for the same block:
 ![Logo](https://raw.githubusercontent.com/nyl-auster/okcdesign/master/images/demo-block.png)
 
-okcfoundation is also able to store classes for blocks from theme info file rather than in database.
+
 
 ADDITIONNAL DRUPAL MODULES
 --------------------------------
