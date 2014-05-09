@@ -1,15 +1,73 @@
-// form submit buttons as foundation button.
-.form-submit{
-  @include button();
+/**
+ * This only a default css for  parent theme, using
+ * some foundations mixins.
+ */
+
+// forms
+form {
+  .form-submit{
+    @include button($radius:true, $bg:$warning-color);
+    margin-top: rem-calc(15);
+    &:hover {
+      @include single-transition()
+    }
+  }
+  label {
+    @include label($bg:$info-color);
+    text-transform: uppercase;
+  }
 }
 
-// main menu as foudation sub-nav
-#main-menu{
-  @include sub-nav();
+// drupal messages
+#messages {
+  text-align: center;
+  opacity: 0.9;
 }
 
-// secondary menu as foundation inline-list
+#site-slogan {
+  text-transform: uppercase;
+}
+
+// main menu &secondary menu as button groups.
+#main-menu, #secondary-menu{
+  @include button-group-container();
+  li a {
+    @include button($padding:rem-calc(7));
+    border-right : solid white 1px;
+  }
+  & > li {
+    @include button-group-style($float:left);
+  }
+}
+
+#main-menu {
+  li a{
+    &.active {background-color: darken($primary-color, 10)}
+    &:hover {
+      background-color: darken($primary-color, 10);
+      @include single-transition()
+    }
+  }
+}
+
 #secondary-menu{
-  @include inline-list;
+  li a {
+    background-color: $warning-color;
+    &.active {background-color: darken($warning-color, 10)}
+    &:hover {
+      background-color: darken($warning-color, 10);
+      @include single-transition()
+    }
+  }
+  // float right for secondary menu, but only on large screens
+  & > li {
+    @media #{$medium-up} {
+      @include button-group-style($float:right);
+    }
+  }
+}
+
+.tabs.primary {
+  @include sub-nav();
 }
 

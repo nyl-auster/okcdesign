@@ -73,9 +73,9 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     }
   }
 
-
-
 }
+
+
 
 /**
  * Build a checkbox to enable / disabled a plugin.

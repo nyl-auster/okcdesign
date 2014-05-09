@@ -88,6 +88,15 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
     "core = 7.x",
     "",
   );
+
+  // copy regions from base theme.
+  $regions = system_region_list(variable_get('theme_default'), REGIONS_VISIBLE);
+  foreach ($regions as $id => $name) {
+    if (!in_array($id, array('dashboard_sidebar', 'dashboard_inactive', 'dashboard_main'))) {
+      $lines[] = "regions[$id] = $name";
+    }
+  }
+
   $file = "$subtheme_path/$machine_name.info";
   drush_op('file_put_contents', $file, implode($lines, "\r\n"));
 

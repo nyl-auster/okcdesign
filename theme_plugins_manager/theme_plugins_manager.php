@@ -12,7 +12,7 @@
  * of corresponding hook in template.php
  */
 define('OKCDESGIN_THEME_PLUGINS_DIRECTORY', 'theme_plugins');
-define('OKCDESGIN_THEME_PLUGINS_REGISTRY_FILE', 'theme_plugins_registry.php');
+define('OKCDESGIN_THEME_PLUGINS_REGISTRY_FILE', 'okcdesign.info.plugins.php');
 
 // we use an autoloader. Storing classes file path in theme info files
 // would make things harder to maintain in case we change things...
