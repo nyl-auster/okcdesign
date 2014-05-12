@@ -1,7 +1,7 @@
 OKC Design
 -------------
 
-**Drupal 7 + Foundation 5 : build professional responsive sites faster **
+**Drupal 7 + Foundation 5 : build professional responsive sites faster**
 
 _ Enjoy rapid prototyping, responsive grid system and more with Drupal 7. _
 
