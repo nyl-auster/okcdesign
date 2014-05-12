@@ -1,9 +1,6 @@
 <?php
 /**
  * @file
- * Create drush commands to quickly :
- * - create a subtheme depending on okcdesign
- * - create a new plugin for okcdesign.
  */
 
 /**
@@ -15,15 +12,10 @@ function okcdesign_drush_command() {
     'description' => 'Create a OKC Design sub-theme',
     'aliases' => array('okc-theme'),
     'arguments' => array(
-      'name'         => 'Your sub-theme name.',
-      'machine_name' => 'A machine-readable name for your theme, optional only  [a-z, 0-9] ',
-    ),
-    'options' => array(
-      'description'  => 'Your sub-theme description.',
-      'machine-name' => '[a-z, 0-9] A machine-readable name for your theme.',
+      'name'         => 'Your sub-theme machine name. [a-z, 0-9] ',
     ),
     'examples' => array(
-      'drush fst "custom theme name"' => 'Create a sub-theme with the default options.',
+      'drush okc-theme "my_theme"' => 'Create a sub-theme.',
     ),
   );
   $items['okcdesign-plugin'] = array(
@@ -46,44 +38,55 @@ function okcdesign_drush_command() {
 /**
  * Create a Zurb foundation sub-theme.
  */
-function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description = NULL) {
+function drush_okcdesign_theme($name = NULL) {
   if (empty($name)) {
-    drush_set_error(dt("Please provide a name for the sub-theme.\nUSAGE:\tdrush ost [name] [machine_name !OPTIONAL] [description !OPTIONAL]\n"));
+    drush_set_error(dt("Please provide a name for the sub-theme.\nUSAGE:\tdrush okc-theme [machine_name]\n"));
     return;
   }
   //Filter everything but letters, numbers, underscores, and hyphens
-  $machine_name = !empty($machine_name) ? preg_replace('/[^a-z0-9_-]+/', '', strtolower($machine_name)) : preg_replace('/[^a-z0-9_-]+/', '', strtolower($name));
+  $name = preg_replace('/[^a-z0-9_-]+/', '', strtolower($name));
   // Eliminate hyphens
-  $machine_name = str_replace('-', '_', $machine_name);
+  $name = str_replace('-', '_', $name);
+  drush_print('Name of subtheme to create : ' . $name);
 
-  // Find theme paths.
-  $okcdesign_path = drush_locate_root() . '/' . drupal_get_path('theme', 'okcdesign');
-  $subtheme_path = dirname($okcdesign_path) . '/' . $machine_name;
+  // Find theme paths. For whatever reason, drupal_get_path fails sometimes, we guess
+  // theme path from our drush file location...
+  $okcdesign_path = dirname(__FILE__);  
+  drush_print('Searching for OKC Design base theme path : ' . $okcdesign_path);
+  // make sur we find an okcdesign directory, otherwise, abort.
+  if (strpos($okcdesign_path, 'okcdesign') === FALSE) {
+    drush_print("OKC Design path is incorrect : $okcdesign_path");  
+  }
+  drush_print('Searching for root of current Drupal installation : ' . drush_locate_root());
+  $subtheme_path = dirname($okcdesign_path) . '/' . $name;
+  drush_print('Determining subtheme path to create : ' . $subtheme_path);
 
+  drush_print('Begin copy of starter theme files into ' . $subtheme_path);
   drush_copy_dir("{$okcdesign_path}/STARTER/", "$subtheme_path", FILE_EXISTS_MERGE);
 
   // create directory structure
-  drush_op('mkdir', "$subtheme_path/scss");
-  drush_op('mkdir', "$subtheme_path/css");
-  drush_op('mkdir', "$subtheme_path/templates");
-  drush_op('mkdir', "$subtheme_path/js");
+  $directories = array('scss', 'css', 'templates', 'js');
+  foreach ($directories as $directory) {
+    drush_op('mkdir', "$subtheme_path/$directory");
+    drush_print("Creating directory $subtheme_path/$directory");
+  }
 
-  // add default files.
-  drush_op('copy', "$okcdesign_path/css/app.css", "$subtheme_path/css/app.css");
-  drush_op('copy', "$okcdesign_path/scss/app.scss", "$subtheme_path/scss/app.scss");
-  drush_op('copy', "$okcdesign_path/scss/_settings.scss", "$subtheme_path/scss/_settings.scss");
-  drush_op('copy', "$okcdesign_path/logo.png", "$subtheme_path/logo.png");
+  // copy files from base theme
+  $files = array('css/app.css', 'scss/app.scss', 'scss/_settings.scss', 'logo.png');
+  foreach ($files as $file) {
+    drush_op('copy', "$okcdesign_path/$file", "$subtheme_path/$file");
+    drush_print("Copying $okcdesign_path/$file to $subtheme_path/$file");
+  }
 
   // create subtheme info file
   $lines = array(
-    "name = $machine_name",
+    "name = $name",
     "description = a subtheme of okcdesign",
     "base theme = okcdesign",
     "engine = phptemplate",
     "core = 7.x",
     "",
   );
-
   // copy regions from base theme.
   $regions = system_region_list(variable_get('theme_default'), REGIONS_VISIBLE);
   foreach ($regions as $id => $name) {
@@ -91,12 +94,10 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
       $lines[] = "regions[$id] = $name";
     }
   }
-
-  $file = "$subtheme_path/$machine_name.info";
+  $file = "$subtheme_path/$name.info";
   drush_op('file_put_contents', $file, implode($lines, "\r\n"));
 
   // create gitignore file, do not track node_modules folder by default,
-  // this just for local compilations with grunt.
   $lines = array(
     "node_modules"
   );
@@ -106,11 +107,10 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
   // Notify user of the newly created theme.
   drush_print(dt("\n!name sub-theme was created in !path. Enable and set default in theme administration \n",
     array(
-      '!name' => $machine_name,
+      '!name' => $name,
       '!path' => $subtheme_path,
     )
   ));
-
 
 }
 
