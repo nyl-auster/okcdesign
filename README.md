@@ -17,17 +17,17 @@ FEATURES
 
 - Enjoy all the foundation goodness in Drupal 7 :  Grid system, components, responsive design, icons etc...
 - A ready-to-use integration of foundation mobile-friendly topbar to Drupal, working out of the box. (just enable the plugin in theme settings)
-- Zero Drupal css : only css needed for administration purposes has been kept.
-- Powerfull theme plugin system : Enabled plugins you need, configure them as needed.
+- Zero Drupal css : only css needed for administration purposes have been kept.
+- Powerfull theme plugin system : Enable only plugins you need and configure them.
 - Place blocks quickly on the grid with optionnal okclayout module : https://github.com/nyl-auster/okclayout
-
 
 PHILOSOPHY
 ----------
 
 OKC Design focuses on make it easy to use foundation tools with Drupal 7, but it's up to the developper to choose which parts of foundation he wants to use.
 It relies heavily on sass, as it is how foundation is built.
-So if you don't know at all foundation, you should at least visit this two pages :
+
+If you don't know at all foundation, you should at least visit this two pages :
 - learn how to use foundation grid system : http://foundation.zurb.com/docs/components/grid.html
 - overview of default foundation components : http://foundation.zurb.com/docs/components/kitchen_sink.html
 
@@ -36,8 +36,7 @@ You should not try to rewrite Drupal html to suit foundation css, instead use fo
 THEME PLUGINS
 -------------
 
-Visit admin/appearance/settings to enable or disabled theme plugins for your subtheme.
-It allows you to use some foundation features without writing code, and to use only what you need for your current project.
+Visit admin/appearance/settings to enable or disable theme plugins for your subtheme.
 Technically, foundation itself is provided as a plugin, enabled by default.
 
 REQUIREMENTS
@@ -59,7 +58,7 @@ To start develop, you  *MUST* create a OKC Design subtheme. *Never* edit okcdesi
 - Get last version of okcdesign, download a release tag (recommended) or clone master (unstable) for
   the last dev version.
 
-- Make sure that parent theme is named "*okcdesign*" and not "okcdesign-1.x.x" if you download it from a release tag !
+- Make sure that the downloaded theme is named "*okcdesign*" and not "okcdesign-1.x.x" if you download it from a release tag !
 
 - Run following Drush command : it will create a subtheme for you 
 
@@ -73,7 +72,7 @@ SCSS COMPILATION
 
 To compile your scss with "grunt" (recommended) :
 
-Go to the root of your freshly created subtheme and run this command. It will install required node modules and you have to run it only the first time : 
+Go to the **root** of your freshly created subtheme and run this command, ut will install required node modules. You have to run it only the first time : 
 
 ```shell
   npm install
