@@ -61,32 +61,16 @@ To start develop, you  *MUST* create a OKC Design subtheme. *Never* edit okcdesi
 
 - Make sure that parent theme is named "*okcdesign*" and not "okcdesign-1.x.x" if you download it from a release tag !
 
-- Use the following drush command to automatically create a subtheme, then go to theme administration page to set it by default :
-
 ```shell
   drush okc-theme {yourthemename}
 ```
 
-- Now go to your freshly created subtheme, and run following command to start working
-with scss files :
-
-```shell
-  grunt
-```
-- scss folder from your subtheme will contain two very important files :
-  - app.scss is the main file, including all others scss files. (including _settings.scss file) . You have to import your custom scss files here.
-  - _settings.scss file is the file configuring all foundation default values. This is where you can configure grid, default colors, font-size and a lot more.
-
-Scss files are compiled and compressed in css directory by default, but you may edit Grunfile.js to configure things differently.
-
-- customize html : copy templates from okcdesign/templates to your subtheme/templates (do not forget to flush drupal caches)
-
-
 SCSS COMPILATION
-------------------
+------------------------------------
 
-First install need node modules, by running following command at the root of your subtheme.
-This need to be run only once :
+To compile your scss with "grunt" (recommended) :
+
+Go to the root of your freshly created subtheme and run this command. It will install required node modules and you have to run it only the first time : 
 
 ```shell
   npm install
@@ -95,7 +79,6 @@ This need to be run only once :
 Then, run following command to compile automically your scss files each time they are modified :
 
 ```shell
-  npm install (only the first time, to install grunt locally on your subtheme)
   grunt
 ```
 
@@ -107,6 +90,9 @@ alternatively, you can still use sass, but you have to include foundation compon
 ```shell
   sass --watch scss:css -I ../okcdesign/bower_components/foundation/scss -I ../okcdesign/scss
 ```
+Scss directory from your subtheme will contain two very important files :
+  - app.scss is the main file, including all others scss files. (including _settings.scss file) . You have to import your custom scss files here.
+  - _settings.scss file is the file configuring all foundation default values. This is where you can configure grid, default colors, font-size and a lot more.
 
 IMPORTANT :
 It makes the assumption than your subtheme is at the same directory level than OKC Design base theme.
