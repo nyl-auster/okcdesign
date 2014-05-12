@@ -85,19 +85,32 @@ Scss files are compiled and compressed in css directory by default, but you may 
 SCSS COMPILATION
 ------------------
 
-The most efficient way is to simply type the following command at the root of your subtheme :
+First install need node modules, by running following command at the root of your subtheme.
+This need to be run only once :
+
+```shell
+  npm install
+```
+
+Then, run following command to compile automically your scss files each time they are modified :
+
 ```shell
   grunt
 ```
 
-It will read informations from Gruntfile.js and package.json to compile your project.
-It uses libsass, which compile scss a lot faster than sass command.
+It will read informations from Gruntfile.js to compile your project.
+It uses libsass, which compile scss a lot faster than default sass command.
 
-alternatively, you can use sass, but you MUST include foundation components from okcdesign theme, this way :
+alternatively, you can still use sass, but you have to include foundation components from okcdesign theme, this way :
 
 ```shell
   sass --watch scss:css -I ../okcdesign/bower_components/foundation/scss -I ../okcdesign/scss
 ```
+
+IMPORTANT :
+It makes the assumption than your subtheme is at the same directory level than OKC Design base theme.
+If this is not the case (working in a multisite installation for example), you must edit Grunt js file or change include path of your sass command to specify the path of okcdesign theme.
+
 GRID SYSTEM WITH BLOCKS SETTINGS
 --------------------------------
 

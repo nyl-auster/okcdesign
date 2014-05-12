@@ -60,11 +60,6 @@ function drush_okcdesign_theme($name = NULL, $machine_name = NULL, $description 
   $okcdesign_path = drush_locate_root() . '/' . drupal_get_path('theme', 'okcdesign');
   $subtheme_path = dirname($okcdesign_path) . '/' . $machine_name;
 
-
-  // Copy JS files from base theme to sub-theme. We copy them now instead of
-  // including them by default to keep the base theme small and also to avoid
-  // having to update the Foundation JS in two places every time a new version
-  // is released.
   drush_copy_dir("{$okcdesign_path}/STARTER/", "$subtheme_path", FILE_EXISTS_MERGE);
 
   // create directory structure
