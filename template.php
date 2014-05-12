@@ -12,28 +12,6 @@
 // load plugins system
 include_once 'theme_plugins_manager/theme_plugins_manager.php';
 
-function okcdesign_system_theme() {
-  if(drupal_is_front_page()) {
-    return 'okcdesign_layout_homepage';
-  }
-}
-
-/**
- * Implements hook_okcgrid();
- */
-function okcdesgin_okcgrid() {
-  $grid['default'] = array(
-    'system-main' => 'large-6 columns',
-    'user-online' => 'large-6 small-12 columns',
-    '#context callback' => 'drupal_match_path',
-    '#context arguments' => array($_GET['q'], '<front>'),
-  );
-  return $grid;
-}
-
-
-
-
 /*=============================
    HOOKS
  ==============================*/
@@ -79,7 +57,6 @@ function okcdesign_preprocess_foundation_topbar(&$variables) {
   theme_plugins_invoke(__FUNCTION__, $variables);
 }
 
-
 /*=============================
    THEME OVERRIDES
  ==============================*/
@@ -98,4 +75,3 @@ function okcdesign_status_messages($variables) {
   if ($html) return $html;
   return theme_status_messages($variables);
 }
-

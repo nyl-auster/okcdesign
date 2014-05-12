@@ -15,45 +15,48 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
 
   include_once 'theme_plugins_manager/theme_plugins_manager.php';
 
-  // create vertical tables
+  // create vertical tabs to organize theme settings form.
+  // put our plugin tab first as it may be more frequently used than general drupal settings.
   $form['okcdesign'] = array(
     '#type' => 'vertical_tabs',
-    '#weight' => -10,
+    '#weight' => -10
   );
 
-  // Create a "theme plugins" vertical tabs to enable / disabled theme plugins.
-  // and set it in first position
   $form['okcdesign']['plugins'] = array(
     '#type' => 'fieldset',
     '#title' => t('Theme plugins'),
     '#description' => t('Enable additionnals plugins for your theme'),
   );
 
+  // get all declared plugins in okcdesign.info.plugins.php file.
   $plugins = theme_get_plugins();
-  // we build individual checkboxes because it is easier for us to disabled
-  // checkboxes from required plugins this way with drupal FAPI.
+
+  // Build individual "checkbox" FAPI element, as they are more flexible thant "checkboxes" FAPI element type.
   foreach($plugins as $id => $datas) {
 
-    // group plugins in fieldset by package.
+    // group plugins in fieldset by their package.
     $package = isset($datas['package']) ? $datas['package'] : 'others';
+
+    // display for each plugin a checkbox to enable it, displaying usefull informations about it.
     $form['okcdesign']['plugins'][$package]['#title'] = $datas['package'];
     $form['okcdesign']['plugins'][$package]['#type'] = 'fieldset';
-    $form['okcdesign']['plugins'][$package]["theme_plugin_$id"] = _okcdesign_build_checkbox($id, $datas, $form);
+    $form['okcdesign']['plugins'][$package]["theme_plugin_$id"] = _okcdesign_build_plugin_checkbox($id, $plugins);
 
-    // call settings_form() to add plugin form configuration.
-    $object = $id::get_instance();
-    if (method_exists($object, 'settings_form') && $object->settings_form()) {
+    // add plugin settings form, if any, below the checkbox to enable it
+    $plugin = $id::get_instance();
+    if (method_exists($plugin, 'settings_form') && $plugin->settings_form()) {
       $form['okcdesign']['plugins'][$package]["settings_$id"] =  array(
         '#title' => "Configure " . $datas['title'],
         '#type' => 'fieldset',
         '#collapsible' => TRUE,
         '#collapsed' => TRUE,
       );
-      $form['okcdesign']['plugins'][$package]["settings_$id"]["theme_plugin_settings_$id"] = $object->settings_form();
+      $form['okcdesign']['plugins'][$package]["settings_$id"]["theme_plugin_settings_$id"] = $plugin->settings_form();
+      // retain configuration in theme settings as an array for this specifig plugin.
       $form['okcdesign']['plugins'][$package]["settings_$id"]["theme_plugin_settings_$id"]['#tree'] = TRUE;
     }
 
-    // just an html divider
+    // just an html divider to make plugin administration more readable.
     $form['okcdesign']['plugins'][$package][$id]['divider'] = array(
       '#type' => 'item',
       '#markup' => "<hr/>"
@@ -75,18 +78,22 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
 
 }
 
-
-
 /**
- * Build a checkbox to enable / disabled a plugin.
- * A plugin cannot be disabled if it is required by another plugin.
+ * Build a checkbox to enable / disable a plugin.
+ *
+ * @FIXME A plugin should not be disabled if it is required by another plugin.
+ *   Do not use "disabled" html attribute, as values are not POSTed anymore and
+ *   so configuration is not saved correctly in this case.
  * @param $id
- * @param $plugin
+ *   plugin id
+ * @param $plugins
+ *   all registered plugins. Needed to display informations about plugin dependecies.
  * @return array
+ *   checkbox FAPI element
  */
-function _okcdesign_build_checkbox($id, $plugin) {
+function _okcdesign_build_plugin_checkbox($id, $plugins) {
 
-  $plugins = theme_get_plugins();
+  $plugin = $plugins[$id];
 
   // Fetch all plugins which required this plugin to work as expected
   $required_by_plugins = array();
@@ -102,8 +109,7 @@ function _okcdesign_build_checkbox($id, $plugin) {
     }
   }
 
-  // build a title for the checkbox, adding description and
-  // all dependencies informations.
+  // build a title for the checkbox, adding description and all dependencies informations.
   $description = '';
   $title = "<strong>" . strtoupper($plugin['title']) . "</strong>";
   if (isset($plugin['description'])) {
@@ -116,21 +122,15 @@ function _okcdesign_build_checkbox($id, $plugin) {
     $description .= '<br/> <strong>Depends on: </strong>' . implode(', ', $dependencies);
   }
 
-  // create checkbox
+  // create checkbox to enable / disabled this plugin.
   $checkbox = array(
     '#type' => 'checkbox',
     '#title' => $title,
     '#default_value' => theme_get_setting("theme_plugin_$id"),
     '#description' =>  $description,
-
   );
 
-  // do not allow user to disable a plugin that is required by others plugins
-  if ($required_by_plugins || !empty($plugin['required'])) {
-    // disabled, may cause troubles when savings settings.
-    //$checkbox['#disabled'] = TRUE;
-
-  }
+  // @TODO do not allow to disable a plugin required by enabled plugins.
 
   return $checkbox;
 }
