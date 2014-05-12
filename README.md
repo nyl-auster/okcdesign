@@ -61,9 +61,12 @@ To start develop, you  *MUST* create a OKC Design subtheme. *Never* edit okcdesi
 
 - Make sure that parent theme is named "*okcdesign*" and not "okcdesign-1.x.x" if you download it from a release tag !
 
+- Run following Drush command : it will create a subtheme for you 
+
 ```shell
   drush okc-theme {yourthemename}
 ```
+- Now go to admin/appearance and set this subtheme as your default site theme.
 
 SCSS COMPILATION
 ------------------------------------
