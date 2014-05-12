@@ -30,16 +30,6 @@
   <?php print $foundation_topbar ?>
 <?php endif ?>
 
-<?php // Display the grid if needed. You need to enable Grid viewer in theme settings. ?>
-<?php if (isset($foundation_grid_viewer)) : ?>
-  <?php print $foundation_grid_viewer ?>
-<?php endif ?>
-
-<?php //display topbar, if foundation_topbar plugin is enabled in theme settings. ?>
-<?php if(isset($foundation_topbar)) :?>
-  <?php print $foundation_topbar ?>
-<?php endif ?>
-
 <header>
 
   <!-- site name , logo & slogan -->
