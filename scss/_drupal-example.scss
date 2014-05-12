@@ -6,14 +6,16 @@
 // forms
 form {
   .form-submit{
-    @include button($radius:true, $bg:$warning-color);
+    @include button($radius:true, $bg:#1ABC9C);
+    text-transform: uppercase;
     margin-top: rem-calc(15);
+    margin-right: rem-calc(15);
     &:hover {
       @include single-transition()
     }
   }
   label {
-    @include label($bg:$info-color);
+    @include label($bg:$secondary-color);
     text-transform: uppercase;
   }
 }
@@ -42,9 +44,10 @@ form {
 
 #main-menu {
   li a{
-    &.active {background-color: darken($primary-color, 10)}
+    background-color: darken($secondary-color, 30);
+    &.active {background-color: darken($secondary-color, 50)}
     &:hover {
-      background-color: darken($primary-color, 10);
+      background-color: darken($secondary-color, 50);
       @include single-transition()
     }
   }
@@ -52,10 +55,10 @@ form {
 
 #secondary-menu{
   li a {
-    background-color: $warning-color;
-    &.active {background-color: darken($warning-color, 10)}
+    background-color: #777;
+    &.active {background-color: darken(#777, 10)}
     &:hover {
-      background-color: darken($warning-color, 10);
+      background-color: darken(#777, 10);
       @include single-transition()
     }
   }

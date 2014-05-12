@@ -112,8 +112,10 @@
 </div>
 
 <?php if ($messages) : ?>
-  <div id="messages">
-    <?php print $messages ?>
+  <div id="messages" class="row">
+    <div class="small-12 columns">
+      <?php print $messages ?>
+    </div>
   </div> <!-- /.row -->
 <?php endif ?>
 
