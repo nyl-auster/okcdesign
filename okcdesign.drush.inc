@@ -61,6 +61,11 @@ function drush_okcdesign_theme($name = NULL) {
   $subtheme_path = dirname($okcdesign_path) . '/' . $name;
   drush_print('Determining subtheme path to create : ' . $subtheme_path);
 
+  if (file_exists($subtheme_path)) {
+    drush_print('theme  ' . $name . ' already exists in ' . $subtheme_path . ', canceling subtheme creation.');
+    return;
+  }
+
   drush_print('Begin copy of starter theme files into ' . $subtheme_path);
   drush_copy_dir("{$okcdesign_path}/STARTER/", "$subtheme_path", FILE_EXISTS_MERGE);
 
@@ -87,10 +92,12 @@ function drush_okcdesign_theme($name = NULL) {
     "core = 7.x",
     "",
   );
+
   // copy regions from base theme.
   $regions = system_region_list('okcdesign', REGIONS_VISIBLE);
   foreach ($regions as $region_id => $region_name) {
     if (!in_array($region_id, array('dashboard_sidebar', 'dashboard_inactive', 'dashboard_main'))) {
+      drush_print("Add $region_name to subtheme");
       $lines[] = "regions[$region_id] = $region_name";
     }
   }
