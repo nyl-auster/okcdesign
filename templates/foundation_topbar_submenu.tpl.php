@@ -11,8 +11,12 @@
     <?php $link = l($links[$i]['#title'], $links[$i]['#href'], $links[$i]['#localized_options']) ?>
 
     <?php if ($links[$i]['#below']) : ?>
+      <?php $links[$i]['#attributes']['class'][] = 'has-dropdown' ?>
 
-      <?php print theme('foundation_topbar_dropdown', array('links' => $links[$i]['#below'])) ?>
+      <li <?php print drupal_attributes($links[$i]['#attributes']) ?>>
+        <?php print $link ?>
+        <?php print theme('foundation_topbar_submenu', array('links' => $links[$i]['#below'])) ?>
+      </li>
 
     <?php else : ?>
 
