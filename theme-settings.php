@@ -144,8 +144,8 @@ function _okcdesign_build_plugin_checkbox($id, $plugins) {
  */
 function okcdesign_plugins_form_submit($form, $form_state) {
   // make sure new themes provided by plugins are discovered.
-  drupal_set_message('caches flushed');
-  cache_clear_all();
+  cache_clear_all('theme_registry', 'cache', TRUE);
+  drupal_set_message('Theme registry rebuild');
 }
 
 
