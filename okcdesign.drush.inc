@@ -88,10 +88,10 @@ function drush_okcdesign_theme($name = NULL) {
     "",
   );
   // copy regions from base theme.
-  $regions = system_region_list(variable_get('theme_default'), REGIONS_VISIBLE);
-  foreach ($regions as $id => $name) {
-    if (!in_array($id, array('dashboard_sidebar', 'dashboard_inactive', 'dashboard_main'))) {
-      $lines[] = "regions[$id] = $name";
+  $regions = system_region_list('okcdesign', REGIONS_VISIBLE);
+  foreach ($regions as $region_id => $region_name) {
+    if (!in_array($region_id, array('dashboard_sidebar', 'dashboard_inactive', 'dashboard_main'))) {
+      $lines[] = "regions[$region_id] = $region_name";
     }
   }
   $file = "$subtheme_path/$name.info";
