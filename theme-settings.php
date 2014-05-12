@@ -15,6 +15,8 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
 
   include_once 'theme_plugins_manager/theme_plugins_manager.php';
 
+  $form['#submit'][] = 'okcdesign_plugins_form_submit';
+
   // create vertical tabs to organize theme settings form.
   // put our plugin tab first as it may be more frequently used than general drupal settings.
   $form['okcdesign'] = array(
@@ -133,6 +135,17 @@ function _okcdesign_build_plugin_checkbox($id, $plugins) {
   // @TODO do not allow to disable a plugin required by enabled plugins.
 
   return $checkbox;
+}
+
+/**
+ * Additionnal submit callback for theme settings form.
+ * @param $form
+ * @param $form_state
+ */
+function okcdesign_plugins_form_submit($form, $form_state) {
+  // make sure new themes provided by plugins are discovered.
+  drupal_set_message('caches flushed');
+  cache_clear_all();
 }
 
 
