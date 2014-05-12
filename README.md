@@ -95,6 +95,7 @@ This need to be run only once :
 Then, run following command to compile automically your scss files each time they are modified :
 
 ```shell
+  npm install (only the first time, to install grunt locally on your subtheme)
   grunt
 ```
 
