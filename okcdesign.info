@@ -36,6 +36,3 @@ settings[theme_plugin_foundation_icon_fonts] = 1
 settings[theme_plugin_foundation_breadcrumb] = 1
 settings[theme_plugin_dynamic_sidebars] = 1
 settings[theme_plugin_foundation_alert_box] = 1
-
-
-;okclayout_block_classes[system-main] = small-12 large-6 columns
