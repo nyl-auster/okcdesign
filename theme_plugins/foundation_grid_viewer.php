@@ -12,6 +12,12 @@ class foundation_grid_viewer extends theme_plugin {
       '#description' => 'Grid may be hide by other html elements, enable this to put grid in front of other html elements.',
       '#default_value' => theme_plugin_get_setting(__CLASS__, 'display_above_theme', 0),
     );
+    $form['grid_color'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Change grid color',
+      '#description' => 'Enter a valid css color',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'grid_color', '#EEE'),
+    );
     return $form;
   }
 
@@ -29,13 +35,14 @@ class foundation_grid_viewer extends theme_plugin {
    */
   function theme_grid_viewer($columns) {
     $above = theme_plugin_get_setting(__CLASS__, 'display_above_theme', 0);
+    $grid_color = strip_tags(theme_plugin_get_setting(__CLASS__, 'grid_color', '#EEE'));
     $z_index = $above ? '1' : '0';
     $html = array();
     $html[] = '<div style="z-index:' . $z_index . ';position:relative;opacity:0.5" class="row">';
     $html[] = '<div style="position:absolute;top:0;height:100%;width:100%">';
     for($i =1; $i <= $columns; $i++) {
       $html[] = '<div style="" class="small-1 columns">';
-      $html[] = '<p style="height:3000px;background:#EEE;"> ' . $i . '</p>';
+      $html[] = '<p style="height:3000px;background: ' . $grid_color . ';"> ' . $i . '</p>';
       $html[] = '</div>';
     }
     $html[] = '</div>';
