@@ -62,7 +62,7 @@ class foundation_grid_viewer extends theme_plugin {
     $html[] = '<div style="position:absolute;top:0;height:100%;width:100%">';
     for($i = 1; $i <= $columns; $i++) {
       $html[] = '<div style="" class="small-1 columns">';
-      $html[] = '<p style="height:3000px;background: ' . $grid_color . ';"> ' . $i . '</p>';
+      $html[] = '<p style="text-align:center;color:white;height:3000px;padding-top:300px;font-weight:bold;background: ' . $grid_color . ';"> ' . $i . '</p>';
       $html[] = '</div>';
     }
     $html[] = '</div>';
