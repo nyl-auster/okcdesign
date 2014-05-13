@@ -29,7 +29,7 @@ class foundation_grid_viewer extends theme_plugin {
    */
   function theme_grid_viewer($columns) {
     $above = theme_plugin_get_setting(__CLASS__, 'display_above_theme', 0);
-    $z_index = $above ? '0' : '-999';
+    $z_index = $above ? '1' : '0';
     $html = array();
     $html[] = '<div style="z-index:' . $z_index . ';position:relative;opacity:0.5" class="row">';
     $html[] = '<div style="position:absolute;top:0;height:100%;width:100%">';
