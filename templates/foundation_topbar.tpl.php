@@ -27,7 +27,9 @@
 
         <?php if ($site_name = variable_get('site_name', '')): ?>
           <li class="name">
-            <h1><a href="<?php print url('<front>')?>"><?php print $site_name ?></a></h1>
+            <?php if (!theme_plugin_get_setting('foundation_topbar', 'hide_site_name')) :?>
+              <h1><a href="<?php print url('<front>')?>"><?php print $site_name ?></a></h1>
+            <?php endif ?>
           </li>
         <?php endif ?>
 

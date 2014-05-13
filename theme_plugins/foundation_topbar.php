@@ -32,6 +32,11 @@ class foundation_topbar extends theme_plugin {
       '#title' => 'Set to grid width instead of full page width',
       '#default_value' => theme_plugin_get_setting(__CLASS__, 'contain_to_grid'),
     );
+    $form['hide_site_name'] = array(
+      '#type' => 'checkbox',
+      '#title' => 'Hide the site name displaying by default at the left of the topbar',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'hide_site_name'),
+    );
     return $form;
   }
 
