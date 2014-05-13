@@ -49,12 +49,18 @@ class dynamic_sidebars extends theme_plugin {
         '#default_value' => $case_settings['sidebar'],
         '#description' => "example : small-12 large-4 columns"
       );
+      if (module_exists('okclayout')) {
+        $form[$case_id]['sidebar']['#autocomplete_path'] = 'okclayout/autocomplete/foundation-classes';
+      }
       $form[$case_id]['content'] = array(
         '#type' => 'textfield',
         '#title' => 'Foundation classes : content',
         '#default_value' => $case_settings['content'],
         '#description' => "example : small-12 large-8 columns"
       );
+      if (module_exists('okclayout')) {
+        $form[$case_id]['content']['#autocomplete_path'] = 'okclayout/autocomplete/foundation-classes';
+      }
     }
 
     return $form;
