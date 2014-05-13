@@ -3,15 +3,25 @@
  * @file page.tpl.php
  * @see modules/system/page.tpl.php for drupal documentation of a page.tpl.php
  *
- * This is only a very basic example of how to use foundation classes.
- * Copy to your subtheme to start working with foundation grids as you need.
+ * This is an example of how to use grid system with foundation framework.
+ * Feel free to copy this template in your subtheme templates directory and
+ * overrides it as you need.
+ *
+ * This templates take care of placing all drupal elements inside foundation
+ * grid; so that changing grid settings affect all elements of this template.
+ *
+ * There is custom regions suffixed by __row_xx : they are prepared to receive
+ * blocks containing grid classes, if you use okclayout module.
  *
  * class "row" is a special class dedicated to foundation framework.
  * Please @see http://foundation.zurb.com/docs/components/grid.html on how to use.
- * It's up to you to override this template and use grid classes as you like.
+ *
+ * class "row-wrapper" is not a part of foundation, only a helper class for css
+ * specific to this template example.
  *
  * Sidebars are handled by foundation grid classes, that may be configured
- * in theme settings if needed.
+ * in theme settings if needed. (if you change the number of grid columns, you'll
+ * need to ajdust their width in theme plugin settings.
  *
  * The grid settings can be configured in _settings.scss file.
  *
@@ -34,21 +44,22 @@
 
   <!-- site name , logo & slogan -->
   <?php if ($site_name || $logo || $site_slogan) : ?>
-    <div class="row" id="site-informations">
-      <h1>
-        <?php if ($logo): ?>
-          <a href="<?php print $front_page ?>" title="<?php print t('Home') ?>" rel="home" id="logo">
-            <img src="<?php print $logo; ?>" alt="<?php print t('Home') ?>" />
-          </a>
-        <?php endif ?>
+    <div class="row">
+      <div id="site-informations" class="small-12 columns">
+        <h1>
+          <?php if ($logo): ?>
+            <a href="<?php print $front_page ?>" title="<?php print t('Home') ?>" rel="home" id="logo">
+              <img src="<?php print $logo; ?>" alt="<?php print t('Home') ?>" />
+            </a>
+          <?php endif ?>
 
-        <?php if($site_name): ?>
-          <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="site-name"> <?php print $site_name ?> </a>
-        <?php endif ?>
-      </h1>
+          <?php if($site_name): ?>
+            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="site-name"> <?php print $site_name ?> </a>
+          <?php endif ?>
+        </h1>
 
-      <?php if ($site_slogan): ?> <h2 id="site-slogan"><?php print $site_slogan ?></h2> <?php endif ?>
-
+        <?php if ($site_slogan): ?> <h2 id="site-slogan"><?php print $site_slogan ?></h2> <?php endif ?>
+      </div>
     </div>
   <?php endif ?>
 
@@ -78,39 +89,50 @@
   <?php endif ?>
   </div>
 
-  <?php // foundation rows ?>
-  <div class="row header--row-1">
-    <?php if(isset($page['header__row_1'])) print render($page['header__row_1']) ?>
-  </div>
-  <div class="row header--row-2">
-    <?php if(isset($page['header__row_2'])) print render($page['header__row_2']) ?>
-  </div>
-  <div class="row header--row-3">
-    <?php if(isset($page['header__row_3'])) print render($page['header__row_3']) ?>
-  </div>
+  <?php if (!empty($page['header'])) : ?>
+    <div class="row">
+      <div class="small-12 columns">
+        <?php print render($page['header']) ?>
+      </div>
+    </div>
+  <?php endif ?>
+
+  <?php if (!empty($page['header__row_1'])) : ?>
+    <div class="row-wrapper">
+      <div class="row header--row-1">
+        <?php print render($page['header__row_1']) ?>
+      </div>
+    </div>
+  <?php endif ?>
+
+  <?php if (!empty($page['header__row_2'])) : ?>
+    <div class="row-wrapper">
+      <div class="row header--row-2">
+        <?php print render($page['header__row_2']) ?>
+      </div>
+    </div>
+  <?php endif ?>
+
+  <?php if (!empty($page['header__row_3'])) : ?>
+    <div class="row-wrapper">
+      <div class="row header--row-3">
+        <?php print render($page['header__row_3']) ?>
+      </div>
+    </div>
+  <?php endif ?>
 
 </header>
 
 <?php if ($breadcrumb): ?>
-  <div class="row" id="breadcrumb">
-    <div class="small-12 columns">
-      <?php print $breadcrumb ?>
+  <div id="breadcrumb">
+    <div class="row">
+      <div class="small-12 columns">
+        <?php print $breadcrumb ?>
+      </div>
     </div>
   </div> <!-- /.row -->
 <?php endif ?>
 
-<div class="row content-top--row-1">
-  <?php if(isset($page['content_top__row_1'])) print render($page['content_top__row_1']) ?>
-</div>
-<div class="row content-top--row-2">
-  <?php if(isset($page['content_top__row_2'])) print render($page['content_top__row_2']) ?>
-</div>
-<div class="row content-top--row-3">
-  <?php if(isset($page['content_top__row_3'])) print render($page['content_top__row_3']) ?>
-</div>
-<div class="row content-top--row-4">
-  <?php if(isset($page['content_top__row_4'])) print render($page['content_top__row_4']) ?>
-</div>
 
 <?php if ($messages) : ?>
   <div id="messages" class="row">
@@ -121,6 +143,31 @@
 <?php endif ?>
 
 <section class="content">
+
+  <?php if(!empty($page['content_top__row_1'])) : ?>
+    <div class="row-wrapper content-top--row-1">
+      <div class="row">
+        <?php print render($page['content_top__row_1']) ?>
+      </div>
+    </div>
+  <?php endif ?>
+
+  <?php if(!empty($page['content_top__row_2'])) : ?>
+    <div class="row-wrapper content-top--row-2">
+      <div class="row">
+        <?php print render($page['content_top__row_2']) ?>
+      </div>
+    </div>
+  <?php endif ?>
+
+  <?php if(!empty($page['content_top__row_3'])) : ?>
+    <div class="row-wrapper content-top--row-3">
+      <div class="row">
+        <?php print render($page['content_top__row_3']) ?>
+      </div>
+    </div>
+  <?php endif ?>
+
   <div class="row">
 
     <?php // sidebars and content classes contains foundation classes generated by dynamic_sidebars plugins ?>
@@ -168,13 +215,37 @@
 </section>
 
 <footer>
-  <div class="row footer footer--row-1">
-    <?php if(isset($page['footer__row_1'])) print render($page['footer__row_1']); ?>
-  </div>
-  <div class="row footer--row-2">
-    <?php if(isset($page['footer__row_2'])) print render($page['footer__row_2']); ?>
-  </div>
-  <div class="row footer--row-3">
-    <?php if(isset($page['footer__row_3'])) print render($page['footer__row_3']); ?>
-  </div>
+
+  <?php if(!empty($page['footer'])) : ?>
+    <div class="row">
+      <div class="small-12 columns">
+        <?php print render($page['footer']); ?>
+      </div>
+    </div>
+  <?php endif ?>
+
+  <?php if(!empty($page['footer__row_1'])) : ?>
+    <div class="row-wrapper footer--row-1">
+      <div class="row">
+        <?php print render($page['footer__row_1']); ?>
+      </div>
+    </div>
+  <?php endif ?>
+
+  <?php if(!empty($page['footer__row_2'])) : ?>
+    <div class="row-wrapper footer--row-2">
+      <div class="row">
+        <?php print render($page['footer__row_2']); ?>
+      </div>
+    </div>
+  <?php endif ?>
+
+  <?php if(!empty($page['footer__row_3'])) : ?>
+    <div class="row-wrapper footer--row-3">
+      <div class="row">
+        <?php print render($page['footer__row_3']); ?>
+      </div>
+    </div>
+  <?php endif ?>
+
 </footer>
