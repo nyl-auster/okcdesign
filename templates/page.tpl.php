@@ -45,20 +45,23 @@
   <!-- site name , logo & slogan -->
   <?php if ($site_name || $logo || $site_slogan) : ?>
     <div class="row">
-      <div id="site-informations" class="small-12 columns">
-        <h1>
-          <?php if ($logo): ?>
-            <a href="<?php print $front_page ?>" title="<?php print t('Home') ?>" rel="home" id="logo">
-              <img src="<?php print $logo; ?>" alt="<?php print t('Home') ?>" />
-            </a>
-          <?php endif ?>
+      <div class="small-12 columns">
+        <div  id="site-informations">
+          
+          <h1>
+            <?php if ($logo): ?>
+              <a href="<?php print $front_page ?>" title="<?php print t('Home') ?>" rel="home" id="logo">
+                <img src="<?php print $logo; ?>" alt="<?php print t('Home') ?>" />
+              </a>
+            <?php endif ?>
 
-          <?php if($site_name): ?>
-            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="site-name"> <?php print $site_name ?> </a>
-          <?php endif ?>
-        </h1>
+            <?php if($site_name): ?>
+              <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="site-name"> <?php print $site_name ?> </a>
+            <?php endif ?>
+          </h1>
 
-        <?php if ($site_slogan): ?> <h2 id="site-slogan"><?php print $site_slogan ?></h2> <?php endif ?>
+          <?php if ($site_slogan): ?> <h2 id="site-slogan"><?php print $site_slogan ?></h2> <?php endif ?>
+        </div>
       </div>
     </div>
   <?php endif ?>
