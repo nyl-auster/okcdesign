@@ -58,11 +58,15 @@ class foundation_topbar extends theme_plugin {
 
     foreach (element_children($variables['links_left']) as $i) {
       // php 5.4 will complain about references without this extra affectation...
-      self::add_active_class($link = &$variables['links_left'][$i]);
+      $this->add_active_class($link = &$variables['links_left'][$i]);
+      // add link id for theming
+      $variables['links_left'][$i]['#attributes']['id'] = 'link-' . $i;
     }
 
     foreach (element_children($variables['links_right']) as $i) {
-      self::add_active_class($link = &$variables['links_right'][$i]);
+      $this->add_active_class($link = &$variables['links_right'][$i]);
+      // add link id for theming
+      $variables['links_right'][$i]['#attributes']['id'] = 'link-' . $i;
     }
   }
 
@@ -91,6 +95,5 @@ class foundation_topbar extends theme_plugin {
         $link['#attributes']['class'][] = 'active';
     }
   }
-
 
 }
