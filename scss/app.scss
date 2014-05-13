@@ -1,6 +1,13 @@
 // SUBTHEMES : edit those files to start working.
 
 @import "settings";
+
+// optionnal : css reset for all browsers.
+@import "normalize";
+
+// import ALL foundation components.
+// to keep your css lighter, you might prefere include only components
+// you actually use below.
 @import "foundation";
 
 // SUBTHEMES : PLEASE comment this line, this only here as an example
