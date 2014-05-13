@@ -34,7 +34,7 @@
 
   <!-- site name , logo & slogan -->
   <?php if ($site_name || $logo || $site_slogan) : ?>
-    <div class="row">
+    <div class="row" id="site-informations">
       <h1>
         <?php if ($logo): ?>
           <a href="<?php print $front_page ?>" title="<?php print t('Home') ?>" rel="home" id="logo">
@@ -43,11 +43,12 @@
         <?php endif ?>
 
         <?php if($site_name): ?>
-          <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo"> <?php print $site_name ?> </a>
+          <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="site-name"> <?php print $site_name ?> </a>
         <?php endif ?>
-
-        <?php if ($site_slogan): ?> <small id="site-slogan"><?php print $site_slogan ?></small> <?php endif ?>
       </h1>
+
+      <?php if ($site_slogan): ?> <h2 id="site-slogan"><?php print $site_slogan ?></h2> <?php endif ?>
+
     </div>
   <?php endif ?>
 
