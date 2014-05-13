@@ -5,6 +5,22 @@
  */
 class foundation_grid_viewer extends theme_plugin {
 
+  protected $total_columns = 12;
+
+  function __construct() {
+    // find the number of columns of current grid.
+    // take the number of columns set in _settings.scss if there is one.
+    // if we find nothing in _settings.scss, take the settings saved by our plugin configuration form.
+    // If form has not been saved yet, let's say there is 12 columns which is default value in foudation.
+    $settings = $this->get_foundation_settings();
+    if (is_numeric($settings['total_columns'])) {
+      $this->total_columns = $settings['total_columns'];
+    }
+    else {
+      $this->total_columns = theme_plugin_get_setting(__CLASS__, 'total_columns', 12);
+    }
+  }
+
   function settings_form() {
     $form['display_above_theme'] = array(
       '#type' => 'checkbox',
@@ -18,6 +34,12 @@ class foundation_grid_viewer extends theme_plugin {
       '#description' => 'Enter a valid css color',
       '#default_value' => theme_plugin_get_setting(__CLASS__, 'grid_color', '#EEE'),
     );
+
+    $form['total_columns'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Number of columns of your grid. We try to guess it reading your _settings.scss file, but if it seems wrong, write here the right total of columns.',
+      '#default_value' => $this->total_columns,
+    );
     return $form;
   }
 
@@ -25,9 +47,7 @@ class foundation_grid_viewer extends theme_plugin {
    * Create a variable in page.tpl.php to display the grid.
    */
   function hook_preprocess_page(&$variables) {
-    $settings = $this->get_foundation_settings();
-    $columns = $settings['total_columns'];
-    $variables['foundation_grid_viewer'] = $this->theme_grid_viewer($columns);
+    $variables['foundation_grid_viewer'] = $this->theme_grid_viewer($this->total_columns);
   }
 
   /**
@@ -40,7 +60,7 @@ class foundation_grid_viewer extends theme_plugin {
     $html = array();
     $html[] = '<div style="z-index:' . $z_index . ';position:relative;opacity:0.5" class="row">';
     $html[] = '<div style="position:absolute;top:0;height:100%;width:100%">';
-    for($i =1; $i <= $columns; $i++) {
+    for($i = 1; $i <= $columns; $i++) {
       $html[] = '<div style="" class="small-1 columns">';
       $html[] = '<p style="height:3000px;background: ' . $grid_color . ';"> ' . $i . '</p>';
       $html[] = '</div>';

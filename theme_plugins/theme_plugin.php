@@ -54,7 +54,7 @@ class theme_plugin {
       if (strpos($line, '$total-columns') !== FALSE) {
         $parts = explode(':', $line);
         if (isset($parts[1])) {
-          $settings['total_columns'] = str_replace(';', '', $parts[1]);
+          $settings['total_columns'] = trim(str_replace(';', '', $parts[1]));
         }
       }
     }
