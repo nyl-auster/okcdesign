@@ -8,8 +8,8 @@ OKC Design
 OKCDesign is a Drupal 7 responsive starter theme for developers, based on zurb foundation 5 framework.
 Foundation 5 is a powerfull front-end, mobile-first, responsive framework : http://foundation.zurb.com/
 
-By default, OKC Design takes care of displaying all drupal elements inside a solid foundation grid system for page.tpl.php; to let foundation handle the responsive part of your theme.
-Please check also https://github.com/nyl-auster/okclayout that allows you to place quickly blocks inside okcdesign regions.
+By default, OKC Design takes care of displaying all drupal elements inside a solid foundation grid system for page.tpl.php;
+to let foundation handle the responsive part of your theme.
 
 FEATURES
 ---------
@@ -24,7 +24,6 @@ PHILOSOPHY
 ----------
 
 OKC Design focuses on make it easy to use foundation tools with Drupal 7, but it's up to the developper to choose which parts of foundation he wants to use.
-It relies heavily on sass, as it is how foundation is built.
 
 If you don't know at all foundation, you should at least visit this two pages :
 - learn how to use foundation grid system : http://foundation.zurb.com/docs/components/grid.html
@@ -37,6 +36,7 @@ THEME PLUGINS
 
 Visit admin/appearance/settings to enable or disable theme plugins for your subtheme.
 Technically, foundation itself is provided as a plugin, enabled by default.
+Thinks plugins as modules for a theme, adding features to the theme.
 
 REQUIREMENTS
 -------------
