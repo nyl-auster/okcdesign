@@ -25,11 +25,13 @@ spl_autoload_register('okcdesign_plugins_autoloader');
  *
  * Look in theme_plugins directory for the requested class.
  * @param $class_name : the requested class name.
+ * @return string filename is a file is found, otherwise NULL
  */
 function okcdesign_plugins_autoloader($class_name) {
   $file = drupal_get_path('theme', 'okcdesign') . "/" . OKCDESGIN_THEME_PLUGINS_DIRECTORY . "/$class_name.php";
   if (is_readable($file)) {
     include_once $file;
+    return $file;
   }
 }
 
