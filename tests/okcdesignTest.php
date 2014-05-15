@@ -1,4 +1,14 @@
 <?php
+/**
+ * Before every release :
+ * - Run all phpunits test
+ * - Complete with following manual tests :
+ *
+ * - lauch drush command "drush okc-theme", enable theme and see if all is ok.
+ * - go to admin settings of current active theme, check and unchecked plugin,
+ *   see it it does what it is supposed to.
+ * - launch grunt in subtheme, see if scss is correctly compiled to css.
+ */
 
 include 'drupalBootstrap.inc';
 
