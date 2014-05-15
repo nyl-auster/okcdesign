@@ -16,8 +16,12 @@ class okcdesignTest extends PHPUnit_Framework_TestCase {
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/scss/_settings.scss');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/js/app.js');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/templates/page.tpl.php');
-    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/templates/page.tpl.php');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/templates/foundation_topbar.tpl.php');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/templates/foundation_topbar_submenu.tpl.php');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/bower_components/foundation/scss/foundation/components/_global.scss');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/theme_plugins');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/theme_plugins_manager/theme_plugins_manager.php');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/okcdesign.drush.inc');
   }
 
 
