@@ -13,6 +13,15 @@ class okcdesignPluginsManagerTest extends PHPUnit_Framework_TestCase {
    * Check if theme_get_plugins is returning an array.
    * Check if we find a "foundation" key which is the main plugin for our theme.
    */
+  function test_plugin_registry_file() {
+    $plugin_file = drupal_get_path('theme', 'okcdesign') . '/okcdesign.info.plugins.php';
+    $this->assertFileExists($plugin_file);
+  }
+
+  /**
+   * Check if theme_get_plugins is returning an array.
+   * Check if we find a "foundation" key which is the main plugin for our theme.
+   */
   function test_theme_get_plugins() {
     $plugins = theme_get_plugins();
     $this->assertInternalType('array', $plugins);
