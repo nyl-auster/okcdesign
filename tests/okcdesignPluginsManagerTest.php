@@ -49,13 +49,15 @@ class okcdesignPluginsManagerTest extends PHPUnit_Framework_TestCase {
 
   /**
    * Check foundation plugin is enabled in current theme.
-   * Has this what it is supposed to happen.
    */
   function test_foundation_plugin_is_enabled() {
     $enabled = theme_get_setting('theme_plugin_foundation');
     $this->assertEquals(1, $enabled);
   }
 
+  /**
+   * Check if required css and js file seems to be correctly injected into Drupal
+   */
   function test_foundation_is_correctly_included() {
     // simulate that drupal is servring a webpage. False indicates that we don't actually print html.
     // this is required to gather all drupal css & js files.
