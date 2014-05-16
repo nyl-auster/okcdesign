@@ -17,7 +17,7 @@ class foundation_grid_viewer extends theme_plugin {
 
     // is user defined custom settings for foundation via foundation_ui plugin, take this value.
     $total_columns = theme_plugin_get_setting('foundation_ui', 'total-columns');
-    if ($total_columns) {
+    if ($total_columns && theme_plugin_is_enabled('foundation_ui')) {
       $this->total_columns = $total_columns;
     }
     // else if we find number of columns in _settings.scss file, take this one.

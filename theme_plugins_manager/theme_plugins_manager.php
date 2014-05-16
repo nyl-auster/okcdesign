@@ -136,7 +136,7 @@ function theme_plugins_invoke($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 
     $method = str_replace('okcdesign' . '', 'hook', $hook);
     // if plugins declared a method to fire for this particular hook, call it.
 
-    if (in_array($method, $plugin_infos['hooks'])) {
+    if (isset($plugin_infos['hooks']) && in_array($method, $plugin_infos['hooks'])) {
       $plugin = $plugin_id::get_instance();
       $result = $plugin->$method($arg1, $arg2, $arg3, $arg4);
     }

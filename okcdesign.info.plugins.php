@@ -118,9 +118,6 @@ $plugins['foundation_grid_viewer'] = array(
 $plugins['foundation_ui'] = array(
   'title' => 'Global design settings',
   'description' => 'Change design global settings. <strong> warning : </strong> saving may take some time we you modify those settings, as this operation recompile all scss of your sites to css.',
-  'hooks' => array(
-    'hook_preprocess_page',
-  ),
   'dependencies' => array('foundation'),
   'package' => 'foundation',
 );

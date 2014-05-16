@@ -42,16 +42,13 @@ class foundation_ui extends theme_plugin {
       '#title' => 'Secondary color',
       '#default_value' => theme_plugin_get_setting(__CLASS__, 'secondary-color', ''),
     );
-    // custom variable use for background color
-    $form['background-color'] = array(
+    $form['header-font-color'] = array(
       '#type' => 'textfield',
-      '#title' => 'Background color',
-      '#default_value' => theme_plugin_get_setting(__CLASS__, 'background-color', ''),
+      '#title' => 'h1, h2, etc... font colors',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'header-font-color', ''),
     );
     return $form;
   }
-
-  function hook_preprocess_page(){}
 
 }
 
