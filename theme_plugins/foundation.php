@@ -13,11 +13,18 @@ class foundation extends theme_plugin {
    */
   function hook_html_head_alter(&$head_elements) {
 
-    // for subtheme, use subtheme app.css
-    $user_css = variable_get('file_public_path', conf_path() . '/files') . '/okcdesign/' . variable_get('theme_default', 'okcdesign') . '/app.css';
-    if (is_readable($user_css)) {
-      drupal_add_css($user_css);
+    // Load foundation main css file.
+    //
+    // First we look if a "files/okcdesign/{themename}/app.css exists and load if found.
+    // This is app.scss file compiled with user defined settings via foundation_ui plugin form.
+    // This is how non-dev users can customize their theme foundation settings.
+    $custom_theme_css = variable_get('file_public_path', conf_path() . '/files') . '/okcdesign/' . variable_get('theme_default', 'okcdesign') . '/app.css';
+    if (is_readable($custom_theme_css)) {
+      drupal_add_css($custom_theme_css);
     }
+    // else we load app.css file from css/folder, which is the result of scss/app.scss file compilation
+    // by grunt, sass or compass.
+    // This is how developper work with okcdesign theme.
     else {
       drupal_add_css($this->default_theme_path . '/css/app.css');
     }
@@ -56,7 +63,7 @@ class foundation extends theme_plugin {
   /**
    * Remove drupal core files, except the one we actually need to work
    */
-  static function hook_css_alter(&$css) {
+  function hook_css_alter(&$css) {
 
     // do not break demdo block page
     if(strpos($_GET['q'], 'admin/structure/block/demo') === 0) return;

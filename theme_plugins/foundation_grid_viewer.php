@@ -12,10 +12,19 @@ class foundation_grid_viewer extends theme_plugin {
     // take the number of columns set in _settings.scss if there is one.
     // if we find nothing in _settings.scss, take the settings saved by our plugin configuration form.
     // If form has not been saved yet, let's say there is 12 columns which is default value in foudation.
+
     $settings = $this->get_foundation_settings();
-    if (is_numeric($settings['total_columns'])) {
+
+    // is user defined custom settings for foundation via foundation_ui plugin, take this value.
+    $total_columns = theme_plugin_get_setting('foundation_ui', 'total-columns');
+    if ($total_columns) {
+      $this->total_columns = $total_columns;
+    }
+    // else if we find number of columns in _settings.scss file, take this one.
+    elseif (is_numeric($settings['total_columns'])) {
       $this->total_columns = $settings['total_columns'];
     }
+    // if we can't find nothing of all that, take value register by this plugin.
     else {
       $this->total_columns = theme_plugin_get_setting(__CLASS__, 'total_columns', 12);
     }
@@ -37,7 +46,7 @@ class foundation_grid_viewer extends theme_plugin {
 
     $form['total_columns'] = array(
       '#type' => 'textfield',
-      '#title' => 'Number of columns of your grid. We try to guess it reading your _settings.scss file, but if it seems wrong, write here the right total of columns.',
+      '#title' => 'Number of columns of your grid. OKC Design try to guess it lookin into scss/_settings.scss file, but if it seems wrong or set in another scss file, put here the actual number of grid columns.',
       '#default_value' => $this->total_columns,
     );
     return $form;

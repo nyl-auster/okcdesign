@@ -19,7 +19,9 @@ class theme_plugin {
 
   // use this method to provide a configuration form for the plugin.
   // @see foundation_topbar for a working example.
-  function settings_form(){}
+  function settings_form(&$theme_settings_form = array()){
+    return array();
+  }
 
   private function __construct() {
     $this->base_theme_name = 'okcdesign';

@@ -8,7 +8,8 @@
  * - package : plugins are grouped by package in theme settings administration
  * - hooks : on which hooks this plugin must be invoked. Plugin then must implement a method
  *   witch exactly this name.
- * - required : if TRUE, user won't be able to disabled this via administration.
+ * - expert : if TRUE, plugin will be invisible unless we add "/expert" at the end of url.
+ *   in plugin administration form.
  *   @TODO required key does not work anymore, as disabled attributes use on checkbox
  *   cause trouble when saving settings. (values are not POSTED)
  * - dependencies : plugins needed by our plugins.
@@ -18,14 +19,14 @@ $plugins['foundation'] = array(
   'title' => 'Foundation Core',
   'description' => 'Plug foundation css framework into Drupal.',
   'package' => 'foundation',
-  'required' => TRUE,
+  'expert' => TRUE,
   'hooks' => array(
     'hook_html_head_alter',
     'hook_css_alter',
   ),
 );
 $plugins['dynamic_sidebars'] = array(
-  'title' => 'Dynamic sidebars',
+  'title' => 'Sidebars',
   'description' => 'Adjust content width according to sidebars',
   'hooks' => array('hook_preprocess_page'),
   'dependencies' => array('foundation'),
@@ -38,10 +39,12 @@ $plugins['foundation_alert_box'] = array(
   'hooks' => array('hook_status_messages'),
   'dependencies' => array('foundation'),
   'package' => 'foundation',
+  'expert' => TRUE,
 );
 $plugins['foundation_breadcrumb'] = array(
   'title' => 'Breadcrumb',
   'description' => 'Drupal breadcrumb as foundation breadcrumb',
+  'expert' => TRUE,
   'hooks' => array(
     'hook_breadcrumb'
   ),
@@ -82,6 +85,7 @@ $plugins['animate_css'] = array(
     'hook_html_head_alter',
   ),
   'package' => 'others',
+  'expert' => TRUE,
 );
 $plugins['foundation_icon_fonts'] = array(
   'title' => 'foundation_icon_fonts',
@@ -91,6 +95,7 @@ $plugins['foundation_icon_fonts'] = array(
   ),
   'dependencies' => array('foundation'),
   'package' => 'foundation',
+  'expert' => TRUE,
 );
 $plugins['foundation_check_requirements'] = array(
   'title' => 'check_requirements',
@@ -99,7 +104,7 @@ $plugins['foundation_check_requirements'] = array(
   ),
   'dependencies' => array('foundation'),
   'package' => 'foundation',
-  'required' => TRUE,
+  'expert' => TRUE,
 );
 $plugins['foundation_grid_viewer'] = array(
   'title' => 'Grid viewer',
@@ -111,12 +116,13 @@ $plugins['foundation_grid_viewer'] = array(
   'package' => 'foundation',
 );
 $plugins['foundation_ui'] = array(
-  'title' => 'foundation_ui',
+  'title' => 'Global design settings',
+  'description' => 'Change design global settings. <strong> warning : </strong> saving may take some time we you modify those settings, as this operation recompile all scss of your sites to css.',
   'hooks' => array(
-    '',
+    'hook_preprocess_page',
   ),
+  'dependencies' => array('foundation'),
   'package' => 'foundation',
 );
-
 
 return $plugins;
