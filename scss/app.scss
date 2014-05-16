@@ -1,24 +1,15 @@
-// SUBTHEMES : edit those files to start working.
+// foundation settings. The first you should edit in your subtheme to
+// adapt css foundation to your design.
+@import 'settings';
 
-// foundation settings. You should begin to adapt foundation
-// settings
-   @import       'settings'; @import "normalize";
+// css reset
+@import "normalize";
 
-// optionnal : css normalization for all browsers.
-//@import "normalize";
-
-// import ALL foundation components.
-// to keep your css lighter, you might prefere include only components
-// you actually use below.
+// import ALL foundation components at once.
 @import "foundation";
 
-// SUBTHEMES : PLEASE comment this line, this only here as an example
-// and to make default site more usable.
+// PLEASE comment this line in yoursubtheme, this only here as an example
 @import "drupal-example";
-
-
-
-//@import "foundation/drupal-example";
 
 // Or selectively include components
 // @import

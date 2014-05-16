@@ -19,7 +19,7 @@ class foundation extends theme_plugin {
     // This is app.scss file compiled with user defined settings via foundation_ui plugin form.
     // This is how non-dev users can customize their theme foundation settings.
     $custom_theme_css = variable_get('file_public_path', conf_path() . '/files') . '/okcdesign/' . variable_get('theme_default', 'okcdesign') . '/app.css';
-    if (is_readable($custom_theme_css)) {
+    if (is_readable($custom_theme_css) && theme_plugin_is_enabled('foundation_ui')) {
       drupal_add_css($custom_theme_css);
     }
     // else we load app.css file from css/folder, which is the result of scss/app.scss file compilation
