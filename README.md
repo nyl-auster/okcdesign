@@ -70,6 +70,13 @@ SCSS COMPILATION
 ------------------------------------
 
 To compile your scss with "grunt" (recommended) :
+You have to install node and grunt-cli to make this work :
+(i'm using brew package manager on mac here, use your favorite package manager)
+
+```shell
+  brew install node
+  npm install -g grunt-cli
+```
 
 Go to the **root** of your freshly created subtheme and run this command, ut will install required node modules. You have to run it only the first time : 
 
