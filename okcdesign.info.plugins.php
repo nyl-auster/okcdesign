@@ -110,4 +110,13 @@ $plugins['foundation_grid_viewer'] = array(
   'dependencies' => array('foundation'),
   'package' => 'foundation',
 );
+$plugins['foundation_ui'] = array(
+  'title' => 'foundation_ui',
+  'hooks' => array(
+    '',
+  ),
+  'package' => 'foundation',
+);
+
+
 return $plugins;

@@ -125,6 +125,8 @@ function drush_okcdesign_theme($name = NULL) {
  * Create a new okcdesign theme plugin
  */
 function drush_okcdesign_plugin($name = NULL) {
+  include_once 'theme_plugins_manager/theme_plugins_manager.php';
+
   if (empty($name)) {
     drush_set_error(dt("Please provide a name for the plugin."));
     return;
@@ -155,7 +157,7 @@ function drush_okcdesign_plugin($name = NULL) {
   $lines[] = '';
   $lines[] = '}';
 
-  $file = "$themepath/theme_plugins/$name.php";
+  $file = $themepath . '/' . OKCDESGIN_THEME_PLUGINS_DIRECTORY . '/' . $name . '.php';
   drush_op('file_put_contents', $file, implode($lines, "\r\n"));
 
 
@@ -172,7 +174,7 @@ function drush_okcdesign_plugin($name = NULL) {
   $lines[] = '';
   $lines[] = 'return $plugins;';
 
-  $file = $themepath . '/theme_plugins_registry.php';
+  $file = $themepath . '/' . OKCDESGIN_THEME_PLUGINS_REGISTRY_FILE;
   $file_contents = drush_op('file_get_contents', $file);
   $file_contents = str_replace('return $plugins;', '', $file_contents);
   $file_contents .= implode($lines, "\n");
