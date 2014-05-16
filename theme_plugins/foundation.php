@@ -14,7 +14,16 @@ class foundation extends theme_plugin {
   function hook_html_head_alter(&$head_elements) {
 
     // for subtheme, use subtheme app.css
+    $user_css = variable_get('file_public_path', conf_path() . '/files') . '/okcdesign-scss/' . variable_get('theme_default', 'okcdesign') . '/app.css';
+    //print $this->default_theme_path . '/css/app.css';
     drupal_add_css($this->default_theme_path . '/css/app.css');
+
+    if (is_readable($user_css)) {
+      //drupal_add_css($user_css);
+    }
+    else {
+
+    }
 
     // for other files, use okcdesign files to not duplicate theme, for easier maintenance of all subthemes.
     drupal_add_js($this->base_theme_path . '/js/app.js');

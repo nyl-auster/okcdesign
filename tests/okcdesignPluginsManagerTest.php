@@ -10,6 +10,14 @@ include 'theme_plugins_manager/theme_plugins_manager.php';
 class okcdesignPluginsManagerTest extends PHPUnit_Framework_TestCase {
 
   /**
+   * Make sur our constants are correclty defined
+   */
+  function test_constants() {
+    $this->assertTrue(defined("OKCDESGIN_THEME_PLUGINS_DIRECTORY"), 'Constant OKCDESGIN_THEME_PLUGINSS_DIRECTORY is undefined');
+    $this->assertTrue(defined("OKCDESGIN_THEME_PLUGINS_REGISTRY_FILE"), 'Constant OKCDESGIN_THEME_PLUGINS_REGISTRY_FILE is undefined');
+  }
+
+  /**
    * Check if theme_get_plugins is returning an array.
    * Check if we find a "foundation" key which is the main plugin for our theme.
    */

@@ -1,0 +1,9 @@
+// This is only a placeholder file, please do not delete or edit it.
+// If user defined custom foundation settings via theme administration,
+// A file name _theme_custom_settings will be created in
+// "sites/default/files/okcdesign/{themename}/scss/_theme_custom_settings.",
+// and all scss will be recompiled using this file.
+//
+// We have to import this file in app.scss, but has there is no way to
+// make conditionnal imports with sass, we include by default this emtpy
+// file if _theme_custom_settings does not exists in files directory.

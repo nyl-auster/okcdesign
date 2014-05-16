@@ -2,10 +2,14 @@
 
 // foundation settings. You should begin to adapt foundation
 // settings
-   @import       'settings'; @import "normalize";
+@import "settings";
+
+// this file may exists in files/okcdesign directory, if user defined
+// custom settings
+//@import "okcdesign/{subtheme_name}/_settings";
 
 // optionnal : css normalization for all browsers.
-//@import "normalize";
+@import "normalize";
 
 // import ALL foundation components.
 // to keep your css lighter, you might prefere include only components
