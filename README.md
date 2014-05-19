@@ -129,3 +129,8 @@ There is on drupal.org modules based on foundation, they should work with this p
 - https://drupal.org/project/zurb_interchange
 - https://drupal.org/project/zurb_twentytwenty
 
+PHPUNITs test
+------------------------------------
+
+OKC Design uses PHPUnit tests, located in tests directory at the root of okcdesign theme.
+

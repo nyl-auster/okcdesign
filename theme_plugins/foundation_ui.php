@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Add an ui to change settings of foundation.
+ * Add an ui to change _settings.scss variables of foundation.
+ *
  * phpscss library is used to compile all scss to css in files/okcdesign/{themeName}
  * Class foundation_ui
  */
@@ -62,7 +63,7 @@ class foundation_ui extends theme_plugin {
 }
 
 /**
- * Recompile all theme scss on submission.
+ * Recompile all theme scss on plugin form submission.
  * @param $form
  * @param $form_state
  */
