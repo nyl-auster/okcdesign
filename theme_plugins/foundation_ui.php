@@ -72,6 +72,7 @@ function foundation_ui_settings_form_submit($form, $form_state) {
   if (empty($form_state['values']['theme_plugin_settings_foundation_ui'])) return;
 
   $theme = arg(3);
+  $themepath = drupal_get_path('theme', $theme);
 
   // create directories, if they do not exist, to store submitted scss.
   $result = foundation_ui_create_files_directories($theme);
@@ -92,9 +93,16 @@ function foundation_ui_settings_form_submit($form, $form_state) {
     drupal_set_message('error', 'Fail to write custom scss in a file, please check your files directory permissions and retry.');
   }
 
-  // compile scss to css.
-  $css = foundation_ui_compile_theme_scss($theme);
+  // get app.scss from this theme.
+  $app_scss_content = file($themepath . '/scss/app.scss');
+  // add @import "user_settings" to app.scss content, just after @import "settings" line.
+  $scss_string = foundation_ui_rebuild_scss_import_file($app_scss_content);
+
+  // let phpscss compile this file content to css
+  $css = foundation_ui_compile_theme_scss($theme, $scss_string);
   // store compiled css into a files/okcdesign/{theme_name}/app.css file.
+
+  // save compiled css to a file, that will be served by foundation plugin if it can load it.
   $result = file_put_contents(foundation_ui_get_theme_css_file_path($theme), $css);
   if (!$result) {
     drupal_set_message('error', 'Fail to write custom scss in a file, please check your files directory permissions and retry.');
@@ -249,7 +257,8 @@ function foundation_ui_get_theme_custom_scss($themename) {
  * get {theme_name}scss/app.scss file, and add @import of "_custom_settings.scss" just after @import "settings",
  * This is where we store theme custom overrides of _settings.scss variables.
  *
- * @param $lines
+ * @param array $lines
+ *   an array of scss lines, as returned by "file" function in php.
  * @return string
  */
 function foundation_ui_rebuild_scss_import_file($lines) {
@@ -269,22 +278,23 @@ function foundation_ui_rebuild_scss_import_file($lines) {
  * @param array $options
  * @return scssc
  */
-function foundation_ui_get_scssphp_compiler($options = array()) {
+function foundation_ui_get_scss_compiler($options = array()) {
   require_once  drupal_get_path('theme', 'okcdesign') . '/bower_components/scssphp/scss.inc.php';
   return new scssc($options);
 }
 
 /**
- * @param string $themename
- *   The theme we want to recompile all the scss for.
- * @return string
- *   A valid css string.
+ * Compile a scss string for a specific theme with phpscss compiler.
+ * This only convert a scss string to a css string, setting import paths
+ * correctly for our okcdesign theme and subthemes.
+ *
+ * @param string $themename : The theme we want to recompile all the scss for.
+ * @param string $scss_string : a valid scss string to compile.
+ * @return string : A valid css string, ready to be stored in a file.
  */
-function foundation_ui_compile_theme_scss($themename) {
+function foundation_ui_compile_theme_scss($themename, $scss_string) {
 
   $okcdesign_theme_path = drupal_get_path('theme', 'okcdesign');
-  $requested_theme_path = drupal_get_path('theme', $themename);
-  require_once $okcdesign_theme_path . '/bower_components/scssphp/scss.inc.php';
 
   // configure import paths for our php scss compilator.
   // Important : we add an import path to our custom theme scss directory, containing
@@ -297,8 +307,7 @@ function foundation_ui_compile_theme_scss($themename) {
 
   $scss = foundation_ui_get_scss_compiler();
   $scss->setImportPaths($import_paths);
-  $app_scss_content = file($requested_theme_path. '/scss/app.scss');
-  $scss_string = foundation_ui_rebuild_scss_import_file($app_scss_content);
+
   $css_string = $scss->compile($scss_string);
   return $css_string;
 
