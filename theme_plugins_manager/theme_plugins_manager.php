@@ -100,7 +100,7 @@ function theme_plugin_get_enabled_plugins() {
   $enabled = array();
   $plugins = theme_get_plugins();
   foreach($plugins as $id => $datas) {
-    if (theme_get_setting("theme_plugin_$id")) {
+    if (theme_plugin_is_enabled($id)) {
       $enabled[$id] = $id;
     }
   }

@@ -14,7 +14,6 @@ class foundation_ui_Test extends PHPUnit_Framework_TestCase {
   protected $foundation_ui = NULL;
 
   function setUp() {
-
     // load an instance of foundation_ui plugin.
     $this->foundation_ui = foundation_ui::get_instance();
   }

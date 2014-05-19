@@ -4,77 +4,157 @@ include 'drupalBootstrap.inc';
 include '../theme_plugins_manager/theme_plugins_manager.php';
 
 /**
- * Test that plugins manager is working as expeted
+ * Test that plugins manager is working as expected
  * Class okcdesignPluginsManagerTest
  */
 class theme_plugins_manager_Test extends PHPUnit_Framework_TestCase {
 
+  protected $plugins_registry_file;
+
+  function setUp() {
+    $this->plugins_registry_file = drupal_get_path('theme', 'okcdesign') . '/' . OKCDESGIN_THEME_PLUGINS_REGISTRY_FILE;
+  }
+
   /**
-   * Make sur our constants are correclty defined
+   * Expected plugins list
+   * @return array
    */
-  function test_constants() {
-    $this->assertTrue(defined("OKCDESGIN_THEME_PLUGINS_DIRECTORY"), 'Constant OKCDESGIN_THEME_PLUGINSS_DIRECTORY is undefined');
-    $this->assertTrue(defined("OKCDESGIN_THEME_PLUGINS_REGISTRY_FILE"), 'Constant OKCDESGIN_THEME_PLUGINS_REGISTRY_FILE is undefined');
+  public function pluginsListDataProvider() {
+    return array(
+      array('foundation'),
+      array('foundation_ui'),
+      array('foundation_topbar'),
+      array('foundation_check_requirements'),
+      array('foundation_breadcrumb'),
+      array('foundation_grid_viewer'),
+      array('dynamic_sidebars'),
+      array('foundation_alert_box'),
+    );
+  }
+
+  /**
+   * List of required plugins for OKC Design theme to work.
+   */
+  public function requiredPlugins() {
+    return array(
+      'foundation',
+      'foundation_check_requirements',
+      'dynamic_sidebars',
+    );
+  }
+
+  /**
+   * Check if plugins registry file actually exists.
+   */
+  function test_plugin_registry_file_exists() {
+    $this->assertFileExists($this->plugins_registry_file);
+  }
+
+  /**
+   * Check if plugins registry file is returning an array as needed.
+   */
+  function test_plugin_registry_file_returns_array() {
+    $plugins = include $this->plugins_registry_file;
+    $this->assertInternalType('array', $plugins);
+  }
+
+  /**
+   * Test that registry file return an array containing expected plugins.
+   * @dataProvider pluginsListDataProvider
+   */
+  function test_plugin_registry_file_array_content($plugin) {
+    $plugins = include $this->plugins_registry_file;
+    $this->assertArrayHasKey($plugin, $plugins);
   }
 
   /**
    * Check if theme_get_plugins is returning an array.
    * Check if we find a "foundation" key which is the main plugin for our theme.
    */
-  function test_plugin_registry_file() {
-    $plugin_file = drupal_get_path('theme', 'okcdesign') . '/okcdesign.info.plugins.php';
-    $this->assertFileExists($plugin_file);
-  }
-
-  /**
-   * Check if theme_get_plugins is returning an array.
-   * Check if we find a "foundation" key which is the main plugin for our theme.
-   */
-  function test_theme_get_plugins() {
+  function test_theme_get_plugins_return_array() {
     $plugins = theme_get_plugins();
     $this->assertInternalType('array', $plugins);
     return $plugins;
   }
 
   /**
-   * Try to load foundation plugin and see if it works as expecter
-   * @depends test_theme_get_plugins
+   * Check if theme_get_plugins is returning an array.
+   * Check if we find a "foundation" key which is the main plugin for our theme.
+   * @dataProvider pluginsListDataProvider
    */
-  function test_theme_plugin_autoloader($plugins) {
-    $this->assertInternalType('array', $plugins);
-    $this->assertArrayHasKey('foundation', $plugins);
+  function test_theme_get_plugins_return_array_content($plugin) {
+    $plugins = theme_get_plugins();
+    $this->assertArrayHasKey($plugin, $plugins);
+    return $plugins;
+  }
+
+  /**
+   * Try to load foundation plugins
+   */
+  function test_theme_plugin_autoloader() {
     $plugin = foundation::get_instance();
     $this->assertInstanceOf('foundation', $plugin);
+    $plugin = foundation_topbar::get_instance();
+    $this->assertInstanceOf('foundation_topbar', $plugin);
   }
 
-  /**
-   * Check foundation plugin is enabled in current theme.
-   */
-  function test_foundation_plugin_is_enabled() {
-    $enabled = theme_get_setting('theme_plugin_foundation');
-    $this->assertEquals(1, $enabled);
+  function test_theme_plugin_is_enabled() {
+
+    $plugin_id = 'foundation';
+
+    // disable foundation plugin
+    $theme_settings = variable_get("theme_okcdesign_settings");
+    $theme_settings["theme_plugin_$plugin_id"] = 0;
+    variable_set("theme_okcdesign_settings", $theme_settings);
+    drupal_static_reset('theme_get_setting');
+
+    $this->assertFalse(theme_plugin_is_enabled($plugin_id));
+
+    // re-enable foundation plugin
+    $theme_settings = variable_get("theme_okcdesign_settings");
+    $theme_settings["theme_plugin_$plugin_id"] = 1;
+    variable_set("theme_okcdesign_settings", $theme_settings);
+    drupal_static_reset('theme_get_setting');
+    $this->assertTrue(theme_plugin_is_enabled($plugin_id));
+
   }
 
-  /**
-   * Check if required css and js file seems to be correctly injected into Drupal
-   */
-  function test_foundation_is_correctly_included() {
-    // simulate that drupal is servring a webpage. False indicates that we don't actually print html.
-    // this is required to gather all drupal css & js files.
-    $page = menu_execute_active_handler('node', FALSE);
-    $html = drupal_render_page($page);
+  function test_theme_plugin_get_enabled_plugins() {
 
-    // check if foundation css file is included in css drupal list :
-    $styles = drupal_add_css();
-    $foundation_css = drupal_get_path('theme', variable_get('theme_default')) . '/css/app.css';
-    $this->assertArrayHasKey($foundation_css, $styles);
+    $plugins = theme_get_plugins();
+    // disable all plugins
+    $theme_settings = variable_get("theme_okcdesign_settings");
+    foreach ($plugins as $plugin_id => $datas) {
+      $theme_settings["theme_plugin_$plugin_id"] = 0;
+    }
+    variable_set("theme_okcdesign_settings", $theme_settings);
+    drupal_static_reset('theme_get_setting');
 
-    $all_js = drupal_add_js();
-    $foundation_js = drupal_get_path('theme', 'okcdesign') . '/bower_components/foundation/js/foundation.min.js';
-    $this->assertArrayHasKey($foundation_js, $all_js);
+    // each plugin should be disabled now...
+    foreach ($plugins as $plugin_id => $datas) {
+      $this->assertFalse(theme_plugin_is_enabled($plugin_id));
+    }
 
-    $modernizr_js = drupal_get_path('theme', 'okcdesign') . '/bower_components/modernizr/modernizr.js';
-    $this->assertArrayHasKey($modernizr_js, $all_js);
+    $this->assertEmpty(theme_plugin_get_enabled_plugins());
+
+    // re-enable only required plugins :
+    $theme_settings = variable_get("theme_okcdesign_settings");
+    $required_plugins = $this->requiredPlugins();
+
+    foreach($required_plugins as $plugin_id) {
+      $theme_settings["theme_plugin_$plugin_id"] = 1;
+    }
+    variable_set("theme_okcdesign_settings", $theme_settings);
+    drupal_static_reset('theme_get_setting');
+
+    // each required plugin should be enabled now.
+    foreach ($required_plugins as $plugin_id) {
+      $this->assertTrue(theme_plugin_is_enabled($plugin_id));
+    }
+
+    // theme_get_enabled_plugins must return exactly the same plugins :
+    $this->assertSame(ksort($required_plugins), ksort(array_keys(theme_plugin_get_enabled_plugins())));
+
   }
 
 }
