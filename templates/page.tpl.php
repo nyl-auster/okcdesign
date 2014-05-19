@@ -47,7 +47,7 @@
     <div class="row">
       <div class="small-12 columns">
         <div  id="site-informations">
-          
+
           <h1>
             <?php if ($logo): ?>
               <a href="<?php print $front_page ?>" title="<?php print t('Home') ?>" rel="home" id="logo">
@@ -86,11 +86,8 @@
         </div>
       <?php endif ?>
 
-      </nav>
-    </div>
     </div>
   <?php endif ?>
-  </div>
 
   <?php if (!empty($page['header'])) : ?>
     <div class="row">
