@@ -102,6 +102,10 @@ class theme_plugins_manager_Test extends PHPUnit_Framework_TestCase {
 
     $plugin_id = 'foundation';
 
+    // Always do our test on okcdesign rather than default active theme.
+    // this if for theme_get_setting function
+    $GLOBALS['theme_key'] = 'okcdesign';
+
     // disable foundation plugin
     $theme_settings = variable_get("theme_okcdesign_settings");
     $theme_settings["theme_plugin_$plugin_id"] = 0;
@@ -120,6 +124,10 @@ class theme_plugins_manager_Test extends PHPUnit_Framework_TestCase {
   }
 
   function test_theme_plugin_get_enabled_plugins() {
+
+    // Always do our test on okcdesign rather than default active theme.
+    // this if for theme_get_setting function
+    $GLOBALS['theme_key'] = 'okcdesign';
 
     $plugins = theme_get_plugins();
     // disable all plugins
