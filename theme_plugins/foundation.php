@@ -8,6 +8,7 @@
  */
 class foundation extends theme_plugin {
 
+
   /**
    * Adjust drupal html headers and add css & js required by foundation
    */
@@ -57,6 +58,18 @@ class foundation extends theme_plugin {
     );
   }
 
+  // keep those css, so that overlay, shortcut, toolbar and contextual links
+  // still works as expected.
+  function css_white_list() {
+    return array(
+      'modules/system/system.base.css',
+      'modules/contextual/contextual.css',
+      'modules/toolbar/toolbar.css',
+      'modules/shortcut/shortcut.css',
+      'modules/overlay/overlay-parent.css',
+    );
+  }
+
   /**
    * Remove drupal core files, except the one we actually need to work
    */
@@ -65,17 +78,8 @@ class foundation extends theme_plugin {
     // do not break demdo block page
     if(strpos($_GET['q'], 'admin/structure/block/demo') === 0) return;
 
-    // keep those css, so that overlay, shortcut, toolbar and contextual links
-    // still works as expected.
-    $css_to_keep = array(
-      'modules/system/system.base.css',
-      'modules/contextual/contextual.css',
-      'modules/toolbar/toolbar.css',
-      'modules/shortcut/shortcut.css',
-      'modules/overlay/overlay-parent.css',
-    );
-
     // remove all others
+    $css_to_keep = $this->css_white_list();
     foreach($css as $path => $values) {
       if(strpos($path, 'modules/') === 0 && !in_array($path, $css_to_keep)) {
         unset($css[$path]);
