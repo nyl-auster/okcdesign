@@ -265,6 +265,16 @@ function foundation_ui_rebuild_scss_import_file($lines) {
 }
 
 /**
+ * Load our php compiler for scss.
+ * @param array $options
+ * @return scssc
+ */
+function foundation_ui_get_scssphp_compiler($options = array()) {
+  require_once  drupal_get_path('theme', 'okcdesign') . '/bower_components/scssphp/scss.inc.php';
+  return new scssc($options);
+}
+
+/**
  * @param string $themename
  *   The theme we want to recompile all the scss for.
  * @return string
@@ -285,7 +295,7 @@ function foundation_ui_compile_theme_scss($themename) {
     foundation_ui_theme_directory_path($themename),
   );
 
-  $scss = new scssc();
+  $scss = foundation_ui_get_scss_compiler();
   $scss->setImportPaths($import_paths);
   $app_scss_content = file($requested_theme_path. '/scss/app.scss');
   $scss_string = foundation_ui_rebuild_scss_import_file($app_scss_content);

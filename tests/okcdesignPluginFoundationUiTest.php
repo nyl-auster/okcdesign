@@ -10,21 +10,28 @@ include 'theme_plugins_manager/theme_plugins_manager.php';
  */
 class okcdesignPluginFoundationUiTest extends PHPUnit_Framework_TestCase {
 
+  // instance of foundation ui plugin.
+  protected $foundation_ui = NULL;
+
+  function __construct() {
+    // load an instance of foundatio_ui plugin.
+    $this->foundation_ui = foundation_ui::get_instance();
+  }
+
   /**
    * Check we are able to load scssphp compiler
    */
-  function test_load_scssphp_compiler() {
-    $scssphp_compiler = drupal_get_path('theme', 'okcdesign') . "/bower_components/scssphp/scss.inc.php";
-    $this->assertFileExists($scssphp_compiler);
+  function test_foundation_ui_get_scssphp_compiler() {
+    $object = foundation_ui_get_scssphp_compiler();
+    $this->assertInstanceof('scssc', $object);
   }
 
   /**
    * Check settings form is correctly build.
    */
   function test_form() {
-    $foundation_ui = foundation_ui::get_instance();
 
-    $form = $foundation_ui->settings_form();
+    $form = $this->foundation_ui->settings_form();
     $this->assertInternalType('array', $form);
     $this->assertArrayHasKey('primary-color', $form);
     $this->assertArrayHasKey('secondary-color', $form);
@@ -36,7 +43,7 @@ class okcdesignPluginFoundationUiTest extends PHPUnit_Framework_TestCase {
     // simulate an additionnal "expert" argument, that should make appear a new field
     // in theme plugin settings form.
     $_GET['q'] = 'admin/appearance/settings/okcdesign/expert';
-    $form = $foundation_ui->settings_form();
+    $form = $this->foundation_ui->settings_form();
     $this->assertArrayHasKey('expert', $form);
 
   }
