@@ -25,14 +25,6 @@ $plugins['foundation'] = array(
     'hook_css_alter',
   ),
 );
-$plugins['dynamic_sidebars'] = array(
-  'title' => 'Sidebars',
-  'description' => 'Adjust content width according to sidebars',
-  'hooks' => array('hook_preprocess_page'),
-  'dependencies' => array('foundation'),
-  'package' => 'foundation',
-  'required' => TRUE,
-);
 $plugins['foundation_alert_box'] = array(
   'title' => 'Status messages',
   'description' => 'Status messages as foundation alert boxes',
@@ -59,6 +51,30 @@ $plugins['foundation_topbar'] = array(
     'hook_preprocess_foundation_topbar',
     'hook_preprocess_page',
   ),
+  'dependencies' => array('foundation'),
+  'package' => 'foundation',
+);
+$plugins['foundation_grid_viewer'] = array(
+  'title' => 'Grid viewer',
+  'description' => 'Display a preview of foundation grid',
+  'hooks' => array(
+    'hook_preprocess_page',
+  ),
+  'dependencies' => array('foundation'),
+  'package' => 'foundation',
+);
+$plugins['dynamic_sidebars'] = array(
+  'title' => 'Sidebars',
+  'description' => 'Adjust content width according to sidebars',
+  'hooks' => array('hook_preprocess_page'),
+  'dependencies' => array('foundation'),
+  'package' => 'foundation',
+  'required' => TRUE,
+);
+$plugins['foundation_ui'] = array(
+  'title' => 'Global design settings',
+  'description' => 'Change design global settings. <br /><strong> Warning : </strong> When modifying this settings, all scss are recompiled to css, this operation may take some times. <br/>
+  Also note that when this plugin is enabled, a special app.css file is created and used in your drupal files directory. So working with sass files directly in your theme directory will not work anymore until you disable this plugin',
   'dependencies' => array('foundation'),
   'package' => 'foundation',
 );
@@ -106,20 +122,6 @@ $plugins['foundation_check_requirements'] = array(
   'package' => 'foundation',
   'expert' => TRUE,
 );
-$plugins['foundation_grid_viewer'] = array(
-  'title' => 'Grid viewer',
-  'description' => 'Display a preview of foundation grid',
-  'hooks' => array(
-    'hook_preprocess_page',
-  ),
-  'dependencies' => array('foundation'),
-  'package' => 'foundation',
-);
-$plugins['foundation_ui'] = array(
-  'title' => 'Global design settings',
-  'description' => 'Change design global settings. <strong> warning : </strong> saving may take some time we you modify those settings, as this operation recompile all scss of your sites to css.',
-  'dependencies' => array('foundation'),
-  'package' => 'foundation',
-);
+
 
 return $plugins;
