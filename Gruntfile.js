@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 
     sass: {
       options: {
-        includePaths: ['bower_components/foundation/scss', '/sites/default/files/okcdesign/okcdesign']
+        includePaths: ['bower_components/foundation/scss', 'scss']
       },
       dist: {
         options: {
