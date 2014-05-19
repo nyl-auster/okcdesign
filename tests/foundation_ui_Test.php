@@ -1,7 +1,7 @@
 <?php
 
-include 'drupalBootstrap.inc';
-include 'theme_plugins_manager/theme_plugins_manager.php';
+include_once 'drupalBootstrap.inc';
+include_once '../theme_plugins_manager/theme_plugins_manager.php';
 
 /**
  * Check if foundation_ui plugin work as expected.
@@ -14,7 +14,7 @@ class foundation_ui_Test extends PHPUnit_Framework_TestCase {
   protected $foundation_ui = NULL;
 
   function setUp() {
-    include 'drupalBootsrap.inc';
+
     // load an instance of foundation_ui plugin.
     $this->foundation_ui = foundation_ui::get_instance();
   }
