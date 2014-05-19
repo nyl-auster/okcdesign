@@ -8,13 +8,14 @@ include 'theme_plugins_manager/theme_plugins_manager.php';
  * We care especially about scss compilation with scssphp library, that
  * should never failed as this is a very important feature from OKC Design theme.
  */
-class okcdesignPluginFoundationUiTest extends PHPUnit_Framework_TestCase {
+class foundation_ui_Test extends PHPUnit_Framework_TestCase {
 
   // instance of foundation ui plugin.
   protected $foundation_ui = NULL;
 
-  function __construct() {
-    // load an instance of foundatio_ui plugin.
+  function setUp() {
+    include 'drupalBootsrap.inc';
+    // load an instance of foundation_ui plugin.
     $this->foundation_ui = foundation_ui::get_instance();
   }
 

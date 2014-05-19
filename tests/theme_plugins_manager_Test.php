@@ -1,13 +1,18 @@
 <?php
 
 include 'drupalBootstrap.inc';
-include 'theme_plugins_manager/theme_plugins_manager.php';
+
 
 /**
  * Test that plugins manager is working as expeted
  * Class okcdesignPluginsManagerTest
  */
-class okcdesignPluginsManagerTest extends PHPUnit_Framework_TestCase {
+class theme_plugins_manager_Test extends PHPUnit_Framework_TestCase {
+
+  function setUp() {
+    include 'drupalBootsrap.inc';
+    include 'theme_plugins_manager/theme_plugins_manager.php';
+  }
 
   /**
    * Make sur our constants are correclty defined

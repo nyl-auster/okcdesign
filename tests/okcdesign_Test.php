@@ -10,12 +10,14 @@
  * - launch grunt in subtheme, see if scss is correctly compiled to css.
  */
 
-include 'drupalBootstrap.inc';
-
 /**
  * Check global required things for okcdesign to work as expected
  */
-class okcdesignTest extends PHPUnit_Framework_TestCase {
+class okcdesign_Test extends PHPUnit_Framework_TestCase {
+
+  function setUp() {
+    include 'drupalBootsrap.inc';
+  }
 
   /**
    * Check that required files and directories are here
