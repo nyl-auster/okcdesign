@@ -8,7 +8,8 @@
 // import ALL foundation components at once.
 @import "foundation";
 
-// PLEASE comment this line in yoursubtheme, this only here as an example
+// This is only an example of how to use foundation with drupal. @see okcdesign/scss/drupal-example.scss
+// Subthemes : please comment this to start create your own scss from scratch.
 @import "drupal-example";
 
 // Or selectively include components

@@ -43,10 +43,10 @@ form {
 
 #main-menu {
   li a{
-    background-color: darken($primary-color, 0);
-    &.active {background-color: darken($primary-color, 0)}
+    background-color: $primary-color;
+    &.active {background-color: $primary-color}
     &:hover {
-      background-color: darken($primary-color, 0);
+      background-color: $primary-color;
       @include single-transition()
     }
   }
@@ -55,9 +55,9 @@ form {
 #secondary-menu{
   li a {
     background-color: $primary-color;
-    &.active {background-color: darken($primary-color, 0)}
+    &.active {background-color: $primary-color}
     &:hover {
-      background-color: darken($primary-color, 0);
+      background-color: $primary-color;
       @include single-transition()
     }
   }

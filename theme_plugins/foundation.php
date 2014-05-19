@@ -15,16 +15,16 @@ class foundation extends theme_plugin {
 
     // Load foundation main css file.
     //
-    // First we look if a "files/okcdesign/{themename}/app.css exists and load if found.
+    // First we look if a "files/okcdesign/{themename}/user_app.css exists and load if found.
     // This is app.scss file compiled with user defined settings via foundation_ui plugin form.
     // This is how non-dev users can customize their theme foundation settings.
-    $custom_theme_css = variable_get('file_public_path', conf_path() . '/files') . '/okcdesign/' . variable_get('theme_default', 'okcdesign') . '/app.css';
-    if (is_readable($custom_theme_css) && theme_plugin_is_enabled('foundation_ui')) {
-      drupal_add_css($custom_theme_css);
+    $user_app_css = variable_get('file_public_path', conf_path() . '/files') . '/okcdesign/' . variable_get('theme_default', 'okcdesign') . '/user_app.css';
+    if (theme_plugin_is_enabled('foundation_ui') && is_readable($user_app_css)) {
+      drupal_add_css($user_app_css);
     }
     // else we load app.css file from css/folder, which is the result of scss/app.scss file compilation
     // by grunt, sass or compass.
-    // This is how developper work with okcdesign theme.
+    // This is how developpers should work with okcdesign theme and subthemes.
     else {
       drupal_add_css($this->default_theme_path . '/css/app.css');
     }

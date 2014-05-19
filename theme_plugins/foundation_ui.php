@@ -47,85 +47,255 @@ class foundation_ui extends theme_plugin {
       '#title' => 'h1, h2, etc... font colors',
       '#default_value' => theme_plugin_get_setting(__CLASS__, 'header-font-color', ''),
     );
+
+    if (arg(4) == 'expert') {
+      $form['expert'] = array(
+        '#type' => 'textarea',
+        '#title' => "Write custom valid scss here",
+        '#default_value' => theme_plugin_get_setting(__CLASS__, 'expert', ''),
+      );
+    }
+
     return $form;
   }
 
 }
 
+/**
+ * Recompile all theme scss on submission.
+ * @param $form
+ * @param $form_state
+ */
 function foundation_ui_settings_form_submit($form, $form_state) {
 
+  // no values submitted for custom scss settings, abort.
   if (empty($form_state['values']['theme_plugin_settings_foundation_ui'])) return;
 
-  $new_settings = '';
-  foreach ($form_state['values']['theme_plugin_settings_foundation_ui'] as $key => $value) {
-    if (trim($value)) {
-      $new_settings .= "$$key: $value;\r\n";
-    }
+  $theme = arg(3);
+
+  // create directories, if they do not exist, to store submitted scss.
+  $result = foundation_ui_create_files_directories($theme);
+  if (!$result) {
+    drupal_set_message('error', 'Directories creation failed. Please check your files directory permissions and retry');
   }
 
-  // create required directories if they don't exist
-  $okcdesign_custom_scss_path = variable_get('file_public_path', conf_path() . '/files') . '/okcdesign';
-  if (!is_readable($okcdesign_custom_scss_path)) {
-    mkdir($okcdesign_custom_scss_path);
-  }
-  $okcdesign_theme_custom_theme_scss_path = $okcdesign_custom_scss_path . '/' . arg(3);
-  if (!is_readable($okcdesign_theme_custom_theme_scss_path)) {
-    mkdir($okcdesign_theme_custom_theme_scss_path);
-  }
+  // Create a valid scss string from submitted values.
+  $new_scss = foundation_ui_create_scss_string_from_array($form_state['values']['theme_plugin_settings_foundation_ui']);
 
-  $okcdesign_theme_custom_theme_scss_file = $okcdesign_theme_custom_theme_scss_path . '/_theme_custom_settings.scss';
+  // if submitted scss settings are the same than scss settings already stored in file, do nothing more.
+  $old_scss = foundation_ui_get_theme_custom_scss($theme);
+  if ($new_scss == $old_scss) return;
 
-  $old_settings = file_get_contents($okcdesign_theme_custom_theme_scss_file);
-
-  // settings have not changed, stop here.
-  if ($new_settings == $old_settings) return;
-
-  // else, overwrite with new settings.
-  file_put_contents($okcdesign_theme_custom_theme_scss_file, $new_settings);
-
-  if (is_readable($okcdesign_theme_custom_theme_scss_file)) {
-
-    require_once drupal_get_path('theme', 'okcdesign') . "/bower_components/scssphp/scss.inc.php";
-
-  // we have to recompile ALL scss file if user what to customize scss.
-    $default_theme_path = drupal_get_path('theme', variable_get('theme_default'));
-    $base_theme_path = drupal_get_path('theme', 'okcdesign');
-    $app_scss = "$default_theme_path/scss/app.scss";
-
-  // configure import pathes for our php scss compilator.
-    $import_paths = array(
-      "$base_theme_path/bower_components/foundation/scss",
-      "$base_theme_path/scss",
-      $okcdesign_theme_custom_theme_scss_path,
-    );
-    $scss = new scssc();
-    $scss->setImportPaths($import_paths);
-    $scss_to_compile = file($app_scss);;
-    $scss_to_compile = _foundation_ui_rebuild_scss_import_file($scss_to_compile);
-    $app_css = $scss->compile($scss_to_compile);
-    file_put_contents($okcdesign_theme_custom_theme_scss_path . '/app.css', $app_css);
-    drupal_set_message("All scss files have been recompiled to css files with new settings.");
+  // store scss in a file.
+  $result = file_put_contents(foundation_ui_get_theme_scss_file_path($theme), $new_scss);
+  if (!$result) {
+    drupal_set_message('error', 'Fail to write custom scss in a file, please check your files directory permissions and retry.');
   }
 
+  // compile scss to css.
+  $css = foundation_ui_compile_theme_scss($theme);
+  // store compiled css into a files/okcdesign/{theme_name}/app.css file.
+  $result = file_put_contents(foundation_ui_get_theme_css_file_path($theme), $css);
+  if (!$result) {
+    drupal_set_message('error', 'Fail to write custom scss in a file, please check your files directory permissions and retry.');
+  }
+
+  drupal_set_message("All scss files have been recompiled to css files with new settings.");
+
+}
+
+/*============
+  HELPERS
+ =============*/
+
+/**
+ * Return name of global directory used in files directory to store custom scss of all themes.
+ * Each theme will have its own subdirectory.
+ * @return string
+ */
+function foundation_ui_get_okcdesign_files_directory_name() {
+  return 'okcdesign';
+}
+
+/**
+ * Get name of file used to store custom scss.
+ * @return string
+ */
+function foudation_ui_get_custom_scss_filename() {
+  return 'user_settings.scss';
+}
+
+/**
+ * Get name of file used to store custom css.
+ * @return string
+ */
+function foudation_ui_get_custom_css_filename() {
+  return 'user_app.css';
+}
+
+/**
+ * Directory used in files directory, to store foundation_ui custom scss files.
+ * @return string
+ */
+function foundation_ui_get_okcdesign_custom_directory_path() {
+  return variable_get('file_public_path', conf_path() . '/files') . '/' . foundation_ui_get_okcdesign_files_directory_name();
+}
+
+/**
+ * Directory used in files, to store foundation_ui custom files for a specific theme.
+ * @param string $themename
+ * @return string
+ */
+function foundation_ui_theme_directory_path($themename) {
+  return foundation_ui_get_okcdesign_custom_directory_path() . '/' . $themename;
+}
+
+/**
+ * Location of file where user-defined settings are stored for a specific theme.
+ * @param string $themename
+ * @return string
+ */
+function foundation_ui_get_theme_scss_file_path($themename) {
+  return foundation_ui_theme_directory_path($themename) . '/' . foudation_ui_get_custom_scss_filename();
+}
+
+/**
+ * Location of file where all theme compiled css are stored.
+ * @param string $themename
+ * @return string
+ */
+function foundation_ui_get_theme_css_file_path($themename) {
+  return foundation_ui_theme_directory_path($themename) . '/' . foudation_ui_get_custom_css_filename();
+}
+
+/**
+ * Return chmod for created directories and files by this plugin.
+ * Others main only read and go through those directories.
+ * @return int
+ */
+function foundation_ui_chmod() {
+  return 0775;
+}
+
+/**
+ * @param string $themename : The themename we want to create custom settings for.
+ * @return bool : FALSE if one of the directories has not been successfully created, TRUE otherwise.
+ */
+function foundation_ui_create_files_directories($themename) {
+
+  $okcdesign_files_directory = foundation_ui_get_okcdesign_custom_directory_path();
+  $theme_custom_directory = foundation_ui_theme_directory_path($themename);
+
+  // remove umask, as it may disallow us to add a "write" permission
+  // for the group; and we need it.
+  $old_umask = umask(0);
+
+  // create okcdesign files directory if it does not exist yet.
+  if (!file_exists($okcdesign_files_directory)) {
+    $result = mkdir($okcdesign_files_directory, foundation_ui_chmod());
+
+    if ($result == FALSE) return $result;
+  }
+  // create okcdesign theme custom directory if it does not exist yet.
+  if (!file_exists($theme_custom_directory)) {
+    $result = mkdir($theme_custom_directory, foundation_ui_chmod());
+    if ($result == FALSE) return $result;
+  }
+  // put back umask
+  umask($old_umask);
+  return TRUE;
 
 }
 
 /**
- * get scss/app.scss file, and add @import of "theme_custom_settings.scss" just after @import "settings",
- * a fill that will be located in files/okcdesign/{active_theme} directory.
+ * @param array $values
+ *   associative array of the following form :
+ *   scss_variable_name => value
+ *
+ * E.g : array('primary-color' => 'blue', ...)
+ * @return string
+ *   valid scss string, e.g :
+ *   $primary-color: blue;
+ *   ...
+ */
+function foundation_ui_create_scss_string_from_array($values) {
+  $scss_string = '';
+  foreach ($values as $key => $value) {
+    if (trim($value) && $key != 'expert') {
+      $scss_string .= "$$key: $value;\r\n";
+    }
+  }
+  if (!empty($values['expert'])) {
+    $scss_string .= $values['expert'];
+  }
+  return $scss_string;
+}
+
+/**
+ * Return scss string of user-defined scss for a specific theme.
+ * @param $themename
+ * @return string
+ */
+function foundation_ui_get_theme_custom_scss($themename) {
+  $scss = '';
+  $filepath = foundation_ui_get_theme_scss_file_path($themename);
+  if (file_exists($filepath)) {
+    $scss = file_get_contents(foundation_ui_get_theme_scss_file_path($themename));
+  }
+  return $scss;
+}
+
+/**
+ * get {theme_name}scss/app.scss file, and add @import of "_custom_settings.scss" just after @import "settings",
  * This is where we store theme custom overrides of _settings.scss variables.
  *
  * @param $lines
  * @return string
  */
-function _foundation_ui_rebuild_scss_import_file($lines) {
+function foundation_ui_rebuild_scss_import_file($lines) {
   $file = '';
-  foreach ($lines as $i => $line) {
+  foreach ($lines as $line) {
     $file .= $line . "\r\n";
     $cleaned_line = str_replace(' ', '', $line);
     if(strpos($cleaned_line, "@import'settings'") !== FALSE || strpos($cleaned_line, '@import"settings"') !== FALSE) {
-      $file .= '@import "theme_custom_settings";' . "\r\n";
+      $file .= '@import "' . foudation_ui_get_custom_scss_filename() . '";' . "\r\n";
     }
   }
   return $file;
 }
+
+/**
+ * @param string $themename
+ *   The theme we want to recompile all the scss for.
+ * @return string
+ *   A valid css string.
+ */
+function foundation_ui_compile_theme_scss($themename) {
+
+  $okcdesign_theme_path = drupal_get_path('theme', 'okcdesign');
+  $requested_theme_path = drupal_get_path('theme', $themename);
+  require_once $okcdesign_theme_path . '/bower_components/scssphp/scss.inc.php';
+
+  // configure import paths for our php scss compilator.
+  // Important : we add an import path to our custom theme scss directory, containing
+  // scss defined by user from admin settings page.
+  $import_paths = array(
+    "$okcdesign_theme_path/bower_components/foundation/scss",
+    "$okcdesign_theme_path/scss",
+    foundation_ui_theme_directory_path($themename),
+  );
+
+  $scss = new scssc();
+  $scss->setImportPaths($import_paths);
+  $app_scss_content = file($requested_theme_path. '/scss/app.scss');
+  $scss_string = foundation_ui_rebuild_scss_import_file($app_scss_content);
+  $css_string = $scss->compile($scss_string);
+  return $css_string;
+
+}
+
+
+
+
+
+
