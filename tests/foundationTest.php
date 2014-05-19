@@ -10,12 +10,15 @@ class foundationTest extends PHPUnit_Framework_TestCase {
    * Check if required css and js file seems to be correctly injected into Drupal
    */
   function test_foundation_is_correctly_injected() {
-   // simulate that drupal is servring a webpage. False indicates that we don't actually print html.
+
+   // simulate that drupal is serving a webpage. False indicates that we don't actually print html.
     // this is required to gather all drupal css & js files.
     $page = menu_execute_active_handler('node', FALSE);
     drupal_render_page($page);
 
     // check if foundation css file is included in css drupal list :
+    // we look for a {themename}/css/app.css ( included by foundation plugin)
+    // or a files/okcdesign/{themename}/user_app.css included by foundation_ui plugin.
     $styles = drupal_add_css();
     $foundation_css = drupal_get_path('theme', variable_get('theme_default')) . '/css/app.css';
 
