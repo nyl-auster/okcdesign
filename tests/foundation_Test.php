@@ -4,7 +4,7 @@
  * Test foundation theme plugin
  * Class foundationTest
  */
-class foundationTest extends PHPUnit_Framework_TestCase {
+class foundation_Test extends PHPUnit_Framework_TestCase {
 
   /**
    * Check if required css and js file seems to be correctly injected into Drupal

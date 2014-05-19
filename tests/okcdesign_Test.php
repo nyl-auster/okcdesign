@@ -21,6 +21,9 @@ class okcdesign_Test extends PHPUnit_Framework_TestCase {
    * Check that required files and directories are here
    */
   function test_app_css_exists() {
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/bower_components');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/bower_components/foundation/scss/foundation.scss');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/bower_components/foundation/scss/foundation/components');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/css/app.css');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/scss/app.scss');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/scss/_settings.scss');
@@ -28,10 +31,15 @@ class okcdesign_Test extends PHPUnit_Framework_TestCase {
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/templates/page.tpl.php');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/templates/foundation_topbar.tpl.php');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/templates/foundation_topbar_submenu.tpl.php');
-    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/bower_components/foundation/scss/foundation/components/_global.scss');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/theme_plugins');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/theme_plugins_manager/theme_plugins_manager.php');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/okcdesign.drush.inc');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/Gruntfile.js');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/okcdesign.info');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/okcdesign.info.plugins.php');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/template.php');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/theme-settings.php');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/STARTER');
   }
 
 
