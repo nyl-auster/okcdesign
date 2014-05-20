@@ -35,12 +35,15 @@ class theme_settings_Test extends PHPUnit_Framework_TestCase {
     okcdesign_form_system_theme_settings_alter($form, array());
     $this->assertArrayHasKey($plugin_id, $form['okcdesign']);
     // print_r($form);
-    $this->assertArrayHasKey("theme_plugin_$plugin_id", $form['okcdesign'][$plugin_id]);
-    $this->assertArrayHasKey("theme_plugin_$plugin_id", $form['okcdesign'][$plugin_id]);
+    $this->assertArrayHasKey("theme_plugin_$plugin_id", $form['okcdesign'][$plugin_id]);;
     $this->assertSame("checkbox", $form['okcdesign'][$plugin_id]["theme_plugin_$plugin_id"]['#type']);
 
-    // $this->assertArrayHasKey("theme_plugin_settings_$plugin_id", $form['okcdesign'][$plugin_id]["settings_$plugin_id"]);
-    // $this->assertTrue($form['okcdesign'][$plugin_id]["settings_$plugin_id"]["theme_plugin_settings_$plugin_id"]['#tree']);
+    // check our configuration form is here with the right keys.
+    $plugin = new $plugin_id;
+    if (method_exists($plugin, 'settings_form') && $plugin->settings_form()) {
+      $this->assertArrayHasKey("theme_plugin_settings_$plugin_id", $form['okcdesign'][$plugin_id]["settings_$plugin_id"]);
+      $this->assertTrue($form['okcdesign'][$plugin_id]["settings_$plugin_id"]["theme_plugin_settings_$plugin_id"]['#tree']);
+    }
   }
 
 }
