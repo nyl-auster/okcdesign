@@ -63,9 +63,9 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     $plugin = new $plugin_id();
     if (method_exists($plugin, 'settings_form') && $plugin->settings_form($form)) {
       $form['okcdesign'][$plugin_id]["settings_$plugin_id"] = array('#type' => 'fieldset');
+      $form['okcdesign'][$plugin_id]["settings_$plugin_id"]["theme_plugin_settings_$plugin_id"] = $plugin->settings_form($form);
       // retain configuration in theme settings as an array for this specifig plugin.
       $form['okcdesign'][$plugin_id]["settings_$plugin_id"]["theme_plugin_settings_$plugin_id"]['#tree'] = TRUE;
-      $form['okcdesign'][$plugin_id]["settings_$plugin_id"]["theme_plugin_settings_$plugin_id"] = $plugin->settings_form($form);
     }
 
   }
