@@ -1,12 +1,12 @@
 <?php
 /**
- * OKC Design theme use a system of plugin.
- * Thinks plugins as modules for a theme : only enable in theme settings administration
- * what you need.
+ * @file theme_plugins_manager.php
+ *
+ * Plugin system for themes. Think plugins as module for a theme.
+ * Plugins may be enabled / disabled in theme admin settings.
  *
  * Template.php implements all needed hooks and then asked all plugins
- * if they have something to do inside this hook. So a plugin can talk to
- * several hooks.
+ * if they have something to do inside this hook.
  *
  * A plugin is simply a class, each method name MUST be exactly the name
  * of corresponding hook in template.php
@@ -14,11 +14,8 @@
 define('OKCDESGIN_THEME_PLUGINS_DIRECTORY', 'theme_plugins');
 define('OKCDESGIN_THEME_PLUGINS_REGISTRY_FILE', 'okcdesign.info.plugins.php');
 
-// we use an autoloader. Storing classes file path in theme info files
-// would make things harder to maintain in case we change things...
-// i hope also it would make life easier when porting code to
-// Drupal 8, maybe using plugin API.
-spl_autoload_register('okcdesign_plugins_autoloader');
+// We use an autoloader to load plugin class.
+spl_autoload_register('theme_plugins_autoloader');
 
 /**
  * Autoloader for plugins.
@@ -27,7 +24,7 @@ spl_autoload_register('okcdesign_plugins_autoloader');
  * @param $class_name : the requested class name.
  * @return string filename is a file is found, otherwise NULL
  */
-function okcdesign_plugins_autoloader($class_name) {
+function theme_plugins_autoloader($class_name) {
   $file = drupal_get_path('theme', 'okcdesign') . "/" . OKCDESGIN_THEME_PLUGINS_DIRECTORY . "/$class_name.php";
   if (is_readable($file)) {
     include_once $file;
@@ -38,14 +35,13 @@ function okcdesign_plugins_autoloader($class_name) {
 /**
  * Helper to retrieve configuration of a plugin
  *
- * Each plugin configuration is saved into a variable inside theme settings
- * with the following naming convention :
- * theme_plugin_settings_{plugin_id}
+ * Each plugin configuration is saved into a variable inside current theme settings variable
+ * with the following naming convention : theme_plugin_settings_{plugin_id}
  *
- * @param (string) $plugin_id : plugin machine name
- * @param (string) $name : name of setting to fetch
- * @param (mixed) $default_value : a default value if no value exists yet for this settings.
- * @return (mixed) value of the requested settings.
+ * @param string $plugin_id : plugin machine name
+ * @param string $name : name of setting to fetch
+ * @param mixed $default_value : a default value if no value exists yet for this settings.
+ * @return string|null : value of the requested setting, null if settings does not exists
  */
 function theme_plugin_get_setting($plugin_id, $name ,$default_value = NULL) {
   $settings = theme_get_setting("theme_plugin_settings_$plugin_id");

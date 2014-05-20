@@ -1,6 +1,7 @@
 <?php
 /**
  * Plugins registry, all plugins have to be declared in this file.
+ * @TODO disable checkbox for plugins that are required by enabled plugins.
  *
  * All plugins must declare the following metadatas :
  * - title : human readable name of the plugin
@@ -10,9 +11,7 @@
  *   witch exactly this name.
  * - expert : if TRUE, plugin will be invisible unless we add "/expert" at the end of url.
  *   in plugin administration form.
- *   @TODO required key does not work anymore, as disabled attributes use on checkbox
- *   cause trouble when saving settings. (values are not POSTED)
- * - dependencies : plugins needed by our plugins.
+ * - dependencies : plugins required by plugin to work as expected.
  */
 
 $plugins['foundation'] = array(
@@ -122,6 +121,5 @@ $plugins['foundation_check_requirements'] = array(
   'package' => 'foundation',
   'expert' => TRUE,
 );
-
 
 return $plugins;

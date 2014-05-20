@@ -123,6 +123,46 @@ class theme_plugins_manager_Test extends PHPUnit_Framework_TestCase {
 
   }
 
+  /**
+   * Make sure theme_plugin_get_settings() works as expected.
+   */
+  function test_theme_plugin_get_setting() {
+
+    // Always do our test on okcdesign rather than default active theme.
+    // this if for theme_get_setting function
+    $GLOBALS['theme_key'] = 'okcdesign';
+
+    $plugin_id = 'phpunit_test';
+
+    // theme_plugin_get_settings shloud return NULL if setting does not exist.
+    $result = theme_plugin_get_setting($plugin_id, 'test');
+    $this->assertNull($result);
+
+    // function shloud return default value when settings does not exist.
+    $result = theme_plugin_get_setting($plugin_id, 'test', 'default_value');
+    $this->assertSame($result, 'default_value');
+
+    $theme_settings = variable_get("theme_okcdesign_settings");
+    $theme_settings["theme_plugin_settings_$plugin_id"] = array('test' => 'value');
+    variable_set("theme_okcdesign_settings", $theme_settings);
+    drupal_static_reset('theme_get_setting');
+
+    // function shloud now return "value", fetching from theme settings.
+    $result = theme_plugin_get_setting($plugin_id, 'test', 'default_value');
+    $this->assertSame($result, 'value');
+
+    // clean settings, remove our test variable.
+    $theme_settings = variable_get("theme_okcdesign_settings");
+    unset($theme_settings["theme_plugin_settings_$plugin_id"]);
+    variable_set("theme_okcdesign_settings", $theme_settings);
+    drupal_static_reset('theme_get_setting');
+
+    // theme_plugin_get_settings shloud return NULL because setting does not exist anymore.
+    $result = theme_plugin_get_setting($plugin_id, 'test');
+    $this->assertNull($result);
+
+  }
+
   function test_theme_plugin_get_enabled_plugins() {
 
     // Always do our test on okcdesign rather than default active theme.

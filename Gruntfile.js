@@ -2,7 +2,7 @@
  * Grunt allow to compile scss files to css files each time
  * they are modified. This is a (faster) alternative to sass compiler.
  *
- * We configure compilation here : files scss to watch, output style.
+ * We configure scss compilation with grunt here : files scss to watch, output style.
  */
 module.exports = function(grunt) {
   grunt.initConfig({
