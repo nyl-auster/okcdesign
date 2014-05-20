@@ -14,13 +14,6 @@
  * - dependencies : plugins required by plugin to work as expected.
  */
 
-$plugins['foundation_ui'] = array(
-  'title' => 'Global design',
-  'description' => 'Change design global settings. <br /><strong> Warning : </strong> When modifying this settings, all scss are recompiled to css, this operation may take some times. <br/>
-  Also note that when this plugin is enabled, a special app.css file is created and used in your drupal files directory. So working with sass files directly in your theme directory will not work anymore until you disable this plugin',
-  'dependencies' => array('foundation'),
-  'package' => 'foundation',
-);
 $plugins['foundation'] = array(
   'title' => 'Foundation Core',
   'description' => 'Plug foundation css framework into Drupal.',
@@ -30,6 +23,13 @@ $plugins['foundation'] = array(
     'hook_html_head_alter',
     'hook_css_alter',
   ),
+);
+$plugins['foundation_ui'] = array(
+  'title' => 'Global design',
+  'description' => 'Change design global settings. <br /><strong> Warning : </strong> When modifying this settings, all scss are recompiled to css, this operation may take some times. <br/>
+  Also note that when this plugin is enabled, a special app.css file is created and used in your drupal files directory. So working with sass files directly in your theme directory will not work anymore until you disable this plugin',
+  'dependencies' => array('foundation'),
+  'package' => 'foundation',
 );
 $plugins['foundation_alert_box'] = array(
   'title' => 'Status messages',

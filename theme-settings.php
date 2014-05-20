@@ -150,7 +150,7 @@ function _okcdesign_build_plugin_checkbox($plugin_id, $plugins) {
   if ($dependencies_disabled) {
     $fake_checkbox = $checkbox;
     $fake_checkbox['#disabled'] = TRUE;
-    $fake_checkbox['#title'] .= " - Please enabled missing dependencies to enable this plugin ! ";
+    $fake_checkbox['#title'] .= ' - Please enable missing dependencies to enable this plugin ! ';
     $checkbox['#access'] = FALSE;
     return $fake_checkbox;
   }
