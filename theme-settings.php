@@ -141,7 +141,7 @@ function _okcdesign_build_plugin_checkbox($plugin_id, $plugins) {
   // do not allow to disable a plugin if enabled plugins require it
   if ($required_by_enabled_plugins) {
     $fake_checkbox = $checkbox;
-    $fake_checkbox['#disabled'] = TRUE;
+    $fake_checkbox['#disabled'] = FALSE;
     $checkbox['#access'] = FALSE;
     return $fake_checkbox;
   }
@@ -149,7 +149,7 @@ function _okcdesign_build_plugin_checkbox($plugin_id, $plugins) {
   // do not allow to Enable a plugin if there is some missing dependencies
   if ($dependencies_disabled) {
     $fake_checkbox = $checkbox;
-    $fake_checkbox['#disabled'] = TRUE;
+    $fake_checkbox['#disabled'] = FALSE;
     $fake_checkbox['#title'] .= ' - Please enable missing dependencies to enable this plugin ! ';
     $checkbox['#access'] = FALSE;
     return $fake_checkbox;
