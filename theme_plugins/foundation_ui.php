@@ -16,6 +16,8 @@ class foundation_ui extends theme_plugin {
 
     $theme_settings_form['#submit'][] = 'foundation_ui_settings_form_submit';
 
+    $expert = arg(4) == 'expert' ? TRUE : FALSE;
+
     // drupal_add_js($this->base_theme_path . '/' . $this->vendors_directory . '/jquery/dist/jquery.min.js');
     // drupal_add_js("jQuery(document).ready(function () {
     //  jQuery('#edit-theme-plugin-settings-foundation-ui-primary-color').colorpicker();
@@ -26,40 +28,97 @@ class foundation_ui extends theme_plugin {
     $form['row-width'] = array(
       '#type' => 'textfield',
       '#title' => 'Grid row width',
-      '#default_value' => theme_plugin_get_setting(__CLASS__, 'row-width', ''),
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'row-width', '1000px'),
+      '#description' => "Width in px units. Note that this will be converted to rem by foudation framework.",
     );
     $form['total-columns'] = array(
+      '#access' => $expert,
       '#type' => 'textfield',
       '#title' => 'Grid columns number',
-      '#default_value' => theme_plugin_get_setting(__CLASS__, 'total-columns', ''),
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'total-columns', '12'),
+      '#description' => "Number of columns for the grid. Enable grid viewer plugin to display the grid in your theme.",
     );
     $form['primary-color'] = array(
       '#type' => 'textfield',
       '#title' => 'Primary color',
-      '#default_value' => theme_plugin_get_setting(__CLASS__, 'primary-color', ''),
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'primary-color', '#008CBA'),
+      '#description' => 'Any valid css color.',
     );
     $form['secondary-color'] = array(
       '#type' => 'textfield',
       '#title' => 'Secondary color',
-      '#default_value' => theme_plugin_get_setting(__CLASS__, 'secondary-color', ''),
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'secondary-color', '#e7e7e7'),
+      '#description' => 'Any valid css color.',
     );
     $form['header-font-color'] = array(
       '#type' => 'textfield',
       '#title' => 'h1, h2, etc... font colors',
-      '#default_value' => theme_plugin_get_setting(__CLASS__, 'header-font-color', ''),
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'header-font-color', '#222'),
+      '#description' => 'Any valid css color.',
+    );
+    $form['alert-color'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Alert colors',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'alert-color', '#f04124'),
+      '#description' => 'Any valid css color.',
+    );
+    $form['success-color'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Success colors',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'success-color', '#43AC6A'),
+      '#description' => 'Any valid css color.',
+    );
+    $form['warning-color'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Warning colors',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'warning-color', '#f08a24'),
+      '#description' => 'Any valid css color.',
+    );
+    $form['info-color'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Info colors',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'info-color', '#a0d3e8'),
+      '#description' => 'Any valid css color.',
+    );
+    $form['ancho-font-color'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Links colors',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'anchor-font-color', '#008CBA'),
+      '#description' => 'Any valid css color.',
+    );
+    $form['ancho-font-color-hover'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Links colors hover',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'anchor-font-color-hover', 'scale-color($primary-color, $lightness: -14%)'),
+      '#description' => 'Any valid css color.',
     );
 
-    if (arg(4) == 'expert') {
-      $form['expert'] = array(
-        '#type' => 'textarea',
-        '#title' => "Write custom valid scss here",
-        '#default_value' => theme_plugin_get_setting(__CLASS__, 'expert', ''),
-      );
-    }
+    $form['expert'] = array(
+      '#access' => $expert,
+      '#type' => 'textarea',
+      '#title' => "Write custom valid scss here",
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'expert', ''),
+      '#description' => 'Free scss for expert.',
+    );
 
     return $form;
   }
 
+}
+
+/**
+ * Prepare user submited values before saving them.
+ * @param $values
+ */
+function foundation_ui_prepare_values($values) {
+  foreach ($values as $key => $value) {
+    if ($key == 'row-width') {
+      $values[$key] = "rem-calc($value)";
+    }
+    // remove ";" if any, they are automatically added when saving values.
+    $values[$key] = str_replace(';', '', $value);
+  }
+  return $values;
 }
 
 /**
@@ -82,7 +141,8 @@ function foundation_ui_settings_form_submit($form, $form_state) {
   }
 
   // Create a valid scss string from submitted values.
-  $new_scss = foundation_ui_create_scss_string_from_array($form_state['values']['theme_plugin_settings_foundation_ui']);
+  $values = foundation_ui_prepare_values($form_state['values']['theme_plugin_settings_foundation_ui']);
+  $new_scss = foundation_ui_create_scss_string_from_array($values);
 
   // if submitted scss settings are the same than scss settings already stored in file, do nothing more.
   $old_scss = foundation_ui_get_theme_custom_scss($theme);

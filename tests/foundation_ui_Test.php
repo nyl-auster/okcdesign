@@ -82,13 +82,13 @@ class foundation_ui_Test extends PHPUnit_Framework_TestCase {
     $this->assertArrayHasKey('total-columns', $form);
     $this->assertArrayHasKey('row-width', $form);
     $this->assertArrayHasKey('header-font-color', $form);
-    $this->assertArrayNotHasKey('expert', $form);
+    $this->assertFalse($form['expert']['#access']);
 
     // simulate an additionnal "expert" argument, that should make appear a new field
     // in theme plugin settings form.
     $_GET['q'] = 'admin/appearance/settings/okcdesign/expert';
     $form = $this->foundation_ui->settings_form();
-    $this->assertArrayHasKey('expert', $form);
+    $this->assertTrue($form['expert']['#access']);
 
   }
 

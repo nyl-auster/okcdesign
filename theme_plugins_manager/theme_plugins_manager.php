@@ -13,10 +13,14 @@
  *
  * Only okcdesign base theme is able to create plugins for now.
  */
+
+// plugins directory
 define('OKCDESIGN_THEME_PLUGINS_DIRECTORY', 'theme_plugins');
+// file to declare plugins to theme. This is not done anymore in theme
+// info file because of caching issues.
 define('OKCDESIGN_THEME_PLUGINS_REGISTRY_FILE', 'okcdesign.info.plugins.php');
 
-// We use an autoloader to load plugin class.
+// We use an autoloader to load plugins classes.
 spl_autoload_register('theme_plugins_autoloader');
 
 /**
@@ -123,10 +127,9 @@ function theme_plugins_invoke($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 
   $plugins_enabled = theme_plugin_get_enabled_plugins();
   $html = NULL;
 
-  // static cache for plugin instances, we make sur each plugin is
+  // static cache for plugin instances, we make sure each plugin is
   // instanciated only one time per page request inside this function.
   static $factory = array();
-
 
   // call only enabled plugins.
   foreach ($plugins_enabled  as $plugin_id) {
