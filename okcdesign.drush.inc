@@ -1,6 +1,8 @@
 <?php
 /**
  * @file
+ *
+ * Create drush commands to create subthemes and plugins in a quick way.
  */
 
 /**
@@ -28,7 +30,7 @@ function okcdesign_drush_command() {
       'hooks'  => 'list of hooks, separated with virgules',
     ),
     'examples' => array(
-      'drush osp monplugin --hooks="hook_preprocess_page, hook_css_alter"' => 'Create a new plugin responding to specified hooks in plugins/others',
+      'drush okc-plugin monplugin --hooks="hook_preprocess_page, hook_css_alter"' => 'Create a new plugin responding to specified hooks in plugins/others',
     ),
   );
 
