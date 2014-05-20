@@ -29,7 +29,7 @@ class foundation_ui extends theme_plugin {
       '#type' => 'textfield',
       '#title' => 'Grid row width',
       '#default_value' => theme_plugin_get_setting(__CLASS__, 'row-width', '1000px'),
-      '#description' => "Width in px units. Note that this will be converted to rem by foudation framework.",
+      '#description' => "Any valid css unit. Note that foundation will try to convert this to rem",
     );
     $form['total-columns'] = array(
       '#access' => $expert,
