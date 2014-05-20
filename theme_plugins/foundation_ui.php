@@ -12,7 +12,7 @@ class foundation_ui extends theme_plugin {
    * Plugin configuration form. Let user choose which menus he wants
    * to print in the main topbar.
    */
-  function settings_form(&$theme_settings_form) {
+  function settings_form(&$theme_settings_form = array()) {
 
     $theme_settings_form['#submit'][] = 'foundation_ui_settings_form_submit';
 

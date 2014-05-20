@@ -30,7 +30,7 @@ class foundation_grid_viewer extends theme_plugin {
     }
   }
 
-  function settings_form() {
+  function settings_form(&$theme_settings_form = array()) {
     $form['display_above_theme'] = array(
       '#type' => 'checkbox',
       '#title' => 'Show review grid in front of the theme',

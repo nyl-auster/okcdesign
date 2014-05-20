@@ -9,7 +9,7 @@ class foundation_topbar extends theme_plugin {
    * Plugin configuration form. Let user choose which menus he wants
    * to print in the main topbar.
    */
-  function settings_form() {
+  function settings_form(&$theme_settings_form = array()) {
     $form['menu_left'] = array(
       '#type' => 'select',
       '#title' => 'Left menu',
