@@ -29,17 +29,22 @@ class theme_plugins_manager_Test extends PHPUnit_Framework_TestCase {
       array('foundation_grid_viewer'),
       array('dynamic_sidebars'),
       array('foundation_alert_box'),
+      array('foundation_icon_fonts'),
     );
   }
 
   /**
-   * List of required plugins for OKC Design theme to work.
+   * List of default enabled plugins in OKC Design.
+   * This MUST match theme info file informations.
    */
   public function requiredPlugins() {
     return array(
       'foundation',
+      'foundation_breadcrumb',
       'foundation_check_requirements',
       'dynamic_sidebars',
+      'foundation_alert_box',
+      'foundation_icon_fonts',
     );
   }
 
@@ -212,6 +217,7 @@ class theme_plugins_manager_Test extends PHPUnit_Framework_TestCase {
   function test_theme_plugins_invoke() {
     $variables['breadcrumb'] = array(l('home' , 'node'), 'contact');
     $result = theme_plugins_invoke('hook_breadcrumb', $variables);
+    $this->assertNotNull($result, 'Oups, no html returned ? ');
     $this->assertContains('<ul class="breadcrumbs">', $result);
   }
 

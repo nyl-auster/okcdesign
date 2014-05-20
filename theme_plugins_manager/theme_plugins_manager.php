@@ -127,6 +127,7 @@ function theme_plugins_invoke($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 
   // instanciated only one time per page request inside this function.
   static $factory = array();
 
+
   // call only enabled plugins.
   foreach ($plugins_enabled  as $plugin_id) {
 
