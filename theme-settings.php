@@ -96,11 +96,11 @@ function _okcdesign_build_plugin_checkbox($plugin_id, $plugins) {
   foreach ($plugin['required_by_plugins'] as $required_by_plugin_id => $required_by_plugin) {
     $required_by_plugins[$required_by_plugin_id] = $required_by_plugin['title'];
     if (theme_plugin_is_enabled($required_by_plugin_id)) {
-      $required_by_plugins[$required_by_plugin_id] = $required_by_plugin['title'] . '<span style="color:red;font-weight:bold"> (enabled) </span>';
+      $required_by_plugins[$required_by_plugin_id] = $required_by_plugin['title'] . '<strong style="color:green;"> (enabled) </strong>';
       $required_by_enabled_plugins[$required_by_plugin_id] = $required_by_plugin;
     }
     else {
-      $required_by_plugins[$required_by_plugin_id] = $required_by_plugin['title'] . ' <span style="font-style:italic"> (Disabled) </span>';
+      $required_by_plugins[$required_by_plugin_id] = $required_by_plugin['title'] . ' <strong style="color:red"> (disabled) </strong>';
     }
   }
 
@@ -110,10 +110,10 @@ function _okcdesign_build_plugin_checkbox($plugin_id, $plugins) {
   if (isset($plugin['dependencies'])) {
     foreach($plugin['dependencies'] as $dependencie_id) {
       if (theme_plugin_is_enabled($dependencie_id)) {
-        $dependencies[$dependencie_id] = $plugins[$dependencie_id]['title'] . '<span style=""> (enabled) </span>';
+        $dependencies[$dependencie_id] = $plugins[$dependencie_id]['title'] . '<strong style="color:green"> (enabled) </strong>';
       }
       else {
-        $dependencies[$dependencie_id] = $plugins[$dependencie_id]['title'] . ' <span style="color:red;font-style:italic"> (Disabled) </span>';
+        $dependencies[$dependencie_id] = $plugins[$dependencie_id]['title'] . ' <strong style="color:red;"> (disabled) </strong>';
         $dependencies_disabled[$dependencie_id] =$plugins[$dependencie_id]['title'];
       }
     }
