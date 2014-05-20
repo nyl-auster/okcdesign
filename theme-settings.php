@@ -16,8 +16,8 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
   // we'll need plugin API to build administration plugins form.
   include_once 'theme_plugins_manager/theme_plugins_manager.php';
 
-  // some plugins will be hide, except if we add "expert" in at the end of url.
-  $mode = arg(4) == 'expert' ? 'expert' : 'simple';
+  // some plugins and fields will be hidden, except if we add "expert" in at the end of url.
+  $expert = arg(4) == 'expert' ? TRUE : FALSE;
 
   $form['#submit'][] = 'okcdesign_plugins_form_submit';
 
@@ -28,11 +28,17 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     '#weight' => -10
   );
 
-  $form['okcdesign']['plugins'] = array(
+  // put back Drupal settings in a "General settings" vertical tab
+  $form['okcdesign']['general'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Theme plugins'),
-    '#description' => t('Enable additionnals plugins for your theme'),
+    '#title' => t('&nbsp;&nbsp; Drupal core Settings'),
   );
+  foreach (array('theme_settings', 'logo', 'favicon') as $field) {
+    if (isset($form[$field])) {
+      $form['okcdesign']['general'][$field] =  $form[$field];
+      unset($form[$field]);
+    }
+  }
 
   // get all declared plugins in okcdesign.info.plugins.php file.
   $plugins = theme_get_plugins();
@@ -40,56 +46,28 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
   // Build individual "checkbox" FAPI element, as they are more flexible thant "checkboxes" FAPI element type.
   foreach($plugins as $plugin_id => $plugin_datas) {
 
-    // group plugins in fieldset by their package.
-    $package = isset($plugin_datas['package']) ? $plugin_datas['package'] : 'others';
+    // add a different symbol if plugin is enabled or disabled.
+    $state = theme_plugin_is_enabled($plugin_id) ? '&#10003;': "&#10008;";
 
-    // Put each plugin inside a package group (using fieldset)
-    $form['okcdesign']['plugins'][$package]['#title'] = $plugin_datas['package'];
-    $form['okcdesign']['plugins'][$package]['#type'] = 'fieldset';
-
-    // build a plugin checkbox
-    $form['okcdesign']['plugins'][$package]["theme_plugin_$plugin_id"] = _okcdesign_build_plugin_checkbox($plugin_id, $plugins);
-
-    // add plugin settings form, if any, below the checkbox to enable it
-    $plugin = new $plugin_id();
-    if (method_exists($plugin, 'settings_form') && $plugin->settings_form($form)) {
-      $form['okcdesign']['plugins'][$package]["settings_$plugin_id"] =  array(
-        '#title' => "Configure " . $plugin_datas['title'],
-        '#type' => 'fieldset',
-        '#collapsible' => TRUE,
-        '#collapsed' => TRUE,
-      );
-      $form['okcdesign']['plugins'][$package]["settings_$plugin_id"]["theme_plugin_settings_$plugin_id"] = $plugin->settings_form($form);
-      // retain configuration in theme settings as an array for this specifig plugin.
-      $form['okcdesign']['plugins'][$package]["settings_$plugin_id"]["theme_plugin_settings_$plugin_id"]['#tree'] = TRUE;
-    }
-
-
-    // just an html divider to make plugin administration more readable.
-    $form['okcdesign']['plugins'][$package][$plugin_id]['divider'] = array(
-      '#type' => 'item',
-      '#markup' => "<hr/>"
+    // create a vertical by plugin
+    $form['okcdesign'][$plugin_id] = array(
+      '#type' => 'fieldset',
+      '#access' => !$expert && !empty($plugin_datas['expert']) ? FALSE : TRUE,
+      '#title' => $state . ' ' . $plugin_datas['title']
     );
 
-    // hide "expert" plugins for normal user.
-    if ($mode != 'expert' && !empty($plugin_datas['expert'])) {
-      $form['okcdesign']['plugins'][$package]["settings_$plugin_id"]['#access'] = FALSE;
-      $form['okcdesign']['plugins'][$package]["theme_plugin_$plugin_id"]['#access'] = FALSE;
-      $form['okcdesign']['plugins'][$package][$plugin_id]['divider'] = FALSE;
+    // add a checkbox to enable the plugin
+    $form['okcdesign'][$plugin_id]["theme_plugin_$plugin_id"] = _okcdesign_build_plugin_checkbox($plugin_id, $plugins);
+
+    // add configuration form for this plugin, if available.
+    $plugin = new $plugin_id();
+    if (method_exists($plugin, 'settings_form') && $plugin->settings_form($form)) {
+      $form['okcdesign'][$plugin_id]["settings_$plugin_id"] = array('#type' => 'fieldset');
+      // retain configuration in theme settings as an array for this specifig plugin.
+      $form['okcdesign'][$plugin_id]["settings_$plugin_id"]["theme_plugin_settings_$plugin_id"]['#tree'] = TRUE;
+      $form['okcdesign'][$plugin_id]["settings_$plugin_id"]["theme_plugin_settings_$plugin_id"] = $plugin->settings_form($form);
     }
 
-  }
-
-  // put back Drupal settings in a "General settings" vertical tab
-  $form['okcdesign']['general'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('General Settings'),
-  );
-  foreach (array('theme_settings', 'logo', 'favicon') as $field) {
-    if (isset($form[$field])) {
-      $form['okcdesign']['general'][$field] =  $form[$field];
-      unset($form[$field]);
-    }
   }
 
 }
@@ -113,29 +91,43 @@ function _okcdesign_build_plugin_checkbox($plugin_id, $plugins) {
 
   // Fetch all plugins which required this plugin to work as expected
   $required_by_plugins = array();
-  foreach ($plugin['required_by_plugins'] as $required_by_plugin) {
-    $required_by_plugins[] = $required_by_plugin['title'];
+  // this array will contain only *enabled* required plugins.
+  $required_by_enabled_plugins = array();
+  foreach ($plugin['required_by_plugins'] as $required_by_plugin_id => $required_by_plugin) {
+    $required_by_plugins[$required_by_plugin_id] = $required_by_plugin['title'];
+    if (theme_plugin_is_enabled($required_by_plugin_id)) {
+      $required_by_plugins[$required_by_plugin_id] = $required_by_plugin['title'] . '<span style="color:red;font-weight:bold"> (enabled) </span>';
+      $required_by_enabled_plugins[$required_by_plugin_id] = $required_by_plugin;
+    }
+    else {
+      $required_by_plugins[$required_by_plugin_id] = $required_by_plugin['title'] . ' <span style="font-style:italic"> (Disabled) </span>';
+    }
   }
 
   // Find all plugins our plugin need to work.
   $dependencies = array();
+  $dependencies_disabled = array();
   if (isset($plugin['dependencies'])) {
     foreach($plugin['dependencies'] as $dependencie_id) {
-      $dependencies[] = $plugins[$dependencie_id]['title'];
+      if (theme_plugin_is_enabled($dependencie_id)) {
+        $dependencies[$dependencie_id] = $plugins[$dependencie_id]['title'] . '<span style=""> (enabled) </span>';
+      }
+      else {
+        $dependencies[$dependencie_id] = $plugins[$dependencie_id]['title'] . ' <span style="color:red;font-style:italic"> (Disabled) </span>';
+        $dependencies_disabled[$dependencie_id] =$plugins[$dependencie_id]['title'];
+      }
     }
   }
 
   // build a title for the checkbox, adding description and all dependencies informations.
-  $description = '';
-  $title = "<strong>" . strtoupper($plugin['title']) . "</strong>";
-  if (isset($plugin['description'])) {
-    $title .= " - " . $plugin['description'];
-  }
+  $title = "<strong> ENABLE PLUGIN " . strtoupper($plugin['title']) . "</strong>";
+
+  $description  = !empty($plugin['description']) ?  $plugin['description'] . '<br />' : '';
   if ($required_by_plugins) {
-    $description .= '<br/> <strong>Required by : </strong>' . implode(', ', $required_by_plugins);
+    $description .= '<br/> <strong>Required by : </strong>' . implode(', ', $required_by_plugins) . '<br />';
   }
   if ($dependencies) {
-    $description .= '<br/> <strong>Depends on: </strong>' . implode(', ', $dependencies);
+    $description .= '<br/> <strong>Depends on : </strong>' . implode(', ', $dependencies) . '<br />';
   }
 
   // create checkbox to enable / disabled this plugin.
@@ -143,11 +135,25 @@ function _okcdesign_build_plugin_checkbox($plugin_id, $plugins) {
     '#type' => 'checkbox',
     '#title' => $title,
     '#default_value' => theme_get_setting("theme_plugin_$plugin_id"),
-    '#description' =>  $description,
+    '#description' => $description,
   );
 
-  // @TODO do not allow to disable a plugin required by enabled plugins.
+  // do not allow to disable a plugin if enabled plugins require it
+  if ($required_by_enabled_plugins) {
+    $fake_checkbox = $checkbox;
+    $fake_checkbox['#disabled'] = TRUE;
+    $checkbox['#access'] = FALSE;
+    return $fake_checkbox;
+  }
 
+  // do not allow to Enable a plugin if there is some missing dependencies
+  if ($dependencies_disabled) {
+    $fake_checkbox = $checkbox;
+    $fake_checkbox['#disabled'] = TRUE;
+    $fake_checkbox['#title'] .= " - Please enabled missing dependencies to enable this plugin ! ";
+    $checkbox['#access'] = FALSE;
+    return $fake_checkbox;
+  }
   return $checkbox;
 }
 
