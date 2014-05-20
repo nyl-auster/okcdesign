@@ -121,7 +121,11 @@ function theme_plugins_invoke($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 
 
   $plugins = theme_get_plugins();
   $plugins_enabled = theme_plugin_get_enabled_plugins();
-  $result = NULL;
+  $html = NULL;
+
+  // static cache for plugin instances, we make sur each plugin is
+  // instanciated only one time per page request inside this function.
+  static $factory = array();
 
   // call only enabled plugins.
   foreach ($plugins_enabled  as $plugin_id) {
@@ -135,14 +139,15 @@ function theme_plugins_invoke($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 
     // if plugins declared a method to fire for this particular hook, call it.
 
     if (isset($plugin_infos['hooks']) && in_array($method, $plugin_infos['hooks'])) {
-      $plugin = $plugin_id::get_instance();
-      // for theme hooks, plugins return html.
-      $result = $plugin->$method($arg1, $arg2, $arg3, $arg4);
+
+      if (empty($factory[$plugin_id])) $factory[$plugin_id] = new $plugin_id();
+      $html = $factory[$plugin_id]->$method($arg1, $arg2, $arg3, $arg4);
+
     }
   }
 
   // this should contain html when this function is called from a theme hook function.
-  return $result;
+  return $html;
 }
 
 /**

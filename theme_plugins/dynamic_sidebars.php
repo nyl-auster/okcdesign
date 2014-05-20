@@ -32,7 +32,7 @@ class dynamic_sidebars extends theme_plugin {
   /**
    * Plugin configuration form.
    */
-  function settings_form() {
+  function settings_form(&$theme_settings_form = array()) {
     $cases = array(
       'left_only' => "When only left sidebar is displayed",
       'right_only' => "When only right sidebar is displayed",

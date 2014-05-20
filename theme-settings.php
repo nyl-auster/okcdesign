@@ -51,7 +51,7 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     $form['okcdesign']['plugins'][$package]["theme_plugin_$plugin_id"] = _okcdesign_build_plugin_checkbox($plugin_id, $plugins);
 
     // add plugin settings form, if any, below the checkbox to enable it
-    $plugin = $plugin_id::get_instance();
+    $plugin = new $plugin_id();
     if (method_exists($plugin, 'settings_form') && $plugin->settings_form($form)) {
       $form['okcdesign']['plugins'][$package]["settings_$plugin_id"] =  array(
         '#title' => "Configure " . $plugin_datas['title'],

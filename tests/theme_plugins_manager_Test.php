@@ -92,9 +92,9 @@ class theme_plugins_manager_Test extends PHPUnit_Framework_TestCase {
    * Try to load foundation plugins
    */
   function test_theme_plugin_autoloader() {
-    $plugin = foundation::get_instance();
+    $plugin = new foundation();
     $this->assertInstanceOf('foundation', $plugin);
-    $plugin = foundation_topbar::get_instance();
+    $plugin = new foundation_topbar();
     $this->assertInstanceOf('foundation_topbar', $plugin);
   }
 
