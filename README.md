@@ -41,7 +41,7 @@ Thinks plugins as modules for a theme, adding features to the theme.
 REQUIREMENTS
 -------------
 
-- PHP 5.3+ (unless you like the "unexpected T_PAAMAYIM_NEKUDOTAYIM" error)
+- PHP >= 5.2 
 - foundation requirements to work with sass & foundation 5 : http://foundation.zurb.com/docs/sass.html :
   - Git
   - Ruby 1.9+
