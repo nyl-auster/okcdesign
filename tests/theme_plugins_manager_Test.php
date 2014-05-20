@@ -12,7 +12,7 @@ class theme_plugins_manager_Test extends PHPUnit_Framework_TestCase {
   protected $plugins_registry_file;
 
   function setUp() {
-    $this->plugins_registry_file = drupal_get_path('theme', 'okcdesign') . '/' . OKCDESGIN_THEME_PLUGINS_REGISTRY_FILE;
+    $this->plugins_registry_file = drupal_get_path('theme', 'okcdesign') . '/' . OKCDESIGN_THEME_PLUGINS_REGISTRY_FILE;
   }
 
   /**
@@ -203,6 +203,16 @@ class theme_plugins_manager_Test extends PHPUnit_Framework_TestCase {
     // theme_get_enabled_plugins must return exactly the same plugins :
     $this->assertSame(ksort($required_plugins), ksort(array_keys(theme_plugin_get_enabled_plugins())));
 
+  }
+
+  /**
+   * invoking hook_breadcrumb should call plugin foundation_breadcrumb
+   * and return html breadcrumb.
+   */
+  function test_theme_plugins_invoke() {
+    $variables['breadcrumb'] = array(l('home' , 'node'), 'contact');
+    $result = theme_plugins_invoke('hook_breadcrumb', $variables);
+    $this->assertContains('<ul class="breadcrumbs">', $result);
   }
 
 }

@@ -62,11 +62,11 @@ function okcdesign_preprocess_foundation_topbar(&$variables) {
  ==============================*/
 
 /**
- * Implements hook_theme_breadcrumb()
+ * Implements theme_breadcrumb()
  */
 function okcdesign_breadcrumb($variables) {
-  $html = theme_plugins_invoke(__FUNCTION__, $variables);
-  if ($html) return $html;
+  $result = theme_plugins_invoke(__FUNCTION__, $variables);
+  if ($result) return $result;
   return theme_breadcrumb($variables);
 }
 

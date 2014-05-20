@@ -10,9 +10,11 @@
  *
  * A plugin is simply a class, each method name MUST be exactly the name
  * of corresponding hook in template.php
+ *
+ * Only okcdesign base theme is able to create plugins for now.
  */
-define('OKCDESGIN_THEME_PLUGINS_DIRECTORY', 'theme_plugins');
-define('OKCDESGIN_THEME_PLUGINS_REGISTRY_FILE', 'okcdesign.info.plugins.php');
+define('OKCDESIGN_THEME_PLUGINS_DIRECTORY', 'theme_plugins');
+define('OKCDESIGN_THEME_PLUGINS_REGISTRY_FILE', 'okcdesign.info.plugins.php');
 
 // We use an autoloader to load plugin class.
 spl_autoload_register('theme_plugins_autoloader');
@@ -25,7 +27,7 @@ spl_autoload_register('theme_plugins_autoloader');
  * @return string filename is a file is found, otherwise NULL
  */
 function theme_plugins_autoloader($class_name) {
-  $file = drupal_get_path('theme', 'okcdesign') . "/" . OKCDESGIN_THEME_PLUGINS_DIRECTORY . "/$class_name.php";
+  $file = drupal_get_path('theme', 'okcdesign') . "/" . OKCDESIGN_THEME_PLUGINS_DIRECTORY . "/$class_name.php";
   if (is_readable($file)) {
     include_once $file;
     return $file;
@@ -65,7 +67,7 @@ function theme_get_plugins() {
   static $plugins = array();
   if ($plugins) return $plugins;
 
-  $plugins = include drupal_get_path('theme', 'okcdesign') .'/' . OKCDESGIN_THEME_PLUGINS_REGISTRY_FILE;
+  $plugins = include drupal_get_path('theme', 'okcdesign') .'/' . OKCDESIGN_THEME_PLUGINS_REGISTRY_FILE;
 
   // fetch plugins which required this plugin to work.
   // This will be used in administration UI only for now...
@@ -121,7 +123,7 @@ function theme_plugins_invoke($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 
   $plugins_enabled = theme_plugin_get_enabled_plugins();
   $result = NULL;
 
-  // plug in only enabled plugins.
+  // call only enabled plugins.
   foreach ($plugins_enabled  as $plugin_id) {
 
     // get full plugin infos from info file.
@@ -134,14 +136,13 @@ function theme_plugins_invoke($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 
 
     if (isset($plugin_infos['hooks']) && in_array($method, $plugin_infos['hooks'])) {
       $plugin = $plugin_id::get_instance();
+      // for theme hooks, plugins return html.
       $result = $plugin->$method($arg1, $arg2, $arg3, $arg4);
     }
   }
 
-  // if we have a return, a plugin implements a theme function returning html,
-  // we have to return it to Drupal.
-  if ($result) return $result;
-
+  // this should contain html when this function is called from a theme hook function.
+  return $result;
 }
 
 /**

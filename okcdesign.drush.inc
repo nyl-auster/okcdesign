@@ -157,7 +157,7 @@ function drush_okcdesign_plugin($name = NULL) {
   $lines[] = '';
   $lines[] = '}';
 
-  $file = $themepath . '/' . OKCDESGIN_THEME_PLUGINS_DIRECTORY . '/' . $name . '.php';
+  $file = $themepath . '/' . OKCDESIGN_THEME_PLUGINS_DIRECTORY . '/' . $name . '.php';
   drush_op('file_put_contents', $file, implode($lines, "\r\n"));
 
 
@@ -174,7 +174,7 @@ function drush_okcdesign_plugin($name = NULL) {
   $lines[] = '';
   $lines[] = 'return $plugins;';
 
-  $file = $themepath . '/' . OKCDESGIN_THEME_PLUGINS_REGISTRY_FILE;
+  $file = $themepath . '/' . OKCDESIGN_THEME_PLUGINS_REGISTRY_FILE;
   $file_contents = drush_op('file_get_contents', $file);
   $file_contents = str_replace('return $plugins;', '', $file_contents);
   $file_contents .= implode($lines, "\n");
