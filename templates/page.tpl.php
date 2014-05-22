@@ -45,7 +45,7 @@
   <!-- site name , logo & slogan -->
   <?php if ($site_name || $logo || $site_slogan) : ?>
     <div class="row">
-      <div class="small-12 columns">
+      <div class="columns">
         <div  id="site-informations">
 
           <h1>
@@ -71,7 +71,7 @@
     <div class="row">
 
       <?php if ($main_menu) : ?>
-        <div class="small-12 medium-6 columns">
+        <div class="columns">
           <nav>
             <?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'main-menu'))) ?>
           </nav>
@@ -91,7 +91,7 @@
 
   <?php if (!empty($page['header'])) : ?>
     <div class="row">
-      <div class="small-12 columns">
+      <div class="columns">
         <?php print render($page['header']) ?>
       </div>
     </div>
@@ -126,7 +126,7 @@
 <?php if ($breadcrumb): ?>
   <div id="breadcrumb">
     <div class="row">
-      <div class="small-12 columns">
+      <div class="columns">
         <?php print $breadcrumb ?>
       </div>
     </div>
@@ -136,7 +136,7 @@
 
 <?php if ($messages) : ?>
   <div id="messages" class="row">
-    <div class="small-12 columns">
+    <div class="columns">
       <?php print $messages ?>
     </div>
   </div> <!-- /.row -->
@@ -218,7 +218,7 @@
 
   <?php if(!empty($page['footer'])) : ?>
     <div class="row">
-      <div class="small-12 columns">
+      <div class="columns">
         <?php print render($page['footer']); ?>
       </div>
     </div>

@@ -31,6 +31,9 @@ class foundation_grid_viewer extends theme_plugin {
   }
 
   function settings_form(&$theme_settings_form = array()) {
+
+    $expert = arg(4) == 'expert' ? TRUE : FALSE;
+
     $form['display_above_theme'] = array(
       '#type' => 'checkbox',
       '#title' => 'Show review grid in front of the theme',
@@ -41,14 +44,31 @@ class foundation_grid_viewer extends theme_plugin {
       '#type' => 'textfield',
       '#title' => 'Change grid color',
       '#description' => 'Enter a valid css color',
-      '#default_value' => theme_plugin_get_setting(__CLASS__, 'grid_color', '#EEE'),
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'grid_color', '#DDD'),
     );
-
-    $form['total_columns'] = array(
+    $form['display_gutters'] = array(
+      '#type' => 'checkbox',
+      '#title' => 'Color grid gutters',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'display_gutters', 0),
+    );
+    $form['grid_gutters_color'] = array(
       '#type' => 'textfield',
-      '#title' => 'Number of columns of your grid. OKC Design try to guess it lookin into scss/_settings.scss file, but if it seems wrong or set in another scss file, put here the actual number of grid columns.',
-      '#default_value' => $this->total_columns,
+      '#title' => 'Change grid gutter color',
+      '#description' => 'Enter a valid css color',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'grid_gutters_color', '#EEE'),
     );
+    $form['total_columns'] = array(
+      '#access' => $expert,
+      '#type' => "textfield",
+      '#title' => 'Number of columns',
+      '#default_value' => theme_plugin_get_setting(__CLASS__, 'total_columns', $this->total_columns),
+    );
+    if (!$expert) {
+      $form['total_columns_info'] = array(
+        '#type' => 'item',
+        "#markup" => "<strong>Your grid has currently $this->total_columns columns </strong>",
+      );
+    }
     return $form;
   }
 
@@ -64,13 +84,22 @@ class foundation_grid_viewer extends theme_plugin {
    */
   function theme_grid_viewer($columns) {
     $above = theme_plugin_get_setting(__CLASS__, 'display_above_theme', 0);
-    $grid_color = strip_tags(theme_plugin_get_setting(__CLASS__, 'grid_color', '#EEE'));
+    $display_gutters = strip_tags(theme_plugin_get_setting(__CLASS__, 'display_gutters', 0));
+
+    $grid_color = strip_tags(theme_plugin_get_setting(__CLASS__, 'grid_color', '#DDD'));
+
+    $columns_css = '';
+    if ($display_gutters) {
+      $grid_gutters_color = strip_tags(theme_plugin_get_setting(__CLASS__, 'grid_gutters_color', '#EEE'));
+      $columns_css = "background : $grid_gutters_color";
+    }
+
     $z_index = $above ? '1' : '0';
     $html = array();
     $html[] = '<div style="z-index:' . $z_index . ';position:relative;opacity:0.5" class="row">';
     $html[] = '<div style="position:absolute;top:0;height:100%;width:100%">';
     for($i = 1; $i <= $columns; $i++) {
-      $html[] = '<div style="" class="small-1 columns">';
+      $html[] = '<div style="' . $columns_css . '" class="small-1 columns">';
       $html[] = '<p style="text-align:center;color:white;height:3000px;padding-top:300px;font-weight:bold;background: ' . $grid_color . ';"> ' . $i . '</p>';
       $html[] = '</div>';
     }
