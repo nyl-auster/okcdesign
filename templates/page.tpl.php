@@ -214,7 +214,9 @@
   </div> <!-- /.row -->
 </section>
 
+<?php if (!empty($page['footer']) || !empty($page['footer__row_1']) || !empty($page['footer__row_2']) || !empty($page['footer__row_3'])) : ?>
 <footer>
+<?php endif ?>
 
   <?php if(!empty($page['footer'])) : ?>
     <div class="row">
@@ -248,4 +250,6 @@
     </div>
   <?php endif ?>
 
+<?php if (!empty($page['footer']) || !empty($page['footer__row_1']) || !empty($page['footer__row_2']) || !empty($page['footer__row_3'])) : ?>
 </footer>
+<?php endif ?>
