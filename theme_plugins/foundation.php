@@ -67,6 +67,7 @@ class foundation extends theme_plugin {
       'modules/toolbar/toolbar.css',
       'modules/shortcut/shortcut.css',
       'modules/overlay/overlay-parent.css',
+      'modules/overlay/overlay-child.css',
     );
   }
 
@@ -87,7 +88,6 @@ class foundation extends theme_plugin {
     }
 
   }
-
 
 }
 
