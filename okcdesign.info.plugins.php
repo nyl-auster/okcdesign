@@ -122,5 +122,13 @@ $plugins['foundation_check_requirements'] = array(
   'package' => 'foundation',
   'expert' => TRUE,
 );
+$plugins['foundation_pager'] = array(
+  'title' => 'foundation_pager',
+  'description' => 'Use foundation pager instead of drupal pager',
+  'dependencies' => array('foundation'),
+  'hooks' => array(
+    'hook_pager',
+  ),
+);
 
 return $plugins;

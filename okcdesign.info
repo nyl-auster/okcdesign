@@ -41,3 +41,4 @@ settings[theme_plugin_foundation_icon_fonts] = 1
 settings[theme_plugin_foundation_breadcrumb] = 1
 settings[theme_plugin_dynamic_sidebars] = 1
 settings[theme_plugin_foundation_alert_box] = 1
+settings[theme_plugin_foundation_pager] = 1

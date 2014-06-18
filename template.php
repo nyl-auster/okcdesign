@@ -70,8 +70,21 @@ function okcdesign_breadcrumb($variables) {
   return theme_breadcrumb($variables);
 }
 
+/**
+ * Implements theme_status_messages()
+ */
 function okcdesign_status_messages($variables) {
   $html = theme_plugins_invoke(__FUNCTION__, $variables);
   if ($html) return $html;
   return theme_status_messages($variables);
 }
+
+/**
+ * Implements theme_pager()
+ */
+function okcdesign_pager($variables) {
+  $html = theme_plugins_invoke(__FUNCTION__, $variables);
+  if ($html) return $html;
+  return theme_pager($variables);
+}
+
