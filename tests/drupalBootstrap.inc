@@ -1,5 +1,8 @@
 <?php
 /**
+ * Please note that this Drupal Bootstrap script won't work in a multisite
+ * Drupal installation.
+ *
  * Thanks to Roman Zimmermann for this drupal bootstrap script, i only use
  * getcwd() function instead of CWD string, and add a "chdir" to the drupal root
  * at the end of the script.

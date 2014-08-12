@@ -1,7 +1,6 @@
 <?php
 
-
-include 'drupalBootstrap.inc';
+require_once 'drupalBootstrap.inc';
 
 /**
  * Test foundation theme plugin

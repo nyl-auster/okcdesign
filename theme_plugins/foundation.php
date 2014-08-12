@@ -6,7 +6,7 @@
  *
  * It also removes all unecessary css files, that may interfere with foundation css.
  */
-class foundation extends theme_plugin {
+class foundation extends okc_theme_plugin {
 
 
   /**

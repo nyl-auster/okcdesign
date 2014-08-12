@@ -1,7 +1,7 @@
 <?php
 
 include 'drupalBootstrap.inc';
-include '../theme_plugins_manager/theme_plugins_manager.php';
+include '../theme_plugins_manager/okc_theme_plugins_manager.php';
 
 /**
  * Test that plugins manager is working as expected
@@ -12,7 +12,7 @@ class theme_plugins_manager_Test extends PHPUnit_Framework_TestCase {
   protected $plugins_registry_file;
 
   function setUp() {
-    $this->plugins_registry_file = drupal_get_path('theme', 'okcdesign') . '/' . OKCDESIGN_THEME_PLUGINS_REGISTRY_FILE;
+    $this->plugins_registry_file = drupal_get_path('theme', 'okcdesign') . '/' . OKC_THEME_PLUGINS_REGISTRY_FILE;
   }
 
   /**

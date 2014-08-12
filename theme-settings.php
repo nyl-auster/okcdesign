@@ -14,7 +14,7 @@
 function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
 
   // we'll need plugin API to build administration plugins form.
-  include_once 'theme_plugins_manager/theme_plugins_manager.php';
+  require_once 'okc_theme_plugins_manager.php';
 
   // some plugins and fields will be hidden, except if we add "expert" in at the end of url.
   $expert = arg(4) == 'expert' ? TRUE : FALSE;

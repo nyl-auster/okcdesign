@@ -5,7 +5,7 @@
  *
  * A plugin MUST extends this class.
  */
-class theme_plugin {
+class okc_theme_plugin {
 
   // define variables our plugins may need.
   protected $base_theme_name = '';

@@ -13,7 +13,7 @@
 include_once 'drupalBootstrap.inc';
 
 /**
- * Check global required things for okcdesign to work as expected
+ * Check global required things for okcdesign theme to work as expected
  */
 class okcdesign_Test extends PHPUnit_Framework_TestCase {
 
@@ -32,7 +32,7 @@ class okcdesign_Test extends PHPUnit_Framework_TestCase {
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/templates/foundation_topbar.tpl.php');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/templates/foundation_topbar_submenu.tpl.php');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/theme_plugins');
-    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/theme_plugins_manager/theme_plugins_manager.php');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/okc_theme_plugins_manager.php');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/okcdesign.drush.inc');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/Gruntfile.js');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/okcdesign.info');

@@ -1,6 +1,6 @@
 <?php
 /**
- * @file theme_plugins_manager.php
+ * @file okc_theme_plugins_manager.php
  *
  * Plugin system for themes. Think plugins as module for a theme.
  * Plugins may be enabled / disabled in theme admin settings.
@@ -15,10 +15,10 @@
  */
 
 // plugins directory
-define('OKCDESIGN_THEME_PLUGINS_DIRECTORY', 'theme_plugins');
+define('OKC_THEME_PLUGINS_DIRECTORY', 'theme_plugins');
 // file to declare plugins to theme. This is not done anymore in theme
 // info file because of caching issues.
-define('OKCDESIGN_THEME_PLUGINS_REGISTRY_FILE', 'okcdesign.info.plugins.php');
+define('OKC_THEME_PLUGINS_REGISTRY_FILE', 'okcdesign.info.plugins.php');
 
 // We use an autoloader to load plugins classes.
 spl_autoload_register('theme_plugins_autoloader');
@@ -31,7 +31,7 @@ spl_autoload_register('theme_plugins_autoloader');
  * @return string filename is a file is found, otherwise NULL
  */
 function theme_plugins_autoloader($class_name) {
-  $file = drupal_get_path('theme', 'okcdesign') . "/" . OKCDESIGN_THEME_PLUGINS_DIRECTORY . "/$class_name.php";
+  $file = drupal_get_path('theme', 'okcdesign') . "/" . OKC_THEME_PLUGINS_DIRECTORY . "/$class_name.php";
   if (is_readable($file)) {
     include_once $file;
     return $file;
@@ -71,7 +71,7 @@ function theme_get_plugins() {
   static $plugins = array();
   if ($plugins) return $plugins;
 
-  $plugins = include drupal_get_path('theme', 'okcdesign') .'/' . OKCDESIGN_THEME_PLUGINS_REGISTRY_FILE;
+  $plugins = include drupal_get_path('theme', 'okcdesign') .'/' . OKC_THEME_PLUGINS_REGISTRY_FILE;
 
   // fetch plugins which required this plugin to work.
   // This will be used in administration UI only for now...

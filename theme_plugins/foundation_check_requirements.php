@@ -4,7 +4,7 @@
  * Check if okcdesign is able to runs on current Drupal installation.
  * IF not, try to guess what's wrong and to inform user.
  */
-class foundation_check_requirements extends theme_plugin {
+class foundation_check_requirements extends okc_theme_plugin {
 
   function hook_preprocess_page(&$variables) {
 

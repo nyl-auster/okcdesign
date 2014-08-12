@@ -9,7 +9,7 @@
  * grid contains only 12 columns; so we have to let use choose exactly
  * what he wants to fits its foundation grid configuration.
  */
-class dynamic_sidebars extends theme_plugin {
+class dynamic_sidebars extends okc_theme_plugin {
 
   // default grid classes when there is only sidebar left
   protected $left_only = array(

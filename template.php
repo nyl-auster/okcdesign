@@ -6,11 +6,11 @@
  * No custom code should be written here, only invocations
  * to plugin via theme_plugins_manager.
  *
- * @see theme_plugins_manager/theme_plugins_manager.php
+ * @see theme_plugins_manager/okc_theme_plugins_manager.php
  */
 
 // load plugins system
-include_once 'theme_plugins_manager/theme_plugins_manager.php';
+require_once 'okc_theme_plugins_manager.php';
 
 /*=============================
    HOOKS

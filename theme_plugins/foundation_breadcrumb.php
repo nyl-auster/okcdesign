@@ -5,7 +5,7 @@
  * Theme drupal breadcrumb as a foundation breadcrumb
  */
 
-class foundation_breadcrumb extends theme_plugin {
+class foundation_breadcrumb extends okc_theme_plugin {
 
   function hook_breadcrumb($variables) {
 
