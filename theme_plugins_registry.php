@@ -54,6 +54,7 @@ $plugins['foundation_breadcrumb'] = array(
 $plugins['foundation_topbar'] = array(
   'title' => 'Top bar',
   'description' => 'Display drupal menus of your choice in a mobile-friendly top bar',
+  'expert' => TRUE,
   'hooks' => array(
     'hook_theme',
     'hook_preprocess_foundation_topbar',
@@ -128,6 +129,7 @@ $plugins['foundation_pager'] = array(
   'title' => 'foundation_pager',
   'description' => 'Use foundation pager instead of drupal pager',
   'dependencies' => array('foundation'),
+  'expert' => TRUE,
   'hooks' => array(
     'hook_pager',
   ),

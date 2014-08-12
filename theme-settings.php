@@ -62,7 +62,7 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     // add configuration form for this plugin, if available.
     $plugin = new $plugin_id();
     if (!theme_plugin_is_enabled($plugin_id)) {
-      $form['okcdesign'][$plugin_id]["theme_plugin_$plugin_id"]['#description'] = "Enable to see configuration form for this plugin";
+      $form['okcdesign'][$plugin_id]["theme_plugin_$plugin_id"]['#description'] .= "<br/>Enable to see configuration form for this plugin, if any";
     }
     else if ( method_exists($plugin, 'settings_form') && $plugin->settings_form($form)) {
       $form['okcdesign'][$plugin_id]["settings_$plugin_id"] = array('#type' => 'fieldset');
