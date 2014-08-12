@@ -128,7 +128,7 @@ function theme_plugins_invoke($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 
   $html = NULL;
 
   // static cache for plugin instances, we make sure each plugin is
-  // instanciated only one time per page request inside this function.
+  // instanciated only one time per http request inside this function.
   static $factory = array();
 
   // call only enabled plugins.
@@ -140,11 +140,14 @@ function theme_plugins_invoke($hook, &$arg1 = array(), &$arg2 = array(), &$arg3 
 
     // for okcdesign_preprocess_page, call method hook_preprocess_page() in plugin class.
     $method = str_replace('okcdesign' . '', 'hook', $hook);
-    // if plugins declared a method to fire for this particular hook, call it.
 
+    // if plugins declared a method to fire for this particular hook, call it.
     if (isset($plugin_infos['hooks']) && in_array($method, $plugin_infos['hooks'])) {
 
+      // put plugin object in the factory if not already in.
       if (empty($factory[$plugin_id])) $factory[$plugin_id] = new $plugin_id();
+
+      // Let our phpunit tests know if called method has not been found.
       $html = $factory[$plugin_id]->$method($arg1, $arg2, $arg3, $arg4);
 
     }

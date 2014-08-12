@@ -1,18 +1,18 @@
-// foundation settings. The first you should edit in your subtheme to
-// adapt css foundation to your design.
+// this is the main file to configure foundation framework :
+// Import components you need. By default, only reponsive grid
+// system is included to keep your css lightweight.
+//
+// Then edit _settings.scss of your subtheme to configure foundation plugins
+// and some foundation global settings.
+
 @import 'settings';
 
 // css reset
 @import "normalize";
 
-// import ALL foundation components at once.
-@import "foundation";
+@import "foundation/components/grid";
 
-// This is only an example of how to use foundation with drupal. @see okcdesign/scss/drupal-example.scss
-// Subthemes : please comment this to start create your own scss from scratch.
-@import "drupal-example";
-
-// Or selectively include components
+// selectively include components
 // @import
 //   "foundation/components/accordion",
 //   "foundation/components/alert-boxes",

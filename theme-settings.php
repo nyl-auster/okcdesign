@@ -159,6 +159,7 @@ function _okcdesign_build_plugin_checkbox($plugin_id, $plugins) {
 
 /**
  * Additionnal submit callback for theme settings form.
+ *
  * @param $form
  * @param $form_state
  */

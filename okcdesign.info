@@ -10,7 +10,6 @@ screenshot = screenshot.png
 ;   to blocks by an additionnal module such as okclayout or block_class
 ; - others regions are displayed on a grid by blocks will be full-width
 ;   by default.
-
 regions[header] = Header
 regions[header__row_1] = Header row 1
 regions[header__row_2] = Header row 2
@@ -33,12 +32,12 @@ regions[footer__row_1] = Footer row 1
 regions[footer__row_2] = Footer row 2
 regions[footer__row_3] = Footer row 3
 
-; default enabled plugins
+; default enabled theme plugins
 settings[theme_plugin_foundation] = 1
 settings[theme_plugin_foundation_check_requirements] = 1
-settings[theme_plugin_foundation_topbar] = 0
-settings[theme_plugin_foundation_icon_fonts] = 1
-settings[theme_plugin_foundation_breadcrumb] = 1
 settings[theme_plugin_dynamic_sidebars] = 1
-settings[theme_plugin_foundation_alert_box] = 1
-settings[theme_plugin_foundation_pager] = 1
+settings[theme_plugin_foundation_topbar] = 0
+settings[theme_plugin_foundation_icon_fonts] = 0
+settings[theme_plugin_foundation_breadcrumb] = 0
+settings[theme_plugin_foundation_alert_box] = 0
+settings[theme_plugin_foundation_pager] = 0

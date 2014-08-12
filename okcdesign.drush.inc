@@ -38,7 +38,7 @@ function okcdesign_drush_command() {
 }
 
 /**
- * Create a Zurb foundation sub-theme.
+ * Create a okcdesign sub-theme.
  */
 function drush_okcdesign_theme($name = NULL) {
   if (empty($name)) {
@@ -78,7 +78,7 @@ function drush_okcdesign_theme($name = NULL) {
     drush_print("Creating directory $subtheme_path/$directory");
   }
 
-  // copy files from base theme
+  // copy some files directly from base theme
   $files = array('css/app.css', 'scss/app.scss', 'scss/_settings.scss', 'logo.png');
   foreach ($files as $file) {
     drush_op('copy', "$okcdesign_path/$file", "$subtheme_path/$file");
@@ -127,6 +127,7 @@ function drush_okcdesign_theme($name = NULL) {
  * Create a new okcdesign theme plugin
  */
 function drush_okcdesign_plugin($name = NULL) {
+
   include_once 'theme_plugins_manager/theme_plugins_manager.php';
 
   if (empty($name)) {
@@ -141,7 +142,6 @@ function drush_okcdesign_plugin($name = NULL) {
     drush_set_error(dt("You must at least declare one hook"));
     return;
   }
-
 
   $themepath = drush_locate_root() . '/' . drupal_get_path('theme', 'okcdesign');
 

@@ -7,7 +7,7 @@
  * - title : human readable name of the plugin
  * - description : what the plugin do
  * - package : plugins are grouped by package in theme settings administration
- * - hooks : on which hooks this plugin must be invoked. Plugin then must implement a method
+ * - hooks : on which hooks this plugin must be invoked. Plugin class then must implement a method
  *   witch exactly this name.
  * - expert : if TRUE, plugin will be invisible unless we add "/expert" at the end of url.
  *   in plugin administration form.

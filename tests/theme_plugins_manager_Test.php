@@ -40,11 +40,8 @@ class theme_plugins_manager_Test extends PHPUnit_Framework_TestCase {
   public function requiredPlugins() {
     return array(
       'foundation',
-      'foundation_breadcrumb',
       'foundation_check_requirements',
       'dynamic_sidebars',
-      'foundation_alert_box',
-      'foundation_icon_fonts',
     );
   }
 
@@ -211,14 +208,15 @@ class theme_plugins_manager_Test extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * invoking hook_breadcrumb should call plugin foundation_breadcrumb
-   * and return html breadcrumb.
+   * Test plugin invocation with theme_plugins_invoke function.
+   * As foundation plugin is supposed to be always enabled, invoking
+   * "hook_html_head_alter" should modify header with "foundation" plugin
+   * and add mobile viewport header.
    */
   function test_theme_plugins_invoke() {
-    $variables['breadcrumb'] = array(l('home' , 'node'), 'contact');
-    $result = theme_plugins_invoke('hook_breadcrumb', $variables);
-    $this->assertNotNull($result, 'Oups, no html returned ? ');
-    $this->assertContains('<ul class="breadcrumbs">', $result);
+    static $headers = array();
+    theme_plugins_invoke('hook_html_head_alter', $headers);
+    $this->assertArrayHasKey('mobile_viewport', $headers);
   }
 
 }
