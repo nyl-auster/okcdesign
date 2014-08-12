@@ -10,7 +10,9 @@
 // css reset
 @import "normalize";
 
+// only include grid and type components by default.
 @import "foundation/components/grid";
+@import "foundation/components/type";
 
 // selectively include components
 // @import
