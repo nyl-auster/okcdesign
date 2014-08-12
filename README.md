@@ -1,7 +1,7 @@
 OKC Design
 -------------
 
-**Drupal 7 + Foundation 5  **
+**Drupal 7 + Foundation 5**
 
 ![Logo](https://raw.githubusercontent.com/nyl-auster/okcdesign/master/screenshot.png)
 
