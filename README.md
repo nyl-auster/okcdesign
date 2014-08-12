@@ -1,12 +1,16 @@
 OKC Design
 -------------
 
-**Drupal 7 + Foundation 5 : build responsive sites faster**
+**Drupal 7 + Foundation 5  **
 
 ![Logo](https://raw.githubusercontent.com/nyl-auster/okcdesign/master/screenshot.png)
 
 OKCDesign is a Drupal 7 responsive starter theme for developers, based on zurb foundation 5 framework.
 Foundation 5 is a powerfull front-end, mobile-first, responsive framework : http://foundation.zurb.com/
+
+This is a theme for developpers only, and a good knowledge of how foundation framework is required.
+Only grid components is included by default, it's up to you to import components you need
+in your subtheme scss/app.scss file.
 
 By default, OKC Design takes care of displaying all drupal elements inside a solid foundation grid system for page.tpl.php;
 to let foundation handle the responsive part of your theme.
@@ -15,7 +19,7 @@ FEATURES
 ---------
 
 - Enjoy all the foundation goodness in Drupal 7 :  Grid system, components, responsive design, icons etc...
-- A ready-to-use integration of foundation mobile-friendly topbar to Drupal, working out of the box. (just enable the plugin in theme settings)
+- A ready-to-use integration of foundation mobile-friendly topbar to Drupal. (import components in app.scss file then enable the plugin in your theme settings)
 - Zero Drupal css : only css needed for administration purposes have been kept.
 - Theme plugin system : Enable only plugins you need and configure them.
 - Place blocks quickly on the grid with optional okclayout module : https://github.com/nyl-auster/okclayout
@@ -122,7 +126,7 @@ See foundation docs on Grid for more fun stuff.
 ADDITIONNAL DRUPAL MODULES
 --------------------------------
 
-There is on drupal.org modules based on foundation, they should work with this project :
+There is on drupal.org modules based on foundation, they MAY work with this project :
 - https://drupal.org/project/field_orbit
 - https://drupal.org/project/zurb_clearing
 - https://drupal.org/project/foundation_group
