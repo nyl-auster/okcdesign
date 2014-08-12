@@ -42,6 +42,8 @@ Visit admin/appearance/settings to enable or disable theme plugins for your subt
 Technically, foundation itself is provided as a plugin, enabled by default.
 Thinks plugins as modules for a theme, adding features to the theme.
 
+Visite admin/appearance/settings/{yourtheme}/expert to configure advanced plugins for OKC Design.
+
 REQUIREMENTS
 -------------
 
