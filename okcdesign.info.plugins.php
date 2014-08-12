@@ -12,6 +12,8 @@
  * - expert : if TRUE, plugin will be invisible unless we add "/expert" at the end of url.
  *   in plugin administration form.
  * - dependencies : plugins required by plugin to work as expected.
+ * - required_components : foundation components that MUST be imported in app.scss file
+ *   for plugin to work.
  */
 
 $plugins['foundation'] = array(

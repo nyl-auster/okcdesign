@@ -15,7 +15,7 @@ class theme_settings_Test extends PHPUnit_Framework_TestCase {
    * @return array
    */
   public function pluginsListDataProvider() {
-    $plugins = theme_get_plugins();
+    $plugins = theme_plugin_get_enabled_plugins();
     $datas = array();
     foreach ($plugins as $plugin_id => $plugin_datas) {
       $datas[] = array($plugin_id);
