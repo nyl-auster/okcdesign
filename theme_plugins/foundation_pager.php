@@ -4,7 +4,7 @@
  * Thanks to zurb_foundation theme for this !
  * Class foundation_pager
  */
-class foundation_pager extends okc_theme_plugin {
+class foundation_pager extends theme_plugin {
 
   /**
    * Replace Drupal pagers with Foundation pagers.

@@ -3,7 +3,7 @@
 /**
  * Display foundation grid above the theme.
  */
-class foundation_grid_viewer extends okc_theme_plugin {
+class foundation_grid_viewer extends theme_plugin {
 
   protected $total_columns = 12;
 

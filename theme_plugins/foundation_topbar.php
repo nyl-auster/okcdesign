@@ -3,7 +3,7 @@
 /**
  * Display choosen menus in a mobile-friendly foundation topbar.
  */
-class foundation_topbar extends okc_theme_plugin {
+class foundation_topbar extends theme_plugin {
 
   /**
    * Plugin configuration form. Let user choose which menus he wants

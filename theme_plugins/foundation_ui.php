@@ -6,7 +6,7 @@
  * phpscss library is used to compile all scss to css in files/okcdesign/{themeName}
  * Class foundation_ui
  */
-class foundation_ui extends okc_theme_plugin {
+class foundation_ui extends theme_plugin {
 
   /**
    * Plugin configuration form. Let user choose which menus he wants

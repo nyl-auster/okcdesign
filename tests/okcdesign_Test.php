@@ -32,11 +32,11 @@ class okcdesign_Test extends PHPUnit_Framework_TestCase {
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/templates/foundation_topbar.tpl.php');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/templates/foundation_topbar_submenu.tpl.php');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/theme_plugins');
-    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/okc_theme_plugins_manager.php');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/theme_plugins_manager.php');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/okcdesign.drush.inc');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/Gruntfile.js');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/okcdesign.info');
-    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/okcdesign.info.plugins.php');
+    $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/theme_plugins_registry.php');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/template.php');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/theme-settings.php');
     $this->assertFileExists(drupal_get_path('theme', 'okcdesign') . '/STARTER');

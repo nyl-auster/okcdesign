@@ -14,7 +14,7 @@
 function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
 
   // we'll need plugin API to build administration plugins form.
-  require_once 'okc_theme_plugins_manager.php';
+  require_once 'theme_plugins_manager.php';
 
   // some plugins and fields will be hidden, except if we add "expert" in at the end of url.
   $expert = arg(4) == 'expert' ? TRUE : FALSE;
@@ -40,7 +40,7 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     }
   }
 
-  // get all declared plugins in okcdesign.info.plugins.php file.
+  // get all declared plugins in theme_plugins_registry.php file.
   $plugins = theme_get_plugins();
 
   // Build individual "checkbox" FAPI element, as they are more flexible thant "checkboxes" FAPI element type.

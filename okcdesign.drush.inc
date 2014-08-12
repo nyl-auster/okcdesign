@@ -128,7 +128,7 @@ function drush_okcdesign_theme($name = NULL) {
  */
 function drush_okcdesign_plugin($name = NULL) {
 
-  include_once 'theme_plugins_manager/okc_theme_plugins_manager.php';
+  include_once 'theme_plugins_manager/theme_plugins_manager.php';
 
   if (empty($name)) {
     drush_set_error(dt("Please provide a name for the plugin."));

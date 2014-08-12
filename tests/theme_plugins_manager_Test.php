@@ -1,7 +1,7 @@
 <?php
 
 include 'drupalBootstrap.inc';
-include '../theme_plugins_manager/okc_theme_plugins_manager.php';
+include '../theme_plugins_manager/theme_plugins_manager.php';
 
 /**
  * Test that plugins manager is working as expected

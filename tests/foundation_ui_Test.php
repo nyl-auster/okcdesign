@@ -1,7 +1,7 @@
 <?php
 
 include_once 'drupalBootstrap.inc';
-include_once '../theme_plugins_manager/okc_theme_plugins_manager.php';
+include_once '../theme_plugins_manager/theme_plugins_manager.php';
 
 /**
  * Check if foundation_ui plugin work as expected.

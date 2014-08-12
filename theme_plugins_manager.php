@@ -1,6 +1,6 @@
 <?php
 /**
- * @file okc_theme_plugins_manager.php
+ * @file theme_plugins_manager.php
  *
  * Plugin system for themes. Think plugins as module for a theme.
  * Plugins may be enabled / disabled in theme admin settings.
@@ -18,7 +18,7 @@
 define('OKC_THEME_PLUGINS_DIRECTORY', 'theme_plugins');
 // file to declare plugins to theme. This is not done anymore in theme
 // info file because of caching issues.
-define('OKC_THEME_PLUGINS_REGISTRY_FILE', 'okcdesign.info.plugins.php');
+define('OKC_THEME_PLUGINS_REGISTRY_FILE', 'theme_plugins_registry.php');
 
 // We use an autoloader to load plugins classes.
 spl_autoload_register('theme_plugins_autoloader');
