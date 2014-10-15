@@ -48,10 +48,15 @@ REQUIREMENTS
 -------------
 
 - PHP >= 5.2 
-- foundation requirements to work with sass & foundation 5 : http://foundation.zurb.com/docs/sass.html :
-  - Git
-  - Ruby 1.9+
-  - NodeJs
+- Sass 3.3.4 (Maptastic Maple)
+- foundation 5 with sass : http://foundation.zurb.com/docs/sass.html :
+  - npm install -g bower grunt-cli
+  - gem install foundation
+  (foundation requirements :
+    - Git
+    - Ruby 1.9+
+    - NodeJs
+  )
 - jquery_update drupal module with jquery >= 1.10
 - drush
 
