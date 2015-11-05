@@ -79,7 +79,7 @@
       <?php endif ?>
 
       <?php if ($secondary_menu) : ?>
-        <div class="small-12 medium-6 large-6 columns">
+        <div class="columns">
           <nav>
             <?php print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu'))) ?>
           </nav>
