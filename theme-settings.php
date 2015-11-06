@@ -16,9 +16,6 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
   // we'll need plugin API to build administration plugins form.
   require_once 'theme_plugins_manager.php';
 
-  // some plugins and fields will be hidden, except if we add "expert" in at the end of url.
-  $expert = arg(4) == 'expert' ? TRUE : FALSE;
-
   $form['#submit'][] = 'okcdesign_plugins_form_submit';
 
   // create vertical tabs to organize theme settings form.
@@ -52,7 +49,7 @@ function okcdesign_form_system_theme_settings_alter(&$form, $form_state) {
     // create a vertical by plugin
     $form['okcdesign'][$plugin_id] = array(
       '#type' => 'fieldset',
-      '#access' => !$expert && !empty($plugin_datas['expert']) ? FALSE : TRUE,
+      //'#access' => !$expert && !empty($plugin_datas['expert']) ? FALSE : TRUE,
       '#title' => $state . ' ' . $plugin_datas['title']
     );
 
